@@ -1,0 +1,2 @@
+# platinum
+Hairdresser salon
