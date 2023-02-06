@@ -8,3 +8,8 @@ assignees: EliSacch
 ---
 
 As a **role** I can **capability** so that **benefit**
+
+ACCEPTANCE CRITERIA:
+1. Criteria
+2. Criteria
+3. Criteria
