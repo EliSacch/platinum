@@ -1,70 +1,229 @@
-# Getting Started with Create React App
+# Platinum
+Hairdresser salon
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+![Responsive Mockup]()
 
-In the project directory, you can run:
+[See deployed website]()
 
-### `npm start`
+## Table of content
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- [Design and User Experience](#design-and-user-experience)
+  - [Design](#design)
+  - [User Stories](#user-stories)
+  - [Wireframes](#wireframes)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- [Features](#features)
+  - [Landing Page](#landing-page)
+  - [Staff Page](#staff-page)
 
-### `npm test`
+- [Testing](#testing)
+  - [Tests](#tests)
+  - [Validator Testing](#validator-testing)
+  - [Fixed bugs](#fixed-bugs)
+  - [Unfixed bugs](#unfixed-bugs)
+  - [Performance](#performance)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- [Deployment](#deployment)
+  - [Live Website](#live-website)
+  - [Local Deployment](#local-deployment)
 
-### `npm run build`
+- [Credits](#credits)
+  - [Code](#code)
+  - [Content](#content)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- [Technologies used](#technologies-used)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- [Acknowledgements](#acknowledgements)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Design and User Experience
 
-### `npm run eject`
+### Design
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+- Color palette:
+  - Neutral colours:
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+  ![light](media/design/color-palette-light.png)
+  ![dark](media/design/color-palette-dark.png)
+  - Vibrant colours: 
+  
+  ![vibrant](media/design/color-palette-colours.png)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### User Stories
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+- As website owner I want:
 
-## Learn More
+- As a user I want:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### Wireframes
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+<details>
+  <summary>Landing page mobile</summary>
 
-### Code Splitting
+   ![Mobile Wireframe](media/wireframes/landingpage/mobile/1.png)
+   ![Mobile Wireframe](media/wireframes/landingpage/mobile/2.png) 
+   ![Mobile Wireframe](media/wireframes/landingpage/mobile/3.png) 
+   ![Mobile Wireframe](media/wireframes/landingpage/mobile/4.png) 
+   ![Mobile Wireframe](media/wireframes/landingpage/mobile/5.png) 
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+</details>
 
-### Analyzing the Bundle Size
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+<details>
+  <summary>Landing page desktop</summary>
 
-### Making a Progressive Web App
+   ![Desktop Wireframe](media/wireframes/landingpage/desktop/1.png)
+   ![Desktop Wireframe](media/wireframes/landingpage/desktop/2.png)
+   ![Desktop Wireframe](media/wireframes/landingpage/desktop/3.png)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+</details>
 
-### Advanced Configuration
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+<details>
+  <summary>Staff page mobile</summary>
 
-### Deployment
+   ![Mobile Wireframe](media/wireframes/admin-page/mobile/1.png)
+   ![Mobile Wireframe](media/wireframes/admin-page/mobile/2.png)
+   ![Mobile Wireframe](media/wireframes/admin-page/mobile/3.png)
+   ![Mobile Wireframe](media/wireframes/admin-page/mobile/4.png)
+   ![Mobile Wireframe](media/wireframes/admin-page/mobile/5.png)
+   ![Mobile Wireframe](media/wireframes/admin-page/mobile/6.png)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+</details>
 
-### `npm run build` fails to minify
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+<details>
+  <summary>Staff page desktop</summary>
+
+   ![Desktop Wireframe](media/wireframes/admin-page/desktop/1.png)
+   ![Desktop Wireframe](media/wireframes/admin-page/desktop/2.png)
+   ![Desktop Wireframe](media/wireframes/admin-page/desktop/3.png)
+
+</details>
+
+
+## Features 
+
+
+### Landing page
+
+- __About section__
+
+- __Gallery__
+
+- __Services__
+
+- __Booking form__
+
+- __Footer__
+
+
+### Staff Page
+
+- __Dashboard__
+
+- __View appointments__
+
+- __New appointment__
+
+- __Appointment details__
+
+- __Edit appointment__ 
+
+- __Delete appointment__ 
+
+- __Add staff member__
+
+
+## Testing 
+
+
+### Tests
+
+
+### Validator Testing
+
+#### HTML
+
+ Check if errors are returned when passing the final version through the official [W3C validator](https://validator.w3.org/nu/#textarea)
+
+  <details>
+
+  <summary>W3 - HTML validation screenshot</summary>
+
+  ![Image]()
+  </details>
+
+
+#### CSS
+
+ Check if Errors are returned when passing the final version through the official [Jigsaw validator](https://jigsaw.w3.org/css-validator/validator)
+
+  <details>
+
+  <summary>W3 - CSS validation screenshot</summary>
+  
+  ![Image]()
+  </details>
+
+
+#### JavaScript
+
+Check if Errors are returned when passing the final version through the official [JsHint validator](https://jshint.com/), but only 4 warnings.
+
+
+ <details>
+  <summary>JsHint - JS validation screenshot</summary>
+
+  ![Image]()
+
+  </details>
+
+
+### Fixed Bugs
+
+
+### Unfixed Bugs
+
+
+### Performance
+
+
+## Deployment
+
+### Deployment on Heroku
+
+### Local Deployment
+  - For a local deployment follow these steps:
+    - Create a new directory on your machine, where you want do deploy the files
+    - Open the existing repository in GitHub
+    - Go to the "Code" tab
+    - Click on the "Code" button
+    - Copy the HTTPS link
+    - Open your terminal and run the command __git clone 'link'__
+    - use the link just copied, without quotes, instead of 'link'
+
+
+## Credits 
+
+### Code
+
+### Content
+
+- The icons were taken from [Font Awesome](https://fontawesome.com/)
+
+- The following fonts, used for the project, are from [Google Fonts](https://fonts.google.com/):
+  - Anton
+  - Raleway
+  - Caramel
+
+## Technologies used
+
+  - HTML
+  - CSS
+  - JavaScript
+  - React
+
+## Acknowledgements
+
+A special thank to my mentor __Dick Vlaanderen__ for his precious feedback on this project.
