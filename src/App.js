@@ -1,11 +1,11 @@
 import './App.css';
-import Button from 'react-bootstrap/Button';
+import Navigation from './components/Navigation';
+
 
 function App() {
   return (
     <div className="App">
-      <h1>It works?</h1>
-      <Button variant="secondary">Secondary</Button>
+      <Navigation/>
     </div>
   );
 }
