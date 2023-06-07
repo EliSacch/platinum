@@ -1,0 +1,39 @@
+.Section {
+    display: flex;
+    flex-direction: column;
+    column-gap: 50px;
+}
+
+.Section::before {
+    content: "Services";
+    position: absolute;
+    inset: 0;
+    left: -10%;
+    font-family:  var(--logo);
+    font-size: 10em;
+    font-weight: 700;
+    opacity: .15;
+}
+
+.HorizontalScroll {
+    margin-top: 50px;
+    padding-bottom: 10px;
+    display: flex;
+    gap: 10px;
+    overflow-x: scroll;
+    scroll-behavior:initial;
+    scroll-snap-align:initial;
+    scroll-snap-type: initial;
+}
+
+.ServiceCard {
+    min-width: 300px;
+    background-color: var(--wine);
+    color: var(--light);
+}
+
+@media screen and (min-width:800px) {
+    .Section {
+        flex-direction: row;
+    }
+}

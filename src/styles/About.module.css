@@ -1,14 +1,3 @@
-.Section {
-    margin: 50px;
-    position: relative;
-    color: var(--purple);
-}
-
-.Section > h2 {
-    font-family: var(--bold);
-    font-size: 3em;
-}
-
 .Section::before {
     content: "About";
     position: absolute;

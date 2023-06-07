@@ -20,3 +20,15 @@
   font-family: var(--base);
   margin-top: 110px;
 }
+
+h2 {
+  font-family: var(--bold);
+  font-size: 3em;
+  color: var(--purple);
+}
+
+section {
+  margin: 50px;
+  position: relative;
+  color: var(--purple);
+}
