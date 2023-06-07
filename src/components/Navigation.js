@@ -5,28 +5,45 @@ import Navbar from 'react-bootstrap/Navbar';
 import React from 'react';
 
 import scissor from '../assets/scissors.png'
+import styles from '../styles/Navigation.module.css';
+import { NavLink } from 'react-router-dom';
+
 
 const Navigation = () => {
   return (
-    <Navbar bg="light" expand="md" fixed="top">
-      <Container fluid>
-        <Navbar.Brand className='App-logo'>
-        <img src={scissor} alt="logo" />
-        Platinum
-        </Navbar.Brand>
+    <Navbar expand="md" fixed="top" className={styles.NavBar}>
+      <Container>
+        <NavLink className={styles.NavLink} to="/">
+          <Navbar.Brand className={styles.AppLogo}>
+            <img src={scissor} alt="logo" />
+            Platinum
+          </Navbar.Brand>
+        </NavLink>
         <Navbar.Toggle aria-controls="navbarScroll"/>
         <Navbar.Collapse id="navbarScroll">
-            <Nav className="me-auto justify-content-center">
-                <Nav.Link href="#about">About</Nav.Link>
-                <Nav.Link href="#services">Services</Nav.Link>
-                <Nav.Link href="#book">Book</Nav.Link>
-            </Nav>
-            <Nav>
-                <Nav.Link href="#">Sign in</Nav.Link>
-                <Nav.Link eventKey={2} href="#profile">
-                Sign up
-                </Nav.Link>
-            </Nav>
+          
+        <Nav className="ml-auto text-left">
+            <NavLink
+              exact
+              className={styles.NavLink}
+              activeClassName={styles.Active}
+              to="/">
+              Home
+            </NavLink>
+            <NavLink
+              className={styles.NavLink}
+              activeClassName={styles.Active}
+              to="/signin">
+              Sign in
+            </NavLink>
+            <NavLink
+              to="/signup"
+              className={styles.NavLink}
+              activeClassName={styles.Active}>
+              Sign up
+            </NavLink>
+          </Nav>
+
         </Navbar.Collapse>
       </Container>
     </Navbar>

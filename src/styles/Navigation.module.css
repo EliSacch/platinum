@@ -1,0 +1,72 @@
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Caramel&family=Raleway:ital,wght@0,100;0,400;0,700;0,800;0,900;1,100;1,200;1,300;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+.NavBar {
+  background-color: var(--light);
+  color: var(--purple);
+}
+
+.AppLogo {
+    pointer-events: none;
+    font-family: 'Caramel', cursive;
+    font-size: 3.5em;
+    letter-spacing: 4px;
+    position: relative;
+    top: -10px;
+    color: var(--purple);
+  }
+  
+  .AppLogo::first-letter {
+    font-size: 1.2em;
+  }
+  
+  .AppLogo > img {
+    margin-inline: 10px;
+    position: relative;
+    top: -5px;
+    color: var(--light);
+  }
+
+  .AppLogo > a {
+    text-decoration: none;
+  }
+
+  a:hover {
+    color: var(--rose);
+  }
+
+  .NavLink {
+    color: inherit;
+    text-decoration: none;
+    padding: 5px 10px;
+    font-weight: 400;
+  }
+
+  .Active {
+    color: var(--light);
+    position: relative;
+    transition-duration: 300ms;
+    font-weight: 400;
+  }
+
+  .Active:hover {
+    color: var(--orange);
+  }
+  
+  .Active::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-color: var(--purple);
+    z-index: -1;
+    animation: Active-link 500ms ease-out forwards;
+  }
+
+  @keyframes Active-link {
+    from {
+      width: 0%;
+    }
+    to {
+      width: 100%;
+    }
+  }
+

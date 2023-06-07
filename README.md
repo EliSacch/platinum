@@ -226,6 +226,11 @@ Check if Errors are returned when passing the final version through the official
   - JavaScript
   - React
 
+  Libraries:
+  - React router dom - To handle navigation between pages
+
+
+
 ## Acknowledgements
 
 A special thank to my mentor __Dick Vlaanderen__ for his precious feedback on this project.

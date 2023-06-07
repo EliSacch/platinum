@@ -1,0 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Caramel&family=Raleway:ital,wght@0,100;0,400;0,700;0,800;0,900;1,100;1,200;1,300;1,500;1,600;1,700;1,800;1,900&display=swap');
+:root {
+  --light: #FAF8FF;
+  --dark: #110E18;
+
+  --purple: #3C2E63;
+  --wine: #873E74;
+  --rose: #C75772;
+  --salmon: #F38265;
+  --orange: #FFBA5C;
+  --yellow: #F9F871;
+}
+
+.App {
+  text-align: center;
+  font-family: 'Raleway', sans-serif;
+  margin-top: 110px;
+}
