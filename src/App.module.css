@@ -9,10 +9,14 @@
   --salmon: #F38265;
   --orange: #FFBA5C;
   --yellow: #F9F871;
+
+  --bold: 'Anton', sans-serif;
+  --logo: 'Caramel', cursive;
+  --base: 'Raleway', sans-serif;
 }
 
 .App {
   text-align: center;
-  font-family: 'Raleway', sans-serif;
+  font-family: var(--base);
   margin-top: 110px;
 }

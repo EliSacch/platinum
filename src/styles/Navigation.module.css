@@ -7,7 +7,7 @@
 
 .AppLogo {
     pointer-events: none;
-    font-family: 'Caramel', cursive;
+    font-family: var(--logo);
     font-size: 3.5em;
     letter-spacing: 4px;
     position: relative;

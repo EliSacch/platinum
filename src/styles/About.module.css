@@ -1,0 +1,21 @@
+.Section {
+    margin: 50px;
+    position: relative;
+    color: var(--purple);
+}
+
+.Section > h2 {
+    font-family: var(--bold);
+    font-size: 3em;
+}
+
+.Section::before {
+    content: "About";
+    position: absolute;
+    inset: 0;
+    left: -10%;
+    font-family:  var(--logo);
+    font-size: 10em;
+    font-weight: 700;
+    opacity: .15;
+}
