@@ -1,10 +1,12 @@
 import React from 'react'
 import styles from '../styles/Services.module.css'
-import { Button, Card } from 'react-bootstrap'
+import { Button, Card, Container } from 'react-bootstrap'
 
 function Services() {
   return (
     <section className={styles.Section}>
+
+        <Container className={styles.ServicesWrapper}>
         <div>
             <h2>Services</h2>
             <p>We offer a wide range of services to give you the opportunity to tranform your hair!</p>
@@ -65,6 +67,8 @@ function Services() {
             </Card.Body>
         </Card>
         </div>
+        </Container>
+
     </section>
   )
 }

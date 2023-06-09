@@ -212,8 +212,6 @@ Check if Errors are returned when passing the final version through the official
 
 - The icons were taken from [Font Awesome](https://fontawesome.com/)
 
-- The "Scissor icons" was created by [Freepik - Flaticon](https://www.flaticon.com/free-icons/scissor)
-
 - The hair icon is from [Icons 8](https://icons8.com/icon/BuTG7ooQjwHl/hairstyle)
 
 - The following fonts, used for the project, are from [Google Fonts](https://fonts.google.com/):

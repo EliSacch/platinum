@@ -1,19 +1,14 @@
 .Section {
+    background-color: var(--light);
+    width: 100%;
+    margin-inline: 0;
+    padding: 2em;
+}
+
+.ServicesWrapper {
     display: flex;
     flex-direction: column;
     column-gap: 50px;
-}
-
-.Section::before {
-    content: "Services";
-    position: absolute;
-    inset: 0;
-    left: -10%;
-    font-family:  var(--logo);
-    font-size: 10em;
-    font-weight: 700;
-    opacity: .15;
-    z-index: -1;
 }
 
 .HorizontalScroll {
@@ -26,6 +21,31 @@
     scroll-snap-align:initial;
     scroll-snap-type: initial;
 }
+
+    /* width */
+.HorizontalScroll::-webkit-scrollbar {
+    height: 8px;
+  }
+  
+  /* Track */
+  .HorizontalScroll::-webkit-scrollbar-track {
+    border-radius: 1000000000px;
+    width: 5px;
+    background: white;
+  }
+  
+  /* Handle */
+  .HorizontalScroll::-webkit-scrollbar-thumb {
+    border-radius: 1000000000px;
+    height: 5px;
+    background: var(--wine);
+  }
+  
+  /* Handle on hover */
+  .HorizontalScroll::-webkit-scrollbar-thumb:hover {
+    background: var(--wine-lighter);
+  }
+
 
 .ServiceCard {
     min-width: 300px;
@@ -57,7 +77,7 @@
 }
 
 @media screen and (min-width:800px) {
-    .Section {
+    .ServicesWrapper {
         flex-direction: row;
     }
 }
