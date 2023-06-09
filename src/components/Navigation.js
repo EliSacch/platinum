@@ -4,7 +4,7 @@ import Navbar from 'react-bootstrap/Navbar';
 
 import React from 'react';
 
-import scissor from '../assets/scissors.png'
+import logo from '../assets/hair-icon-wine.png'
 import styles from '../styles/Navigation.module.css';
 import { NavLink } from 'react-router-dom';
 
@@ -15,11 +15,11 @@ const Navigation = () => {
       <Container>
         <NavLink className={styles.NavLink} to="/">
           <Navbar.Brand className={styles.AppLogo}>
-            <img src={scissor} alt="logo" />
+            <img src={logo} alt="logo" />
             Platinum
           </Navbar.Brand>
         </NavLink>
-        <Navbar.Toggle aria-controls="navbarScroll"/>
+        <Navbar.Toggle aria-controls="navbarScroll" className={styles.MenuToggler}><i class="fas fa-bars"></i></Navbar.Toggle>
         <Navbar.Collapse id="navbarScroll">
           
         <Nav className="ml-auto text-left">

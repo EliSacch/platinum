@@ -1,20 +1,21 @@
 @import url('https://fonts.googleapis.com/css2?family=Anton&family=Caramel&family=Raleway:ital,wght@0,100;0,400;0,700;0,800;0,900;1,100;1,200;1,300;1,500;1,600;1,700;1,800;1,900&display=swap');
 
 .NavBar {
-  background-color: var(--light);
-  color: var(--purple);
+  background-color: var(--purple);
+  color: var(--light);
 }
 
 .AppLogo {
     pointer-events: none;
     font-family: var(--logo);
     font-size: 3.5em;
-    letter-spacing: 4px;
+    font-weight: 500;
+    letter-spacing: 6px;
     position: relative;
     top: -10px;
-    color: var(--purple);
+    color: var(--rose-lighter);
   }
-  
+
   .AppLogo::first-letter {
     font-size: 1.2em;
   }
@@ -24,6 +25,17 @@
     position: relative;
     top: -5px;
     color: var(--light);
+    width: 45px;
+  }
+
+  .MenuToggler:focus,
+  .MenuToggler.btn:active {
+    --bs-navbar-color: var(--wine);
+
+  }
+
+  .MenuToggler i {
+    color: var(--wine-lighter);
   }
 
   .AppLogo > a {
@@ -31,7 +43,7 @@
   }
 
   a:hover {
-    color: var(--rose);
+    color: var(--rose-lighter);
   }
 
   .NavLink {
@@ -49,14 +61,14 @@
   }
 
   .Active:hover {
-    color: var(--orange);
+    color: var(--rose-lighter);
   }
   
   .Active::before {
     content: "";
     position: absolute;
     inset: 0;
-    background-color: var(--purple);
+    background-color: var(--wine-lighter);
     z-index: -1;
     animation: Active-link 500ms ease-out forwards;
   }
