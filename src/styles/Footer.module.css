@@ -1,0 +1,39 @@
+.Footer {
+    padding-block: 2em;
+    background-color: var(--purple);
+    color: var(--light);
+}
+
+.FooterContainer {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    row-gap: 2em;
+    column-gap: 5em;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+.FooterContainer > * {
+    display: flex;
+    flex-direction: column;
+    max-width: 600px;
+    min-width: 300px;
+}
+
+td {
+    text-align: left;
+}
+
+@media screen and (min-width:800px) {
+
+    .FooterContainer {
+        /*flex-direction: row;*/
+    }
+    
+}
