@@ -19,6 +19,17 @@ ul {
     padding: 0;
 }
 
+.Social {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2em;
+}
+
+.Social i {
+    font-size: 2em;
+}
+
 .FooterContainer > * {
     display: flex;
     flex-direction: column;

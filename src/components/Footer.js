@@ -1,6 +1,7 @@
 import React from 'react'
 import styles from '../styles/Footer.module.css'
 import { Container } from 'react-bootstrap'
+import { Link } from 'react-router-dom/cjs/react-router-dom'
 
 function Footer() {
   return (
@@ -18,9 +19,18 @@ function Footer() {
 
         <div>
             <h3>Social</h3>
-            <ul>
-                <li>Facebook</li>
-                <li>Instagram</li>
+            <ul className={styles.Social}>
+            <li>
+                
+                <a href="https://www.facebook.com/" target="_blank" rel="noreferrer">
+                <i class="fab fa-facebook"></i>
+                </a>
+            </li>
+            <li>
+                <a href="https://www.instagram.com/" target="_blank" rel="noreferrer">
+                <i class="fab fa-instagram"></i>
+                </a>
+            </li>
             </ul>
         </div>
         
