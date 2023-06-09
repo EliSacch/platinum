@@ -8,7 +8,6 @@
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    align-items: center;
     justify-content: center;
     row-gap: 2em;
     column-gap: 5em;
@@ -26,15 +25,21 @@ ul {
     gap: 2em;
 }
 
+.Social a {
+    color: var(--wine-lighter);
+}
+
+.Social a:hover {
+    color: var(--rose-lighter);
+}
+
 .Social i {
-    font-size: 2em;
+    font-size: 2.5em;
 }
 
 .FooterContainer > * {
     display: flex;
     flex-direction: column;
-    max-width: 600px;
-    min-width: 300px;
 }
 
 td {

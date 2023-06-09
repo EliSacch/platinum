@@ -26,3 +26,8 @@ a {
     box-shadow: 0 0 5px var(--purple);
     outline-color: var(--purple);
 }
+
+.NavOffset {
+    position: absolute;
+    top: -110px;
+  }

@@ -8,3 +8,8 @@
     font-weight: 700;
     opacity: .15;
 }
+
+.NavOffset {
+    position: absolute;
+    top: -110px;
+  }

@@ -20,7 +20,9 @@
 .App {
   text-align: center;
   font-family: var(--base);
-  margin-top: 110px;
+  display: grid;
+  min-height: 100vh;
+  grid-template-rows: 1fr auto;
 }
 
 h2 {

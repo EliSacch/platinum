@@ -8,3 +8,8 @@
     min-height: auto;
     object-fit: cover;
 }
+
+.NavOffset {
+    position: absolute;
+    top: -110px;
+  }

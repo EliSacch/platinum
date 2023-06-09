@@ -1,6 +1,5 @@
 .Section {
     background-color: var(--light);
-    width: 100%;
     margin-inline: 0;
     padding: 2em;
 }
@@ -9,7 +8,9 @@
     display: flex;
     flex-direction: column;
     column-gap: 50px;
+    overflow: hidden;
 }
+
 
 .HorizontalScroll {
     margin-top: 50px;
@@ -17,9 +18,6 @@
     display: flex;
     gap: 10px;
     overflow-x: scroll;
-    scroll-behavior:initial;
-    scroll-snap-align:initial;
-    scroll-snap-type: initial;
 }
 
     /* width */
@@ -76,8 +74,13 @@
     outline-color: var(--purple);
 }
 
-@media screen and (min-width:800px) {
+.NavOffset {
+    position: absolute;
+    top: -105px;
+  }
+
+  @media screen and (min-width: 800px){
     .ServicesWrapper {
         flex-direction: row;
     }
-}
+  }

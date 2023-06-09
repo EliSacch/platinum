@@ -8,7 +8,7 @@ function Footer() {
     <footer className={styles.Footer}>
 
         <Container className={styles.FooterContainer}>
-        <div>
+        <div id="contact">
             <h3>Contact us</h3>
             <ul>
                 <li>Phone: +353 123 4567</li>

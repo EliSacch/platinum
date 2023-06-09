@@ -4,7 +4,7 @@
     align-items: center;
     justify-content: center;
     margin-left: 0;
-    height: calc(100vh - 115px);
+    height: 100vh;
     background: var(--light)
     url('../assets/pink-hair.jpg')
     center/
@@ -61,3 +61,25 @@
     box-shadow: 0 0 5px var(--purple);
     outline-color: var(--purple);
 }
+
+.GoDown {
+    position: absolute;
+    bottom: 20px;
+    font-size: 2em;
+    color: var(--wine);
+    animation: up-and-down 700ms linear 2s infinite alternate;
+}
+
+.GoDown:hover {
+    color: var(--rose);
+}
+
+
+@keyframes up-and-down {
+    from {
+        transform: translate(0, -10px);
+    }
+    to {
+        transform: translate(0);
+    }
+  }
