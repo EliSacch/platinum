@@ -2,6 +2,7 @@ import React from 'react'
 import Hero from './Hero'
 import About from './About'
 import Services from './Services'
+import Book from './Book'
 
 import { Container } from 'react-bootstrap'
 
@@ -15,7 +16,7 @@ function Home() {
       <Container>
         <About />
         <Services />
-        <section>Book</section>
+        <Book />
       </Container>
 
     </main>

@@ -1,6 +1,6 @@
 import React from 'react'
 import styles from '../styles/Services.module.css'
-import { Card } from 'react-bootstrap'
+import { Button, Card } from 'react-bootstrap'
 
 function Services() {
   return (
@@ -10,6 +10,8 @@ function Services() {
             <p>We offer a wide range of services to give you the opportunity to tranform your hair!</p>
             <p>Discover our treatments, for all types of hair.</p>
             <p>You can book a free hair consultations to get you started! Let one of our experts find the best treatment for you.</p>
+
+            <Button className={styles.ServicesBtn}>See all services</Button>
         </div>
         <div className={styles.HorizontalScroll}>
         <Card className={styles.ServiceCard}>
