@@ -1,0 +1,11 @@
+.AboutWrapper {
+    margin-top: 10px;
+    display: flex;
+    flex-wrap: wrap-reverse;
+    align-items: center;
+    justify-content: center;
+}
+
+.AboutWrapper > * {
+    max-width: 500px;
+}
