@@ -1,15 +1,17 @@
+import React from 'react';
+
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 
-import React from 'react';
-
 import logo from '../assets/hair-icon-wine.png'
 import styles from '../styles/Navigation.module.css';
+
 import { NavLink } from 'react-router-dom';
 
 
 const Navigation = () => {
+
   return (
     <Navbar expand="md" fixed="top" className={styles.NavBar}>
       <Container>

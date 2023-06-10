@@ -16,8 +16,10 @@ function Services() {
 
             <Button className={styles.ServicesBtn}>See all services</Button>
         </div>
-            <div className={styles.HorizontalScroll}>
-            <Card className={styles.ServiceCard}>
+            <div className={styles.CardsContainer}>
+                <div className={styles.HorizontalScroll}>
+                
+                <Card className={styles.ServiceCard}>
                 <Card.Img variant="top" src="holder.js/100px180" />
                 <Card.Body>
                     <Card.Title>Service Title</Card.Title>
@@ -67,6 +69,8 @@ function Services() {
                     </Card.Text>
                 </Card.Body>
             </Card>
+                </div>
+
             </div>
         </Container>
 
