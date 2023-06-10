@@ -8,7 +8,7 @@ function Services() {
 
         <Container className={styles.ServicesWrapper}>
         <div>
-        <span id="services" className={styles.NavOffset}></span>
+        <span id="services" className={`${styles.NavOffset} d-none`}></span>
             <h2>Services</h2>
             <p>We offer a wide range of services to give you the opportunity to tranform your hair!</p>
             <p>Discover our treatments, for all types of hair.</p>

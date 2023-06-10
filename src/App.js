@@ -4,6 +4,9 @@ import Footer from './components/Footer';
 import Home from './components/Home'
 import { Route, Switch } from "react-router-dom";
 
+import './api/axiosDeafults';
+import SignUpForm from './pages/auth/SignUpFrom';
+
 
 function App() {
   return (
@@ -12,7 +15,7 @@ function App() {
         <Switch>
           <Route exact path="/"  render={() => <Home /> } />
           <Route exact path="/signin" render={() => <h1>Sign in</h1>} />
-          <Route exact path="/signup" render={() => <h1>Sign up</h1>} />
+          <Route exact path="/signup" render={() => <SignUpForm/>} />
           <Route render={() => <p>Page not found!</p>} />
         </Switch>
       <Footer />
