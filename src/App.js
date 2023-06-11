@@ -10,6 +10,7 @@ import SignInForm from './pages/auth/SignInFrom';
 
 
 function App() {
+
   return (
     <div className={styles.App}>
       <Navigation/>

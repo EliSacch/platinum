@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
@@ -8,9 +8,31 @@ import logo from '../assets/hair-icon-wine.png'
 import styles from '../styles/Navigation.module.css';
 
 import { NavLink } from 'react-router-dom';
+import { useCurrentUser } from '../contexts/CurrentUserContext';
 
 
 const Navigation = () => {
+
+  const currentUser = useCurrentUser();
+
+  const loggedInUser = <>{currentUser?.username}</>;
+
+  const loggedOutUser = (
+    <>
+      <NavLink
+        className={styles.NavLink}
+        activeClassName={styles.Active}
+        to="/signin">
+        Sign in
+      </NavLink>
+      <NavLink
+        to="/signup"
+        className={styles.NavLink}
+        activeClassName={styles.Active}>
+        Sign up
+      </NavLink>
+    </>
+  );
 
   return (
     <Navbar expand="md" fixed="top" className={styles.NavBar}>
@@ -32,18 +54,9 @@ const Navigation = () => {
               to="/">
               Home
             </NavLink>
-            <NavLink
-              className={styles.NavLink}
-              activeClassName={styles.Active}
-              to="/signin">
-              Sign in
-            </NavLink>
-            <NavLink
-              to="/signup"
-              className={styles.NavLink}
-              activeClassName={styles.Active}>
-              Sign up
-            </NavLink>
+
+            {currentUser ? loggedInUser : loggedOutUser}
+
           </Nav>
 
         </Navbar.Collapse>
