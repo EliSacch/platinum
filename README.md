@@ -182,6 +182,19 @@ Check if Errors are returned when passing the final version through the official
 
 ### Fixed Bugs
 
+<details>
+<summary>Sign up form error</summary>
+
+- Issue: When trying to sign up with invalid values, instead of receiving an alert under the field, the page was gicing the following error:
+
+[Sign up error](/media/errors/signup-error.png)
+
+This was the error logged in the console: <'your.site.com'> has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.
+
+- Fix: After troubleshooting I could identify that the issue was caused by a the missing "CLIENT_ORIGIN_DEV" valiable in the booking-api settings.py file.
+
+</details>
+
 
 ### Unfixed Bugs
 
