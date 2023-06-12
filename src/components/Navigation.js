@@ -12,25 +12,26 @@ import { useCurrentUser } from '../contexts/CurrentUserContext';
 const Navigation = () => {
 
   const currentUser = useCurrentUser();
-
-  const loggedInUser = <>{currentUser?.username}</>;
-
-  const loggedOutUser = (
+  const loggedInIcons = <>{currentUser?.username}</>;
+  const loggedOutIcons = (
     <>
       <NavLink
         className={styles.NavLink}
         activeClassName={styles.Active}
-        to="/signin">
-        Sign in
+        to="/signin"
+      >
+        <i className="fas fa-sign-in-alt"></i>Sign in
       </NavLink>
       <NavLink
         to="/signup"
         className={styles.NavLink}
-        activeClassName={styles.Active}>
-        Sign up
+        activeClassName={styles.Active}
+      >
+        <i className="fas fa-user-plus"></i>Sign up
       </NavLink>
     </>
   );
+
 
   return (
     <Navbar expand="md" fixed="top" className={styles.NavBar}>
@@ -41,7 +42,7 @@ const Navigation = () => {
             Platinum
           </Navbar.Brand>
         </NavLink>
-        <Navbar.Toggle aria-controls="navbarScroll" className={styles.MenuToggler}><i class="fas fa-bars"></i></Navbar.Toggle>
+        <Navbar.Toggle aria-controls="navbarScroll" className={styles.MenuToggler}><i className="fas fa-bars"></i></Navbar.Toggle>
         <Navbar.Collapse id="navbarScroll">
           
         <Nav className="ml-auto text-left">
@@ -53,7 +54,7 @@ const Navigation = () => {
               Home
             </NavLink>
 
-            {currentUser ? loggedInUser : loggedOutUser}
+            {currentUser ? loggedInIcons : loggedOutIcons}
 
           </Nav>
 

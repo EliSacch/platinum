@@ -23,12 +23,12 @@ function Footer() {
             <li>
                 
                 <a href="https://www.facebook.com/" target="_blank" rel="noreferrer">
-                <i class="fab fa-facebook"></i>
+                <i className="fab fa-facebook"></i>
                 </a>
             </li>
             <li>
                 <a href="https://www.instagram.com/" target="_blank" rel="noreferrer">
-                <i class="fab fa-instagram"></i>
+                <i className="fab fa-instagram"></i>
                 </a>
             </li>
             </ul>

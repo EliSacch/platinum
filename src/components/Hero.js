@@ -9,7 +9,7 @@ function Hero() {
       <h1>Your hair experience!</h1>
       <Button className={styles.HeroBtn}>Book</Button>
       </div>
-      <a href="#about" className={styles.GoDown}><i class="fas fa-chevron-down"></i></a>
+      <a href="#about" className={styles.GoDown}><i className="fas fa-chevron-down"></i></a>
     </Jumbotron>
   )
 }
