@@ -4,7 +4,8 @@ import Footer from './components/Footer';
 import Home from './components/Home'
 import { Route, Switch } from "react-router-dom";
 
-import './api/axiosDeafults';
+import './api/axiosDefaults';
+
 import SignUpForm from './pages/auth/SignUpFrom';
 import SignInForm from './pages/auth/SignInFrom';
 

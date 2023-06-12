@@ -35,6 +35,7 @@ const SignInForm = () => {
       const { data } = await axios.post("/dj-rest-auth/login/", signInData);
       setCurrentUser(data.user);
       history.push("/");
+      console.log(data.user);
     } catch (err) {
       setErrors(err.response?.data);
     }
@@ -63,6 +64,7 @@ const SignInForm = () => {
                 name="username"
                 value={username}
                 onChange={handleChange}
+                autoComplete="true"
               />
             </Form.Group>
             {errors.username?.map((message, idx) => (
@@ -80,6 +82,7 @@ const SignInForm = () => {
                 name="password"
                 value={password}
                 onChange={handleChange}
+                autoComplete="true"
               />
             </Form.Group>
             {errors.password?.map((message, idx) => (
