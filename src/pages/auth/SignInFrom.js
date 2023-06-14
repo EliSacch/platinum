@@ -32,7 +32,7 @@ const SignInForm = () => {
     event.preventDefault();
 
     try {
-      const { data } = await axios.post("/dj-rest-auth/login/", signInData);
+      const data = await axios.post("/dj-rest-auth/login/", signInData);
       setCurrentUser(data.user);
       history.push("/");
       console.log(data.value);

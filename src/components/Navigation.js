@@ -7,6 +7,7 @@ import styles from '../styles/Navigation.module.css';
 
 import { NavLink } from 'react-router-dom';
 import { useCurrentUser } from '../contexts/CurrentUserContext';
+import { NavDropdown } from 'react-bootstrap';
 
 
 const Navigation = () => {
@@ -20,14 +21,14 @@ const Navigation = () => {
         activeClassName={styles.Active}
         to="/signin"
       >
-        <i className="fas fa-sign-in-alt"></i>Sign in
+        Sign in
       </NavLink>
       <NavLink
         to="/signup"
         className={styles.NavLink}
         activeClassName={styles.Active}
       >
-        <i className="fas fa-user-plus"></i>Sign up
+        Sign up
       </NavLink>
     </>
   );
@@ -46,13 +47,49 @@ const Navigation = () => {
         <Navbar.Collapse id="navbarScroll">
           
         <Nav className="ml-auto text-left">
-            <NavLink
-              exact
-              className={styles.NavLink}
+
+            <NavDropdown 
+              title="Home" 
+              id="navbarScrollingDropdown" 
+              className={styles.NavDropdown}
               activeClassName={styles.Active}
-              to="/">
-              Home
-            </NavLink>
+            >
+              <NavDropdown.Item 
+                href="#about" 
+                className={styles.DropItem} 
+                activeClassName={styles.Active}
+              >
+                About
+              </NavDropdown.Item>
+              <NavDropdown.Item 
+                href="#gallery" 
+                className={styles.DropItem} 
+                activeClassName={styles.Active}
+              >
+                Gallery
+              </NavDropdown.Item>
+              <NavDropdown.Item 
+                href="#services" 
+                className={styles.DropItem}
+                activeClassName={styles.Active}
+              >
+                Services
+              </NavDropdown.Item>
+              <NavDropdown.Item 
+                href="#book" 
+                className={styles.DropItem}
+                activeClassName={styles.Active}
+              >
+                Book
+              </NavDropdown.Item>
+              <NavDropdown.Item 
+                href="#contact" 
+                className={styles.DropItem}
+                activeClassName={styles.Active}
+              >
+                Contact
+                </NavDropdown.Item>
+            </NavDropdown>
 
             {currentUser ? loggedInIcons : loggedOutIcons}
 

@@ -1,7 +1,7 @@
 import styles from './App.module.css';
 import Navigation from './components/Navigation';
 import Footer from './components/Footer';
-import Home from './components/Home'
+import Home from './pages/home/Home'
 import { Route, Switch } from "react-router-dom";
 
 import './api/axiosDefaults';

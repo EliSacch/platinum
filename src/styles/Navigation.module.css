@@ -3,6 +3,7 @@
 .NavBar {
   background-color: var(--purple);
   color: var(--light);
+  border-bottom: 3px solid var(--wine-lighter);
 }
 
 
@@ -47,7 +48,14 @@
     color: var(--rose-lighter);
   }
 
-  .NavLink {
+  .NavLink,
+  .NavDropdown,
+  .DropItem {
+    --bs-navbar-active-color: var(--rose-lighter);
+    --bs-nav-link-hover-color: var(--rose-lighter);
+    --bs-nav-link-color: var(--ligth);
+    --bs-nav-link-padding-y: 0rem;
+    --bs-dropdown-link-active-bg: var(--wine);
     color: inherit;
     text-decoration: none;
     padding: 5px 10px;
@@ -55,6 +63,7 @@
   }
 
   .Active {
+    --bs-dropdown-link-active-bg: transparent;
     color: var(--light);
     position: relative;
     transition-duration: 300ms;

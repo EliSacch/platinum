@@ -9,7 +9,7 @@ import styles from '../styles/Gallery.module.css'
 function Gallery() {
   return (
     <Carousel className={styles.Gallery}>
-      <span id="gallery" className={`${styles.NavOffset} d-none`}></span>
+      <span id="gallery" className={`${styles.NavOffset} "d-none"`}></span>
       <Carousel.Item>
         <img src={picOne} alt='Blond hair' />
 
