@@ -6,14 +6,56 @@ import logo from '../assets/hair-icon-wine.png'
 import styles from '../styles/Navigation.module.css';
 
 import { NavLink } from 'react-router-dom';
-import { useCurrentUser } from '../contexts/CurrentUserContext';
+import { useCurrentUser, useSetCurrentUser } from '../contexts/CurrentUserContext';
 import { NavDropdown } from 'react-bootstrap';
+import axios from 'axios';
 
 
 const Navigation = () => {
 
   const currentUser = useCurrentUser();
-  const loggedInIcons = <>{currentUser?.username}</>;
+  const setCurrentUser = useSetCurrentUser();
+
+  const handleSignOut = async () => {
+    try {
+      await axios.post("dj-rest-auth/logout/");
+      setCurrentUser(null);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const profileLink = (
+    <>
+      <NavLink
+        className={styles.NavLink}
+        activeClassName={styles.Active}
+        to={`/profiles/${currentUser?.profile_id}`}
+      >
+        Profile
+      </NavLink>
+      <NavLink
+        className={styles.NavLink}
+        to="/" 
+        onClick={handleSignOut}
+        >
+          Sing out
+      </NavLink>
+    </>
+
+  );
+  const loggedInIcons = (
+    <>
+      <NavLink
+          className={styles.NavLink}
+          activeClassName={styles.Active}
+          to="/my-appointments"
+        >
+          My appointments
+      </NavLink>
+    </>
+  );
+  <>{currentUser?.username}</>;
   const loggedOutIcons = (
     <>
       <NavLink
@@ -43,10 +85,11 @@ const Navigation = () => {
             Platinum
           </Navbar.Brand>
         </NavLink>
+        
         <Navbar.Toggle aria-controls="navbarScroll" className={styles.MenuToggler}><i className="fas fa-bars"></i></Navbar.Toggle>
         <Navbar.Collapse id="navbarScroll">
           
-        <Nav className="ml-auto text-left">
+        <Nav className="me-auto">
 
             <NavDropdown 
               title="Home" 
@@ -93,6 +136,9 @@ const Navigation = () => {
 
             {currentUser ? loggedInIcons : loggedOutIcons}
 
+          </Nav>
+          <Nav>
+          {currentUser && profileLink}
           </Nav>
 
         </Navbar.Collapse>
