@@ -1,3 +1,4 @@
+import React from "react";
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
@@ -7,14 +8,16 @@ import styles from '../styles/Navigation.module.css';
 
 import { NavLink } from 'react-router-dom';
 import { useCurrentUser, useSetCurrentUser } from '../contexts/CurrentUserContext';
-import { NavDropdown } from 'react-bootstrap';
 import axios from 'axios';
+import useToggleExpanded from "../hooks/useToggleExpanded";
 
 
 const Navigation = () => {
 
   const currentUser = useCurrentUser();
   const setCurrentUser = useSetCurrentUser();
+
+  const {expanded, setExpanded, ref} = useToggleExpanded();
 
   const handleSignOut = async () => {
     try {
@@ -28,6 +31,7 @@ const Navigation = () => {
   const profileLink = (
     <>
       <NavLink
+        exact
         className={styles.NavLink}
         activeClassName={styles.Active}
         to={`/profiles/${currentUser?.profile_id}`}
@@ -35,6 +39,7 @@ const Navigation = () => {
         Profile
       </NavLink>
       <NavLink
+        exact
         className={styles.NavLink}
         to="/" 
         onClick={handleSignOut}
@@ -47,9 +52,10 @@ const Navigation = () => {
   const loggedInIcons = (
     <>
       <NavLink
-          className={styles.NavLink}
-          activeClassName={styles.Active}
-          to="/my-appointments"
+        exact
+        className={styles.NavLink}
+        activeClassName={styles.Active}
+        to="/my-appointments"
         >
           My appointments
       </NavLink>
@@ -59,14 +65,16 @@ const Navigation = () => {
   const loggedOutIcons = (
     <>
       <NavLink
+        exact
         className={styles.NavLink}
         activeClassName={styles.Active}
-        to="/signin"
+        to="signin"
       >
         Sign in
       </NavLink>
       <NavLink
-        to="/signup"
+        exact
+        to="signup"
         className={styles.NavLink}
         activeClassName={styles.Active}
       >
@@ -77,7 +85,12 @@ const Navigation = () => {
 
 
   return (
-    <Navbar expand="md" fixed="top" className={styles.NavBar}>
+    <Navbar 
+      expand="md"
+      fixed="top" 
+      className={styles.NavBar}
+      expanded={expanded}
+      >
       <Container>
         <NavLink className={styles.NavLink} to="/">
           <Navbar.Brand className={styles.AppLogo}>
@@ -86,53 +99,25 @@ const Navigation = () => {
           </Navbar.Brand>
         </NavLink>
         
-        <Navbar.Toggle aria-controls="navbarScroll" className={styles.MenuToggler}><i className="fas fa-bars"></i></Navbar.Toggle>
+        <Navbar.Toggle
+          ref={ref}
+          aria-controls="navbarScroll" 
+          className={styles.MenuToggler}
+          onClick={() => setExpanded(!expanded)}
+        >
+          <i className="fas fa-bars"></i>
+        </Navbar.Toggle>
         <Navbar.Collapse id="navbarScroll">
           
         <Nav className="me-auto">
 
-            <NavDropdown 
-              title="Home" 
-              id="navbarScrollingDropdown" 
-              className={styles.NavDropdown}
-              activeClassName={styles.Active}
-            >
-              <NavDropdown.Item 
-                href="#about" 
-                className={styles.DropItem} 
-                activeClassName={styles.Active}
-              >
-                About
-              </NavDropdown.Item>
-              <NavDropdown.Item 
-                href="#gallery" 
-                className={styles.DropItem} 
-                activeClassName={styles.Active}
-              >
-                Gallery
-              </NavDropdown.Item>
-              <NavDropdown.Item 
-                href="#services" 
-                className={styles.DropItem}
-                activeClassName={styles.Active}
-              >
-                Services
-              </NavDropdown.Item>
-              <NavDropdown.Item 
-                href="#book" 
-                className={styles.DropItem}
-                activeClassName={styles.Active}
-              >
-                Book
-              </NavDropdown.Item>
-              <NavDropdown.Item 
-                href="#contact" 
-                className={styles.DropItem}
-                activeClassName={styles.Active}
-              >
-                Contact
-                </NavDropdown.Item>
-            </NavDropdown>
+        <NavLink
+          exact
+          className={styles.NavLink}
+          activeClassName={styles.Active}
+          to="/">
+          Home
+        </NavLink>
 
             {currentUser ? loggedInIcons : loggedOutIcons}
 

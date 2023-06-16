@@ -37,30 +37,32 @@ function Footer() {
         <div>
             <h3>Opening Hours</h3>
             <table>
-                <tr>
-                    <td>Tuesday</td>
-                    <td>- 9am to 6pm</td>
-                </tr>
-                <tr>
-                    <td>Wednesday</td>
-                    <td>- 9am to 6pm</td>
-                </tr>
-                <tr>
-                    <td>Thursday</td>
-                    <td>- 9am to 6pm</td>
-                </tr>
-                <tr>
-                    <td>Friday</td>
-                    <td>- 9am to 6pm</td>
-                </tr>
-                <tr>
-                    <td>Saturday</td>
-                    <td>- 9am to 6pm</td>
-                </tr>
-                <tr>
-                    <td>Sunday - Monday</td>
-                    <td>- CLOSED</td>
-                </tr>
+                <tbody>
+                    <tr>
+                        <td>Tuesday</td>
+                        <td>- 9am to 6pm</td>
+                    </tr>
+                    <tr>
+                        <td>Wednesday</td>
+                        <td>- 9am to 6pm</td>
+                    </tr>
+                    <tr>
+                        <td>Thursday</td>
+                        <td>- 9am to 6pm</td>
+                    </tr>
+                    <tr>
+                        <td>Friday</td>
+                        <td>- 9am to 6pm</td>
+                    </tr>
+                    <tr>
+                        <td>Saturday</td>
+                        <td>- 9am to 6pm</td>
+                    </tr>
+                    <tr>
+                        <td>Sunday - Monday</td>
+                        <td>- CLOSED</td>
+                    </tr>
+                </tbody>
             </table>
         </div>
         </Container>
