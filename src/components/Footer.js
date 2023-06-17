@@ -1,7 +1,6 @@
 import React from 'react'
 import styles from '../styles/Footer.module.css'
 import { Container } from 'react-bootstrap'
-import { Link } from 'react-router-dom/cjs/react-router-dom'
 
 function Footer() {
   return (

@@ -20,55 +20,15 @@ function Services() {
                 <div className={styles.HorizontalScroll}>
                 
                 <Card className={styles.ServiceCard}>
-                <Card.Img variant="top" src="holder.js/100px180" />
-                <Card.Body>
-                    <Card.Title>Service Title</Card.Title>
-                    <Card.Text>
-                    <p>Service description</p>
-                    <p>Service price</p>
-                    </Card.Text>
-                </Card.Body>
-            </Card>
-            <Card className={styles.ServiceCard}>
-                <Card.Img variant="top" src="holder.js/100px180" />
-                <Card.Body>
-                    <Card.Title>Service Title</Card.Title>
-                    <Card.Text>
-                    <p>Service description</p>
-                    <p>Service price</p>
-                    </Card.Text>
-                </Card.Body>
-            </Card>
-            <Card className={styles.ServiceCard}>
-                <Card.Img variant="top" src="holder.js/100px180" />
-                <Card.Body>
-                    <Card.Title>Service Title</Card.Title>
-                    <Card.Text>
-                    <p>Service description</p>
-                    <p>Service price</p>
-                    </Card.Text>
-                </Card.Body>
-            </Card>
-            <Card className={styles.ServiceCard}>
-                <Card.Img variant="top" src="holder.js/100px180" />
-                <Card.Body>
-                    <Card.Title>Service Title</Card.Title>
-                    <Card.Text>
-                    <p>Service description</p>
-                    <p>Service price</p>
-                    </Card.Text>
-                </Card.Body>
-            </Card>
-            <Card className={styles.ServiceCard}>
-                <Card.Img variant="top" src="holder.js/100px180" />
-                <Card.Body>
-                    <Card.Title>Service Title</Card.Title>
-                    <Card.Text>
-                    <p>Service description</p>
-                    <p>Service price</p>
-                    </Card.Text>
-                </Card.Body>
-            </Card>
+                    <Card.Img variant="top" src="holder.js/100px180" />
+                    <Card.Body>
+                        <Card.Title>Service Title</Card.Title>
+                        <Card.Text>
+                        <p>Service description</p>
+                        <p>Service price</p>
+                        </Card.Text>
+                    </Card.Body>
+                </Card>
                 </div>
 
             </div>

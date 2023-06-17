@@ -35,7 +35,6 @@ const SignInForm = () => {
       const data = await axios.post("/dj-rest-auth/login/", signInData);
       setCurrentUser(data.user);
       history.push("/");
-      console.log(data.value);
     } catch (err) {
       setErrors(err.response?.data);
     }
@@ -115,7 +114,7 @@ const SignInForm = () => {
         md={6}
         className="my-auto d-none d-md-block p-2"
       >
-        <Image src={image} alt="Blond hair on yellow background"/>
+        <Image src={image} alt="Blond hair on yellow background" />
       </Col>
     </Row>
   );

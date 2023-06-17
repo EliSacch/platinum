@@ -1,0 +1,42 @@
+.OffsetTop {
+    margin-top: 110px;
+}
+
+.Form {
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.Input {
+    margin-block: 1em;
+}
+
+.SelectInputLabel {
+    width: 100%;
+    text-align: left;
+    font-weight: 600;
+    color: var(--wine);
+}
+
+.FormBtn {
+    background-color: var(--purple);
+    border: 2px solid var(--purple);
+    margin: 20px;
+    border-radius: 3px;
+    padding: 5px 20px;
+}
+
+.FormBtn:hover,
+.FormBtn:focus,
+.FormBtn:focus-within,
+.FormBtn.btn:active {
+    --bs-btn-active-color: var(--purple);
+    --bs-btn-active-bg: transparent;
+    --bs-btn-active-border-color: var(--purple);
+    --bs-btn-focus-box-shadow: var(--purple);
+    background-color: transparent;
+    color: var(--purple);
+    border-color: var(--purple);
+    box-shadow: 0 0 5px var(--purple);
+    outline-color: var(--purple);
+}
