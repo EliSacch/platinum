@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
@@ -6,15 +6,16 @@ import Container from "react-bootstrap/Container";
 
 import styles from "../../styles/AppointmentsCreateEditForm.module.css";
 import axios from "axios";
+import { axiosReq } from "../../api/axiosDefaults"
 import { Alert } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
 
-function AppointmentsCreateForm() {
+function AppointmentsCreateForm({ message, }) {
 
     const [appointmentData, setAppointmentData] = useState({
-        treatment: "",
+        treatment: "Consultation",
         date: "",
-        time: "",
+        time: "900",
         notes: "",
     });
 
@@ -23,16 +24,30 @@ function AppointmentsCreateForm() {
     const [errors, setErrors] = useState({});
     const history = useHistory()
 
+    const [treatments, setTreatments] = useState({ results: [] });
+
+    useEffect(() => {
+        const handleMount = async () => {
+            try {
+                const { data } = await axiosReq.get('/treatments/');
+                setTreatments(data);
+            } catch (err) {
+                console.log(err);
+            }
+        };
+
+        handleMount();
+    }, []);
+
     const handleSubmit = async (event) => {
         event.preventDefault();
-
         try {
             const data = await axios.post("/my-appointments/", appointmentData);
-            //setCurrentUser(data.user);
             history.push("/my-appointments/");
-            console.log(data.value);
+            console.log(data);
         } catch (err) {
             setErrors(err.response?.data);
+            console.log(err.response)
         }
     };
 
@@ -50,11 +65,18 @@ function AppointmentsCreateForm() {
                 <Form.Label className={styles.SelectInputLabel}>Treatment</Form.Label>
                 <Form.Control
                     as="select"
-                    name="tratment"
+                    name="treatment"
                     value={treatment}
                     onChange={handleChange}
                 >
-                    <option value="Consultation">Consultation</option>
+                    {treatments.results.map((t, i) => (
+                        <option 
+                        key={i}
+                        value={t.title}>
+                            {t.title}
+                        </option>
+                    )
+                    )}
                 </Form.Control>
             </Form.Group>
             {errors.treatment?.map((message, idx) => (
@@ -131,12 +153,17 @@ function AppointmentsCreateForm() {
     return (
         <section className={styles.OffsetTop}>
             <h1>Make an appointment</h1>
-            <Form
-                onSubmit={handleSubmit}
-                className={styles.Form}
-            >
-                <Container>{textFields}</Container>
-            </Form>
+            {treatments.results.length ? (
+                <Form
+                    onSubmit={handleSubmit}
+                    className={styles.Form}
+                >
+                    <Container>{textFields}</Container>
+                </Form>
+            ) : (
+                `<p>${message}</p>`
+            )}
+
         </section>
     );
 }
