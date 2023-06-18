@@ -10,6 +10,7 @@ import SignUpForm from './pages/auth/SignUpFrom';
 import SignInForm from './pages/auth/SignInFrom';
 import AppointmentsCreateForm from './pages/appointments/AppointmentsCreateForm';
 import AppointmentPage from './pages/appointments/AppointmentPage';
+import MyAppointments from './pages/appointments/MyAppointments';
 
 
 function App() {
@@ -27,6 +28,12 @@ function App() {
           path="/signin"
           render={() => <SignInForm />} />
         <Route exact path="/signup" render={() => <SignUpForm />} />
+        <Route
+          exact
+          path="/my-appointments"
+          render={() => (
+            <MyAppointments />
+          )} />
         <Route
           exact
           path="/my-appointments/create"

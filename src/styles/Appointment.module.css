@@ -1,5 +1,10 @@
-.AppointmentCard {
-    background-color: var(--light);
+.UpcomingAppointmentCard {
+    background-color: rgb(232, 246, 232);
+    text-align: left;
+}
+
+.PastAppointmentCard {
+    background-color: rgb(255, 224, 224);
     text-align: left;
 }
 
