@@ -147,6 +147,11 @@ function AppointmentsCreateForm({ message, }) {
             <Button className={styles.FormBtn} type="submit">
                 create
             </Button>
+            {errors.non_field_errors?.map((message, idx) => (
+              <Alert key={idx} variant="warning" className="mt-3">
+                {message}
+              </Alert>
+            ))}
         </div>
     );
 
@@ -161,7 +166,7 @@ function AppointmentsCreateForm({ message, }) {
                     <Container>{textFields}</Container>
                 </Form>
             ) : (
-                `<p>${message}</p>`
+                <p>{message}</p>
             )}
 
         </section>

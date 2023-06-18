@@ -68,13 +68,13 @@ const Navigation = () => {
         exact
         className={styles.NavLink}
         activeClassName={styles.Active}
-        to="signin"
+        to="/signin"
       >
         Sign in
       </NavLink>
       <NavLink
         exact
-        to="signup"
+        to="/signup"
         className={styles.NavLink}
         activeClassName={styles.Active}
       >

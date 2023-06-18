@@ -1,0 +1,10 @@
+.AppointmentCard {
+    background-color: var(--light);
+    text-align: left;
+}
+
+.CardHeader {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}

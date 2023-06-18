@@ -9,6 +9,7 @@ import './api/axiosDefaults';
 import SignUpForm from './pages/auth/SignUpFrom';
 import SignInForm from './pages/auth/SignInFrom';
 import AppointmentsCreateForm from './pages/appointments/AppointmentsCreateForm';
+import AppointmentPage from './pages/appointments/AppointmentPage';
 
 
 function App() {
@@ -33,6 +34,12 @@ function App() {
             <AppointmentsCreateForm
               message="Sorry, there are no treatments you can book online. Pleas contact us."
             />
+          )} />
+          <Route
+          exact
+          path="/my-appointments/:id"
+          render={() => (
+            <AppointmentPage />
           )} />
         <Route render={() => <p>Page not found!</p>} />
       </Switch>
