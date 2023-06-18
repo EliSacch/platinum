@@ -17,8 +17,8 @@ const Appointment = (props) => {
             <div className={styles.AppointmentDetail}>
                 <h1>{treatment}</h1> 
                 {status === "Upcoming" && <span>
-                <i className="fas fa-edit"></i>
-                <i className="fas fa-trash"></i></span>}
+                <i className="fas fa-edit"/>
+                <i className="fas fa-trash"/></span>}
                 <hr />
                 <p>Date: {date}</p>
                 <p>Time: {time}</p>

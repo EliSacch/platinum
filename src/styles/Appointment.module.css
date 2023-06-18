@@ -1,6 +1,5 @@
 .AppointmentCard {
     text-align: left;
-    max-width: 400px;
     color: var(--purple);
     background-color: var(--light);
     margin: .5em;

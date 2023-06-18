@@ -1,3 +1,18 @@
 .OffsetTop {
     margin-top: 160px;
 }
+
+.Tab {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2em;
+}
+
+.TabLink a {
+    color: var(--rose);
+}
+
+.TabLink a:hover,
+.TabLink a:focus {
+    color: var(--wine);
+}

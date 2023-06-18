@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
 
-import styles from '../../styles/AppointmentPage.module.css';
 import { Tab, Tabs } from 'react-bootstrap';
 import Appointment from './Appointment';
 import Asset from '../../components/Asset';
+
+import styles from '../../styles/AppointmentPage.module.css';
 
 import { axiosReq } from '../../api/axiosDefaults';
 
@@ -47,15 +48,17 @@ function MyAppointments() {
             <Tabs
                 defaultActiveKey="upcoming"
                 transition={false}
-                className="mb-3"
+                className={styles.TabLink}
                 onSelect={handleTabChange}
             >
-                <Tab eventKey="upcoming" title="Upcoming appointments">
+                <Tab eventKey="upcoming" title="Upcoming appointments" className={styles.Tab}>
                     {hasLoaded ? (
 
                         <>
                             {appointments.results.filter(res => res.status==="Upcoming").length ? (
-                                appointments.results.map(appointment => (
+                                appointments.results.sort(
+                                    (a, b) => a.date > b.date ? 1 : -1
+                                    ).map(appointment => (
                                     <Appointment key={appointment.id} {...appointment} />
                                 ))
                             ) : (
@@ -67,13 +70,15 @@ function MyAppointments() {
                         <Asset spinner />
                     )}
                 </Tab>
-                <Tab eventKey="past" title="Past appointments">
+                <Tab eventKey="past" title="Past appointments" className={styles.Tab}>
 
                     {hasLoaded ? (
 
                         <>
                             {appointments.results.filter(res => res.status==="Past").length ? (
-                                appointments.results.map(appointment => (
+                                appointments.results.sort(
+                                    (a, b) => a.date < b.date ? 1 : -1
+                                    ).map(appointment => (
                                     <Appointment key={appointment.id} {...appointment} />
                                 ))
                             ) : (
