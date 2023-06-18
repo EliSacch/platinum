@@ -1,15 +1,43 @@
-.UpcomingAppointmentCard {
-    background-color: rgb(232, 246, 232);
+.AppointmentCard {
     text-align: left;
-}
-
-.PastAppointmentCard {
-    background-color: rgb(255, 224, 224);
-    text-align: left;
+    max-width: 400px;
+    color: var(--purple);
+    background-color: var(--light);
+    margin: .5em;
+    padding: 1em;
+    border-radius: 3px;
 }
 
 .CardHeader {
     width: 100%;
     display: flex;
     justify-content: space-between;
+}
+
+.AppointmentDetail {
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.AppointmentDetail > span {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+.AppointmentDetail i {
+    color: var(--purple);
+    font-size: 1.5em;
+    margin-inline: 5px;
+}
+.AppointmentDetail i:first-child:hover {
+    color: var(--rose);
+}
+
+.AppointmentDetail i:hover {
+    color: var(--salmon);
+}
+
+.AppointmentPageHelp {
+    margin-top: 2.5em;
 }
