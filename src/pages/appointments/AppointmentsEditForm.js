@@ -8,7 +8,6 @@ import styles from "../../styles/AppointmentsCreateEditForm.module.css";
 import { axiosReq } from "../../api/axiosDefaults"
 import { Alert } from "react-bootstrap";
 import { useHistory, useParams } from "react-router-dom";
-import axios from "axios";
 
 function AppointmentsEditForm({ message, }) {
 

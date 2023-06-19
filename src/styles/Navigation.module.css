@@ -43,19 +43,34 @@
     text-decoration: none;
   }
 
-  a:hover {
+  .NavLink:hover,
+  .NavButton:hover {
     color: var(--rose-lighter);
+    background-color: transparent;
+  }
+
+
+  .NavButton:active,
+  .NavButton:focus-visible {
+    --bs-btn-active-bg: transparent;
+    --bs-btn-active-border-color: transparent;
+    --bs-btn-focus-shadow-rgb: 0,0,0,0;
+    background-color: transparent;
+    outline: 1px solid white;
   }
 
   .NavLink,
   .NavDropdown,
-  .DropItem {
+  .DropItem,
+  .NavButton {
     --bs-navbar-active-color: var(--rose-lighter);
     --bs-nav-link-hover-color: var(--rose-lighter);
     --bs-nav-link-color: var(--ligth);
     --bs-nav-link-padding-y: 0rem;
     --bs-dropdown-link-active-bg: var(--wine);
     color: inherit;
+    background-color: transparent;
+    border: none;
     text-decoration: none;
     padding: 5px 10px;
     font-weight: 400;

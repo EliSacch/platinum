@@ -5,7 +5,6 @@ import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 
 import styles from "../../styles/AppointmentsCreateEditForm.module.css";
-import axios from "axios";
 import { axiosReq } from "../../api/axiosDefaults"
 import { Alert } from "react-bootstrap";
 import { useHistory } from "react-router-dom";

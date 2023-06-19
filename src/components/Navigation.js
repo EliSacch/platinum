@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
@@ -6,10 +6,12 @@ import Navbar from 'react-bootstrap/Navbar';
 import logo from '../assets/hair-icon-wine.png'
 import styles from '../styles/Navigation.module.css';
 
-import { NavLink } from 'react-router-dom';
+import { NavLink, useHistory } from 'react-router-dom';
 import { useCurrentUser, useSetCurrentUser } from '../contexts/CurrentUserContext';
 import axios from 'axios';
 import useToggleExpanded from "../hooks/useToggleExpanded";
+import ModalComponent from "./ModalComponent";
+import { Button } from "react-bootstrap";
 
 
 const Navigation = () => {
@@ -17,12 +19,24 @@ const Navigation = () => {
   const currentUser = useCurrentUser();
   const setCurrentUser = useSetCurrentUser();
 
-  const {expanded, setExpanded, ref} = useToggleExpanded();
+  const history = useHistory();
 
-  const handleSignOut = async () => {
+  // To display the sign out modal
+  const [show, setShow] = useState(false);
+  const handleShow = () => setShow(true);
+  const handleClose = () => setShow(false);
+
+  const { expanded, setExpanded, ref } = useToggleExpanded();
+
+  const handleSignOut = async (event) => {
+    event.preventDefault();
+
     try {
       await axios.post("dj-rest-auth/logout/");
       setCurrentUser(null);
+      handleClose();
+      history.push('/');
+
     } catch (err) {
       console.log(err);
     }
@@ -38,14 +52,13 @@ const Navigation = () => {
       >
         Profile
       </NavLink>
-      <NavLink
+      <Button
         exact
-        className={styles.NavLink}
-        to="/" 
-        onClick={handleSignOut}
-        >
-          Sing out
-      </NavLink>
+        className={styles.NavButton}
+        onClick={handleShow}
+      >
+        Sing out
+      </Button>
     </>
 
   );
@@ -56,8 +69,8 @@ const Navigation = () => {
         className={styles.NavLink}
         activeClassName={styles.Active}
         to="/my-appointments"
-        >
-          My appointments
+      >
+        My appointments
       </NavLink>
     </>
   );
@@ -74,9 +87,9 @@ const Navigation = () => {
       </NavLink>
       <NavLink
         exact
-        to="/signup"
         className={styles.NavLink}
         activeClassName={styles.Active}
+        to="/signup"
       >
         Sign up
       </NavLink>
@@ -85,50 +98,59 @@ const Navigation = () => {
 
 
   return (
-    <Navbar 
-      expand="md"
-      fixed="top" 
-      className={styles.NavBar}
-      expanded={expanded}
+    <>
+      <Navbar
+        expand="md"
+        fixed="top"
+        className={styles.NavBar}
+        expanded={expanded}
       >
-      <Container>
-        <NavLink className={styles.NavLink} to="/">
-          <Navbar.Brand className={styles.AppLogo}>
-            <img src={logo} alt="logo" />
-            Platinum
-          </Navbar.Brand>
-        </NavLink>
-        
-        <Navbar.Toggle
-          ref={ref}
-          aria-controls="navbarScroll" 
-          className={styles.MenuToggler}
-          onClick={() => setExpanded(!expanded)}
-        >
-          <i className="fas fa-bars"></i>
-        </Navbar.Toggle>
-        <Navbar.Collapse id="navbarScroll">
-          
-        <Nav className="me-auto">
+        <Container>
+          <NavLink className={styles.NavLink} to="/">
+            <Navbar.Brand className={styles.AppLogo}>
+              <img src={logo} alt="logo" />
+              Platinum
+            </Navbar.Brand>
+          </NavLink>
 
-        <NavLink
-          exact
-          className={styles.NavLink}
-          activeClassName={styles.Active}
-          to="/">
-          Home
-        </NavLink>
+          <Navbar.Toggle
+            ref={ref}
+            aria-controls="navbarScroll"
+            className={styles.MenuToggler}
+            onClick={() => setExpanded(!expanded)}
+          >
+            <i className="fas fa-bars"></i>
+          </Navbar.Toggle>
+          <Navbar.Collapse id="navbarScroll">
 
-            {currentUser ? loggedInIcons : loggedOutIcons}
+            <Nav className="me-auto">
 
-          </Nav>
-          <Nav>
-          {currentUser && profileLink}
-          </Nav>
+              <NavLink
+                exact
+                className={styles.NavLink}
+                activeClassName={styles.Active}
+                to="/">
+                Home
+              </NavLink>
 
-        </Navbar.Collapse>
-      </Container>
-    </Navbar>
+              {currentUser ? loggedInIcons : loggedOutIcons}
+
+            </Nav>
+            <Nav>
+              {currentUser && profileLink}
+            </Nav>
+
+          </Navbar.Collapse>
+        </Container>
+      </Navbar>
+      <ModalComponent
+        heading="Sign out"
+        message="Do you want to sign out?"
+        setShow={setShow}
+        action={handleSignOut}
+        show={show}
+      />
+    </>
   )
 }
 

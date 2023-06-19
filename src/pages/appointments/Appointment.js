@@ -11,7 +11,7 @@ import styles from '../../styles/Appointment.module.css';
 const Appointment = (props) => {
 
     const {
-        id, treatment, date, time, status, notes, appointmentPage,
+        id, treatment, date, time, status, notes, appointmentPage, is_owner
     } = props
 
     // Convert the time from integer to a human friendly format
@@ -19,6 +19,7 @@ const Appointment = (props) => {
 
     const history = useHistory();
 
+    // To display the edit modal
     const [show, setShow] = useState(false);
     const handleShow = () => setShow(true);
 
@@ -100,7 +101,6 @@ const Appointment = (props) => {
                         </div>
 
                         {date && time && <Card.Text>{date} at {displayTime} </Card.Text>}
-
                         {notes && <Card.Text className="text-center">{notes}</Card.Text>}
                     </Card.Body>
                 </Card>
