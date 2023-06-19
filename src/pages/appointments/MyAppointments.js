@@ -60,8 +60,11 @@ function MyAppointments() {
                                 appointments.results.sort(
                                     (a, b) => a.date > b.date ? 1 : -1
                                 ).map(appointment => (
-                                    <Link to={`/my-appointments/${appointment.id}`}>
-                                        <Appointment key={appointment.id} {...appointment} />
+                                    <Link
+                                        to={`/my-appointments/${appointment.id}`}
+                                        key={appointment.id}
+                                    >
+                                        <Appointment  {...appointment} />
                                     </Link>
                                 ))
                             ) : (

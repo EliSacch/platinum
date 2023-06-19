@@ -1,0 +1,32 @@
+.ModalBtn,
+.CloseModalBtn {
+    background-color: var(--purple);
+    border: 2px solid var(--purple);
+    margin: 20px;
+    border-radius: 3px;
+    padding: 5px 50px;
+}
+
+.CloseModalBtn {
+    background-color: white;
+    color: var(--purple);
+}
+
+.ModalBtn:hover,
+.ModalBtn:focus,
+.ModalBtn:focus-within,
+.ModalBtn.btn:active,
+.CloseModalBtn:hover,
+.CloseModalBtn:focus,
+.CloseModalBtn:focus-within,
+.CloseModalBtn.btn:active {
+    --bs-btn-active-color: var(--light);
+    --bs-btn-active-bg: var(--wine-lighter);
+    --bs-btn-active-border-color: var(--light);
+    --bs-btn-focus-box-shadow: var(--light);
+    background-color: var(--wine-lighter);
+    color: var(--light);
+    border-color: var(--light);
+    box-shadow: 0 0 5px var(--light);
+    outline-color: var(--light);
+}

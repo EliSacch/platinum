@@ -39,23 +39,23 @@ function Footer() {
                 <tbody>
                     <tr>
                         <td>Tuesday</td>
-                        <td>- 9am to 6pm</td>
+                        <td>- 9am to 5pm</td>
                     </tr>
                     <tr>
                         <td>Wednesday</td>
-                        <td>- 9am to 6pm</td>
+                        <td>- 9am to 5pm</td>
                     </tr>
                     <tr>
                         <td>Thursday</td>
-                        <td>- 9am to 6pm</td>
+                        <td>- 9am to 5pm</td>
                     </tr>
                     <tr>
                         <td>Friday</td>
-                        <td>- 9am to 6pm</td>
+                        <td>- 9am to 5pm</td>
                     </tr>
                     <tr>
                         <td>Saturday</td>
-                        <td>- 9am to 6pm</td>
+                        <td>- 9am to 5pm</td>
                     </tr>
                     <tr>
                         <td>Sunday - Monday</td>
