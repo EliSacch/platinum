@@ -45,6 +45,11 @@ function MyAppointments() {
 
     return (
         <section className={styles.OffsetTop}>
+            <Link
+                to="/my-appointments/create"
+                className={styles.ActionBtn}
+            >Make an appointment
+            </Link>
 
             <Tabs
                 defaultActiveKey="upcoming"

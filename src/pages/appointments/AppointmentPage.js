@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import styles from '../../styles/AppointmentPage.module.css'
-import { useParams } from 'react-router-dom'
+import { useHistory, useParams } from 'react-router-dom'
 
 import { axiosReq } from '../../api/axiosDefaults'
 import Appointment from './Appointment';
@@ -10,6 +10,7 @@ import Asset from '../../components/Asset';
 function AppointmentPage() {
     // To access the URL 'id' parameter
     const {id} = useParams();
+    const history = useHistory();
 
     const [appointment, setAppointment] = useState({results: []});
     const [hasLoaded, setHasLoaded] = useState(false);
@@ -22,11 +23,12 @@ function AppointmentPage() {
                 setHasLoaded(true);
             } catch(err) {
                 console.log(err);
+                history.push("/");
             }
         };
         setHasLoaded(false);
         fetchAppointment();
-    }, [id]);
+    }, [id, history]);
 
 
   return (

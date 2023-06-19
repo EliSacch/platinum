@@ -11,7 +11,7 @@ import styles from '../../styles/Appointment.module.css';
 const Appointment = (props) => {
 
     const {
-        id, treatment, date, time, status, notes, appointmentPage, is_owner
+        id, treatment, date, time, status, notes, appointmentPage
     } = props
 
     // Convert the time from integer to a human friendly format
