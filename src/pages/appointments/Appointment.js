@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import {axiosRes} from '../../api/axiosDefaults';
+import { axiosRes } from '../../api/axiosDefaults';
 
 import { Card } from 'react-bootstrap';
 
@@ -38,7 +38,7 @@ const Appointment = (props) => {
         try {
             await axiosRes.delete(`/my-appointments/${id}/`);
             history.goBack();
-        } catch(err) {
+        } catch (err) {
             console.log(err);
         }
     }
@@ -49,6 +49,12 @@ const Appointment = (props) => {
             as a single object from the appointment page */
             <>
                 <div className={styles.AppointmentDetail}>
+                    <span
+                        onClick={() => history.goBack()}
+                        aria-label="go back"
+                    >
+                        <i className="fas fa-arrow-left" />
+                    </span>
                     <h1>{treatment}</h1>
                     {status === "Upcoming" && <div className={styles.Actions}>
                         <span
@@ -62,7 +68,8 @@ const Appointment = (props) => {
                             onClick={handleShow}
                             aria-label="delete"
                         >
-                            <i className="fas fa-trash" /></span>
+                            <i className="fas fa-trash" />
+                        </span>
                     </div>}
                     <hr />
                     <p>Date: {date}</p>

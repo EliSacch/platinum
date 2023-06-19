@@ -41,8 +41,16 @@ function AppointmentsCreateForm({ message, }) {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
+
+        const formData = new FormData();
+
+        formData.append("treatment", treatment);
+        formData.append("date", date);
+        formData.append("time", time);
+        formData.append("notes", notes);
+
         try {
-            await axios.post("/my-appointments/", appointmentData);
+            await axiosReq.post("/my-appointments/", formData);
             history.push("/my-appointments/");
         } catch (err) {
             setErrors(err.response?.data);

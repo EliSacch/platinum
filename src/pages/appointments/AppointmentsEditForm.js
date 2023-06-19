@@ -1,22 +1,21 @@
 import React, { useEffect, useState } from "react";
-import dateFormat from "dateformat";
 
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 
 import styles from "../../styles/AppointmentsCreateEditForm.module.css";
-import axios from "axios";
 import { axiosReq } from "../../api/axiosDefaults"
 import { Alert } from "react-bootstrap";
 import { useHistory, useParams } from "react-router-dom";
+import axios from "axios";
 
 function AppointmentsEditForm({ message, }) {
 
     const [appointmentData, setAppointmentData] = useState({
-        treatment: "Consultation",
+        treatment: "",
         date: "",
-        time: 900,
+        time: "",
         notes: "",
     });
 
@@ -36,7 +35,7 @@ function AppointmentsEditForm({ message, }) {
             try {
                 const { data } = await axiosReq.get('/treatments/');
                 setTreatments(data);
-  
+
             } catch (err) {
                 console.log(err);
             }
@@ -49,7 +48,7 @@ function AppointmentsEditForm({ message, }) {
                 is_owner ? setAppointmentData(
                     { treatment, date, time, notes }
                 ) : history.push('/');
-                
+
             } catch (err) {
                 console.log(err);
             }
@@ -60,11 +59,20 @@ function AppointmentsEditForm({ message, }) {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
+
+        const formData = new FormData();
+
+        formData.append("treatment", treatment);
+        formData.append("date", date);
+        formData.append("time", time);
+        formData.append("notes", notes);
+
         try {
-            await axios.put(`/my-appointments/${id}/`, appointmentData, date);
+            await axiosReq.put(`/my-appointments/${id}/`, formData);
             history.push(`/my-appointments/${id}/`);
         } catch (err) {
             setErrors(err.response?.data);
+            console.log(err)
         }
     };
 
@@ -87,9 +95,9 @@ function AppointmentsEditForm({ message, }) {
                     onChange={handleChange}
                 >
                     {treatments.results.map((t, i) => (
-                        <option 
-                        key={i}
-                        value={t.title}>
+                        <option
+                            key={i}
+                            value={t.title}>
                             {t.title}
                         </option>
                     )
@@ -164,9 +172,9 @@ function AppointmentsEditForm({ message, }) {
                 Save
             </Button>
             {errors.non_field_errors?.map((message, idx) => (
-              <Alert key={idx} variant="warning" className="mt-3">
-                {message}
-              </Alert>
+                <Alert key={idx} variant="warning" className="mt-3">
+                    {message}
+                </Alert>
             ))}
         </div>
     );

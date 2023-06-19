@@ -207,9 +207,7 @@ This was caused by an errr in the received date format:
 
 ![Console error](/media/errors/edit-appointment-date-console-error.png)
 
-- Fix: To fix this error I installed the 'dateformat' package, which allowed me to format the value passed to this imput
-
-[Link to dateformat documentation](https://www.npmjs.com/package/dateformat)
+- Fix: To fix this error I changed the date format in booking_api, so that the format matches the required yyyy-mm-dd format.
 
 </details>
 
