@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from '../styles/Hero.module.css'
+import styles from '../../styles/Hero.module.css'
 import { Jumbotron, Nav} from 'react-bootstrap'
 
 function Hero() {

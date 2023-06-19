@@ -1,9 +1,9 @@
 import React from 'react'
-import Hero from '../../components/Hero'
-import About from '../../components/About'
-import Gallery from '../../components/Gallery'
-import Services from '../../components/Services'
-import Book from '../../components/Book'
+import Hero from '../../pages/home/Hero'
+import About from '../../pages/home/About'
+import Gallery from '../../pages/home/Gallery'
+import Services from '../../pages/home/Services'
+import Book from '../../pages/home/Book'
 
 
 import styles from '../../styles/Home.module.css'

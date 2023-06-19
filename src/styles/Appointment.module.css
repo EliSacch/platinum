@@ -14,23 +14,27 @@
 }
 
 .AppointmentDetail {
-    max-width: 400px;
-    margin: 0 auto;
+    padding: 1em;
+    max-width: 600px;
+    margin: 2em auto;
+    position: relative;
 }
 
-.AppointmentDetail > span {
+.Actions {
     position: absolute;
-    top: 10px;
-    right: 10px;
+    top: -20px;
+    right: -20px;
+    opacity: .8;
+}
+
+.Actions > span {
+    cursor: pointer;
+    padding: 5px;
 }
 
 .AppointmentDetail i {
     color: var(--purple);
     font-size: 1.5em;
-    margin-inline: 5px;
-}
-.AppointmentDetail i:first-child:hover {
-    color: var(--rose);
 }
 
 .AppointmentDetail i:hover {

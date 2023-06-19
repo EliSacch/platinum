@@ -1,10 +1,10 @@
 import React from 'react'
 import { Carousel } from 'react-bootstrap'
-import picOne from '../assets/yellow.jpg'
-import picTwo from '../assets/cut.jpg'
-import picThree from '../assets/bride.jpg'
+import picOne from '../../assets/yellow.jpg'
+import picTwo from '../../assets/cut.jpg'
+import picThree from '../../assets/bride.jpg'
 
-import styles from '../styles/Gallery.module.css'
+import styles from '../../styles/Gallery.module.css'
 
 function Gallery() {
   return (

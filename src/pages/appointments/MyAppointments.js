@@ -7,6 +7,7 @@ import Asset from '../../components/Asset';
 import styles from '../../styles/AppointmentPage.module.css';
 
 import { axiosReq } from '../../api/axiosDefaults';
+import { Link } from 'react-router-dom';
 
 function MyAppointments() {
 
@@ -55,11 +56,13 @@ function MyAppointments() {
                     {hasLoaded ? (
 
                         <>
-                            {appointments.results.filter(res => res.status==="Upcoming").length ? (
+                            {appointments.results.filter(res => res.status === "Upcoming").length ? (
                                 appointments.results.sort(
                                     (a, b) => a.date > b.date ? 1 : -1
-                                    ).map(appointment => (
-                                    <Appointment key={appointment.id} {...appointment} />
+                                ).map(appointment => (
+                                    <Link to={`/my-appointments/${appointment.id}`}>
+                                        <Appointment key={appointment.id} {...appointment} />
+                                    </Link>
                                 ))
                             ) : (
                                 <p>There are no upcoming appointments</p>
@@ -75,11 +78,13 @@ function MyAppointments() {
                     {hasLoaded ? (
 
                         <>
-                            {appointments.results.filter(res => res.status==="Past").length ? (
+                            {appointments.results.filter(res => res.status === "Past").length ? (
                                 appointments.results.sort(
                                     (a, b) => a.date < b.date ? 1 : -1
-                                    ).map(appointment => (
-                                    <Appointment key={appointment.id} {...appointment} />
+                                ).map(appointment => (
+                                    <Link to={`/my-appointments/${appointment.id}`}>
+                                        <Appointment key={appointment.id} {...appointment} />
+                                    </Link>
                                 ))
                             ) : (
                                 <p>There are no past appointments</p>

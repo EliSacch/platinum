@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from '../styles/Services.module.css'
+import styles from '../../styles/Services.module.css'
 import { Button, Card, Container } from 'react-bootstrap'
 
 function Services() {
