@@ -11,6 +11,7 @@ import SignInForm from './pages/auth/SignInFrom';
 import AppointmentsCreateForm from './pages/appointments/AppointmentsCreateForm';
 import AppointmentPage from './pages/appointments/AppointmentPage';
 import MyAppointments from './pages/appointments/MyAppointments';
+import AppointmentsEditForm from './pages/appointments/AppointmentsEditForm';
 
 
 function App() {
@@ -19,15 +20,24 @@ function App() {
     <div className={styles.App}>
       <Navigation />
       <Switch>
+        {/* -------------- Home page -------------- */}
         <Route
           exact
           path="/"
-          render={() => <Home />} />
+          render={() => <Home />}
+        />
+        {/* -------------- Auth pages -------------- */}
         <Route
           exact
           path="/signin"
-          render={() => <SignInForm />} />
-        <Route exact path="/signup" render={() => <SignUpForm />} />
+          render={() => <SignInForm />}
+        />
+        <Route
+          exact
+          path="/signup"
+          render={() => <SignUpForm />}
+        />
+        {/* -------------- Client facing appointments pages -------------- */}
         <Route
           exact
           path="/my-appointments"
@@ -42,12 +52,20 @@ function App() {
               message="Sorry, there are no treatments you can book online. Pleas contact us."
             />
           )} />
-          <Route
+        <Route
           exact
           path="/my-appointments/:id"
           render={() => (
             <AppointmentPage />
           )} />
+          <Route
+          exact
+          path="/my-appointments/:id/edit"
+          render={() => (
+            <AppointmentsEditForm />
+          )} />
+
+        {/* -------------- Other pages -------------- */}
         <Route render={() => <p>Page not found!</p>} />
       </Switch>
       <Footer />

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import dateFormat from "dateformat";
 
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
@@ -8,42 +9,60 @@ import styles from "../../styles/AppointmentsCreateEditForm.module.css";
 import axios from "axios";
 import { axiosReq } from "../../api/axiosDefaults"
 import { Alert } from "react-bootstrap";
-import { useHistory } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 
-function AppointmentsCreateForm({ message, }) {
+function AppointmentsEditForm({ message, }) {
 
     const [appointmentData, setAppointmentData] = useState({
         treatment: "Consultation",
         date: "",
-        time: "900",
+        time: 900,
         notes: "",
     });
 
     const { treatment, date, time, notes } = appointmentData;
 
     const [errors, setErrors] = useState({});
-    const history = useHistory()
+    const history = useHistory();
+    const { id } = useParams();
 
     const [treatments, setTreatments] = useState({ results: [] });
 
     useEffect(() => {
-        const handleMount = async () => {
+        /**
+         * This functions retrieves the active treatments
+         */
+        const fetchTreatments = async () => {
             try {
                 const { data } = await axiosReq.get('/treatments/');
                 setTreatments(data);
+  
             } catch (err) {
                 console.log(err);
             }
         };
 
-        handleMount();
-    }, []);
+        const initializeForm = async () => {
+            try {
+                const { data } = await axiosReq.get(`/my-appointments/${id}/`);
+                const { treatment, date, time, notes, is_owner } = data;
+                is_owner ? setAppointmentData(
+                    { treatment, date, time, notes }
+                ) : history.push('/');
+                
+            } catch (err) {
+                console.log(err);
+            }
+        };
+        fetchTreatments();
+        initializeForm();
+    }, [history, id]);
 
     const handleSubmit = async (event) => {
         event.preventDefault();
         try {
-            await axios.post("/my-appointments/", appointmentData);
-            history.push("/my-appointments/");
+            await axios.put(`/my-appointments/${id}/`, appointmentData, date);
+            history.push(`/my-appointments/${id}/`);
         } catch (err) {
             setErrors(err.response?.data);
         }
@@ -82,7 +101,6 @@ function AppointmentsCreateForm({ message, }) {
                     {message}
                 </Alert>
             ))}
-
             <Form.Group className={styles.Input} controlId="date">
                 <Form.Label className={styles.SelectInputLabel}>Date</Form.Label>
                 <Form.Control
@@ -143,7 +161,7 @@ function AppointmentsCreateForm({ message, }) {
                 cancel
             </Button>
             <Button className={styles.FormBtn} type="submit">
-                create
+                Save
             </Button>
             {errors.non_field_errors?.map((message, idx) => (
               <Alert key={idx} variant="warning" className="mt-3">
@@ -155,7 +173,7 @@ function AppointmentsCreateForm({ message, }) {
 
     return (
         <section className={styles.OffsetTop}>
-            <h1>Make an appointment</h1>
+            <h1>Edit your appointment</h1>
             {treatments.results.length ? (
                 <Form
                     onSubmit={handleSubmit}
@@ -171,4 +189,4 @@ function AppointmentsCreateForm({ message, }) {
     );
 }
 
-export default AppointmentsCreateForm;
+export default AppointmentsEditForm;
