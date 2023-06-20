@@ -12,6 +12,7 @@ import AppointmentsCreateForm from './pages/appointments/AppointmentsCreateForm'
 import AppointmentPage from './pages/appointments/AppointmentPage';
 import MyAppointments from './pages/appointments/MyAppointments';
 import AppointmentsEditForm from './pages/appointments/AppointmentsEditForm';
+import ProfilePage from './pages/profiles/ProfilePage';
 
 
 function App() {
@@ -25,6 +26,12 @@ function App() {
           exact
           path="/"
           render={() => <Home />}
+        />
+        {/* -------------- Profiles pages -------------- */}
+        <Route
+          exact
+          path="/profile"
+          render={() => <ProfilePage />}
         />
         {/* -------------- Auth pages -------------- */}
         <Route

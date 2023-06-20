@@ -1,0 +1,26 @@
+.OffsetTop {
+    margin-top: 160px;
+}
+
+.ProfileHeader {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 2em;
+}
+
+.ProfileImage {
+    width: 280px;
+    height: 280px;
+    border-radius: 50%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.ProfileImage > img {
+    object-fit: cover;
+    width: 110%;
+}

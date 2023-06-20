@@ -32,7 +32,7 @@ const SignInForm = () => {
     event.preventDefault();
 
     try {
-      const data = await axios.post("/dj-rest-auth/login/", signInData);
+      const { data } = await axios.post("/dj-rest-auth/login/", signInData);
       setCurrentUser(data.user);
       history.push("/");
     } catch (err) {
@@ -51,7 +51,7 @@ const SignInForm = () => {
     <Row className={styles.OffsetTop}>
       <Col className="my-auto py-2 p-md-2" md={6}>
         <Container className="p-4">
-          <h1>Sign up</h1>
+          <h1>Sign in</h1>
 
           <Form onSubmit={handleSubmit}>
             <Form.Group controlId="username">

@@ -48,7 +48,7 @@ const Navigation = () => {
         exact
         className={styles.NavLink}
         activeClassName={styles.Active}
-        to={`/profiles/${currentUser?.profile_id}`}
+        to={`/profile`}
       >
         Profile
       </NavLink>
@@ -62,7 +62,21 @@ const Navigation = () => {
     </>
 
   );
-  const loggedInIcons = (
+
+  const staffOnlyLinks = (
+    <>
+      <NavLink
+        exact
+        className={styles.NavLink}
+        activeClassName={styles.Active}
+        to="/dashboard"
+      >
+        Staff Dashboard
+      </NavLink>
+    </>
+  );
+
+  const loggedInLinks = (
     <>
       <NavLink
         exact
@@ -75,7 +89,7 @@ const Navigation = () => {
     </>
   );
   <>{currentUser?.username}</>;
-  const loggedOutIcons = (
+  const loggedOutLinks = (
     <>
       <NavLink
         exact
@@ -133,10 +147,11 @@ const Navigation = () => {
                 Home
               </NavLink>
 
-              {currentUser ? loggedInIcons : loggedOutIcons}
+              {currentUser ? loggedInLinks : loggedOutLinks}
 
             </Nav>
             <Nav>
+              {currentUser && currentUser.is_staff && staffOnlyLinks}
               {currentUser && profileLink}
             </Nav>
 
