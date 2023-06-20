@@ -30,11 +30,7 @@ function MyAppointments() {
     useEffect(() => {
         const fetchAppointments = async () => {
             try {
-                const { data } = await axiosReq.get("/my-appointments", {
-                    params: {
-                        filter: '[["status", "=", "Past"]]',
-                    }
-                });
+                const { data } = await axiosReq.get("/my-appointments");
                 setAppointments(data);
                 setHasLoaded(true)
             } catch (err) {

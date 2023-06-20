@@ -1,0 +1,18 @@
+.ClientsList {
+    display: flex;
+    flex-direction: column;
+    padding: 2em;
+}
+
+.ClientsList a:nth-child(odd) {
+    background-color: var(--light);
+}
+
+.ClientsList a {
+    color: var(--dark);
+    padding-block: .5em;
+}
+
+.ClientsList a:hover {
+    color: var(--rose);
+}

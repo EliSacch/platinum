@@ -1,0 +1,27 @@
+.ControlsContainer {
+    display: flex;
+    gap: 1em;
+    width: fit-content;
+    margin: 1em auto;
+}
+
+.ControlsBtn {
+    background-color: var(--dark);
+    border-color: var(--dark);
+    width: 50px;
+}
+
+.ControlsBtn:hover,
+.ControlsBtn:focus,
+.ControlsBtn:focus-within,
+.ControlsBtn.btn:active {
+    --bs-btn-active-color: var(--purple);
+    --bs-btn-active-bg: transparent;
+    --bs-btn-active-border-color: var(--purple);
+    --bs-btn-focus-box-shadow: var(--purple);
+    background-color: transparent;
+    color: var(--purple);
+    border-color: var(--purple);
+    box-shadow: 0 0 5px var(--purple);
+    outline-color: var(--purple);
+}
