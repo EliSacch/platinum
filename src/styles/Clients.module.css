@@ -4,15 +4,16 @@
     padding: 2em;
 }
 
-.ClientsList a:nth-child(odd) {
+.ClientsList li:nth-child(odd) {
     background-color: var(--light);
 }
 
-.ClientsList a {
+.ClientsList li {
     color: var(--dark);
     padding-block: .5em;
+    cursor: pointer;
 }
 
-.ClientsList a:hover {
+.ClientsList li:hover {
     color: var(--rose);
 }

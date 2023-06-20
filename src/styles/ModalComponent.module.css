@@ -30,3 +30,19 @@
     box-shadow: 0 0 5px var(--light);
     outline-color: var(--light);
 }
+
+.Notes {
+    position: relative;
+}
+
+.Notes > span {
+    position: absolute;
+    right: 20px;
+    top: 10px;
+    cursor: pointer;
+}
+
+.Notes > span > i {
+    opacity: .7;
+    font-size: 1.5em;
+}
