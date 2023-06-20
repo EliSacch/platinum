@@ -13,69 +13,79 @@ import AppointmentPage from './pages/appointments/AppointmentPage';
 import MyAppointments from './pages/appointments/MyAppointments';
 import AppointmentsEditForm from './pages/appointments/AppointmentsEditForm';
 import ProfilePage from './pages/profiles/ProfilePage';
+import StaffDashboard from './pages/staff/StaffDashboard';
 
 
 function App() {
 
   return (
     <div className={styles.App}>
-      <Navigation />
       <Switch>
-        {/* -------------- Home page -------------- */}
+        {/* -------------- Staff pages -------------- */}
         <Route
           exact
-          path="/"
-          render={() => <Home />}
+          path="/dashboard"
+          render={() => <StaffDashboard />}
         />
-        {/* -------------- Profiles pages -------------- */}
-        <Route
-          exact
-          path="/profile"
-          render={() => <ProfilePage />}
-        />
-        {/* -------------- Auth pages -------------- */}
-        <Route
-          exact
-          path="/signin"
-          render={() => <SignInForm />}
-        />
-        <Route
-          exact
-          path="/signup"
-          render={() => <SignUpForm />}
-        />
-        {/* -------------- Client facing appointments pages -------------- */}
-        <Route
-          exact
-          path="/my-appointments"
-          render={() => (
-            <MyAppointments />
-          )} />
-        <Route
-          exact
-          path="/my-appointments/create"
-          render={() => (
-            <AppointmentsCreateForm
-              message="Sorry, there are no treatments you can book online. Pleas contact us."
-            />
-          )} />
-        <Route
-          exact
-          path="/my-appointments/:id"
-          render={() => (
-            <AppointmentPage />
-          )} />
+        <>
+          <Navigation />
+          {/* -------------- Home page -------------- */}
           <Route
-          exact
-          path="/my-appointments/:id/edit"
-          render={() => (
-            <AppointmentsEditForm />
-          )} />
+            exact
+            path="/"
+            render={() => <Home />}
+          />
+          {/* -------------- Profiles pages -------------- */}
+          <Route
+            exact
+            path="/profile"
+            render={() => <ProfilePage />}
+          />
+          {/* -------------- Auth pages -------------- */}
+          <Route
+            exact
+            path="/signin"
+            render={() => <SignInForm />}
+          />
+          <Route
+            exact
+            path="/signup"
+            render={() => <SignUpForm />}
+          />
+          {/* -------------- Client facing appointments pages -------------- */}
+          <Route
+            exact
+            path="/my-appointments"
+            render={() => (
+              <MyAppointments />
+            )} />
+          <Route
+            exact
+            path="/my-appointments/create"
+            render={() => (
+              <AppointmentsCreateForm
+                message="Sorry, there are no treatments you can book online. Pleas contact us."
+              />
+            )} />
+          <Route
+            exact
+            path="/my-appointments/:id"
+            render={() => (
+              <AppointmentPage />
+            )} />
+          <Route
+            exact
+            path="/my-appointments/:id/edit"
+            render={() => (
+              <AppointmentsEditForm />
+            )} />
+          <Footer />
 
+        </>
         {/* -------------- Other pages -------------- */}
         <Route render={() => <p>Page not found!</p>} />
       </Switch>
-      <Footer />
+
     </div>
   );
 }

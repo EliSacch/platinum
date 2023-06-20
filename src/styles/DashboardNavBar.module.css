@@ -1,0 +1,112 @@
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Caramel&family=Raleway:ital,wght@0,100;0,400;0,700;0,800;0,900;1,100;1,200;1,300;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+.NavBar {
+  background-color: var(--dark);
+  color: var(--light);
+  border-bottom: 3px solid var(--wine-lighter);
+}
+
+.AppLogo {
+    pointer-events: none;
+    font-family: var(--logo);
+    font-size: 3.5em;
+    font-weight: 500;
+    letter-spacing: 6px;
+    position: relative;
+    top: -10px;
+    color: var(--rose-lighter);
+  }
+
+  .AppLogo::first-letter {
+    font-size: 1.2em;
+  }
+  
+  .AppLogo > img {
+    margin-inline: 10px;
+    position: relative;
+    top: -5px;
+    color: var(--light);
+    width: 45px;
+  }
+
+  .MenuToggler:focus,
+  .MenuToggler.btn:active {
+    --bs-navbar-color: var(--wine);
+
+  }
+
+  .MenuToggler i {
+    color: var(--wine-lighter);
+  }
+
+  .AppLogo > a {
+    text-decoration: none;
+  }
+
+  .NavLink:hover,
+  .NavButton:hover {
+    color: var(--rose-lighter);
+    background-color: transparent;
+  }
+
+
+  .NavButton:active,
+  .NavButton:focus-visible {
+    --bs-btn-active-bg: transparent;
+    --bs-btn-active-border-color: transparent;
+    --bs-btn-focus-shadow-rgb: 0,0,0,0;
+    background-color: transparent;
+    outline: 1px solid white;
+  }
+
+  .NavLink,
+  .NavDropdown,
+  .DropItem,
+  .NavButton {
+    --bs-navbar-active-color: var(--rose-lighter);
+    --bs-nav-link-hover-color: var(--rose-lighter);
+    --bs-nav-link-color: var(--ligth);
+    --bs-nav-link-padding-y: 0rem;
+    --bs-dropdown-link-active-bg: var(--wine);
+    color: inherit;
+    background-color: transparent;
+    border: none;
+    text-decoration: none;
+    padding: 5px 10px;
+    font-weight: 400;
+  }
+
+  .NavLink.Left {
+    margin-right: auto;
+  }
+
+  .Active {
+    --bs-dropdown-link-active-bg: transparent;
+    color: var(--light);
+    position: relative;
+    transition-duration: 300ms;
+    font-weight: 400;
+  }
+
+  .Active:hover {
+    color: var(--rose-lighter);
+  }
+  
+  .Active::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-color: var(--wine-lighter);
+    z-index: -1;
+    animation: Active-link 500ms ease-out forwards;
+  }
+
+  @keyframes Active-link {
+    from {
+      width: 0%;
+    }
+    to {
+      width: 100%;
+    }
+  }
+

@@ -5,7 +5,7 @@ import styles from '../../styles/Profile.module.css';
 const Profile = (props) => {
 
     const {
-        id, owner, name, image,
+        owner, name, image,
     } = props
 
   return (

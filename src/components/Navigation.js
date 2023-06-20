@@ -114,7 +114,7 @@ const Navigation = () => {
   return (
     <>
       <Navbar
-        expand="md"
+        expand="lg"
         fixed="top"
         className={styles.NavBar}
         expanded={expanded}
