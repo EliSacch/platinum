@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { axiosReq } from '../../api/axiosDefaults';
 import Asset from '../../components/Asset';
-import ModalClientDetail from '../../components/ModalClientDetail';
+import ModalClientDetail from './ModalClientDetail';
 
 import styles from '../../styles/Clients.module.css'
 
@@ -51,7 +51,6 @@ function ClientsList() {
                                 onClick={() => {
                                     setClientDetail(client);
                                     handleShow();
-                                    console.log(client)
                                 }}
                                 >
                                 {client.name ? (

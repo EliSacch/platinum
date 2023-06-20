@@ -1,0 +1,63 @@
+
+.Notes {
+    position: relative;
+}
+
+.Notes > span {
+    position: absolute;
+    right: 20px;
+    top: 10px;
+    cursor: pointer;
+}
+
+.Notes > span > i {
+    opacity: .7;
+    font-size: 1.5em;
+}
+
+.FormBtn {
+    background-color: var(--dark);
+    border-color: var(--dark);
+    width: 50px;
+    position: absolute;
+    right: 20px;
+    top: 50%;
+}
+
+.FormBtn:hover,
+.FormBtn:focus,
+.FormBtn:focus-within,
+.FormBtn.btn:active {
+    --bs-btn-active-color: var(--purple);
+    --bs-btn-active-bg: transparent;
+    --bs-btn-active-border-color: var(--purple);
+    --bs-btn-focus-box-shadow: var(--purple);
+    background-color: transparent;
+    color: var(--purple);
+    border-color: var(--purple);
+    box-shadow: 0 0 5px var(--purple);
+    outline-color: var(--purple);
+}
+
+.ModalBtn  {
+    background-color: var(--purple);
+    border: 2px solid var(--purple);
+    margin: 20px;
+    border-radius: 3px;
+    padding: 5px 50px;
+}
+
+.ModalBtn:hover,
+.ModalBtn:focus,
+.ModalBtn:focus-within,
+.ModalBtn.btn:active {
+    --bs-btn-active-color: var(--light);
+    --bs-btn-active-bg: var(--wine-lighter);
+    --bs-btn-active-border-color: var(--light);
+    --bs-btn-focus-box-shadow: var(--light);
+    background-color: var(--wine-lighter);
+    color: var(--light);
+    border-color: var(--light);
+    box-shadow: 0 0 5px var(--light);
+    outline-color: var(--light);
+}

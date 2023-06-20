@@ -1,23 +1,27 @@
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 
-import React from 'react'
+import React, { useState } from 'react'
 
-import styles from '../styles/ModalComponent.module.css'
+import styles from '../../styles/ModalClientDetail.module.css';
+import ClientNotesForm from './ClientNotesForm';
 
 
 const ModalClientDetail = (props) => {
 
+  const [showEditNotes, setShowEditNotes] = useState(false);
+
   const {
-    name, owner, notes,
+    id, name, owner, 
     appointments_count, has_appointments_today,
     show, setShow } = props;
 
+  const [notes, setNotes] = useState(props.notes)
 
   const handleClose = () => setShow(false);
 
   const handleEditNotes = () => {
-    console.log('edit')
+    setShowEditNotes(!showEditNotes);
   }
 
   return (
@@ -38,23 +42,31 @@ const ModalClientDetail = (props) => {
             <li>Username: {owner}</li>
             <li>Appointments: {appointments_count}</li>
             <li>Today: {has_appointments_today}</li>
-            <li>Is staff member: {owner.id}</li>
             <hr />
             <li className={styles.Notes}>
-              Notes: {notes}
-              <span
-                onClick={handleEditNotes}
-                aria-label="edit"
-              >
-                <i className="fas fa-edit"
-                />
-              </span>
+
+              {showEditNotes && <>
+                Notes: {notes}
+                <span
+                  onClick={handleEditNotes}
+                  aria-label="edit"
+                >
+                  <i className="fas fa-edit" />
+                </span>
+              </>}
+              {!showEditNotes && <ClientNotesForm
+                id={id}
+                setNotes={setNotes}
+                showEditNotes={showEditNotes}
+                setShowEditNotes={setShowEditNotes}
+              />
+              }
             </li>
           </ul>
 
         </Modal.Body>
         <Modal.Footer>
-          <Button className={styles.CloseModalBtn} onClick={handleClose}>
+          <Button className={styles.ModalBtn} onClick={handleClose}>
             Close
           </Button>
 
