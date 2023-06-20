@@ -1,7 +1,7 @@
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import styles from '../../styles/ModalClientDetail.module.css';
 import ClientNotesForm from './ClientNotesForm';
@@ -9,20 +9,24 @@ import ClientNotesForm from './ClientNotesForm';
 
 const ModalClientDetail = (props) => {
 
-  const [showEditNotes, setShowEditNotes] = useState(false);
-
   const {
-    id, name, owner, 
+    id, name, owner, notes,
     appointments_count, has_appointments_today,
     show, setShow } = props;
 
-  const [notes, setNotes] = useState(props.notes)
+
+  const [showEditNotes, setShowEditNotes] = useState(false);
+  const [updatedNotes, setNotes] = useState(notes)
 
   const handleClose = () => setShow(false);
 
   const handleEditNotes = () => {
     setShowEditNotes(!showEditNotes);
   }
+
+  useEffect(() => {
+    setNotes(notes);
+  }, [notes, id])
 
   return (
     <>
@@ -45,8 +49,8 @@ const ModalClientDetail = (props) => {
             <hr />
             <li className={styles.Notes}>
 
-              {showEditNotes && <>
-                Notes: {notes}
+              {!showEditNotes && <>
+                Notes: {updatedNotes}
                 <span
                   onClick={handleEditNotes}
                   aria-label="edit"
@@ -54,7 +58,7 @@ const ModalClientDetail = (props) => {
                   <i className="fas fa-edit" />
                 </span>
               </>}
-              {!showEditNotes && <ClientNotesForm
+              {showEditNotes && <ClientNotesForm
                 id={id}
                 setNotes={setNotes}
                 showEditNotes={showEditNotes}

@@ -25,7 +25,6 @@ const ClientNotesForm = (
   };
 
   useEffect(() => {
-
     const initializeForm = async () => {
       try {
         const { data } = await axiosReq.get(`/clients/${id}/`);
@@ -47,9 +46,11 @@ const ClientNotesForm = (
     formData.append("notes", notes);
 
     try {
+      setHasLoaded(false);
         await axiosReq.put(`/clients/${id}/`, formData);
         setNotes(notes);
         setShowEditNotes(!showEditNotes);
+        setHasLoaded(true);
     } catch (err) {
         setErrors(err.response?.data);
     }

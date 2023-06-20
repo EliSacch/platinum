@@ -4,6 +4,7 @@ import Asset from '../../components/Asset';
 import ModalClientDetail from './ModalClientDetail';
 
 import styles from '../../styles/Clients.module.css'
+import { Container, Form } from 'react-bootstrap';
 
 function ClientsList() {
 
@@ -18,6 +19,7 @@ function ClientsList() {
         has_appointments_today: 0,
     })
 
+    const [query, setQuery] = useState("");
 
     // To display the client detail modal
     const [show, setShow] = useState(false);
@@ -27,9 +29,8 @@ function ClientsList() {
         const fetchClients = async () => {
             try {
                 // This must return clients and not the appointments
-                const { data } = await axiosReq.get("/clients");
+                const { data } = await axiosReq.get(`/clients/?search=${query}`);
                 setClients(data);
-
                 setHasLoaded(true);
             } catch (err) {
                 console.log(err)
@@ -38,10 +39,26 @@ function ClientsList() {
 
         setHasLoaded(false);
         fetchClients();
-    }, [])
+    }, [clientDetail, query])
 
     return (
-        hasLoaded ? (
+        <>
+            <Container className={styles.SearchWrapper} >
+            <i className={`fas fa-search ${styles.SearchIcon}`} />
+            <Form
+                className={styles.SearchBar}
+                onSubmit={(event) => event.preventDefault()}
+            >
+                <Form.Control
+                    value={query}
+                    onChange={(event) => setQuery(event.target.value)}
+                    type="text"
+                    className="mr-sm-2"
+                    placeholder="Search clients"
+                />
+            </Form>
+            </Container>
+            { hasLoaded ? (
 
             <div className={styles.ClientsList}>
                 {clients.results.length ? (
@@ -52,7 +69,7 @@ function ClientsList() {
                                     setClientDetail(client);
                                     handleShow();
                                 }}
-                                >
+                            >
                                 {client.name ? (
                                     <>{client.name}&emsp;&#40;&ensp;{client.owner}&ensp;&#41;</>
                                 ) : client.owner}
@@ -63,15 +80,15 @@ function ClientsList() {
                     <p>There are no clients yet</p>
                 )}
                 <ModalClientDetail
-                {...clientDetail}
-                show={show}
-                setShow={setShow}
+                    {...clientDetail}
+                    show={show}
+                    setShow={setShow}
                 />
             </div>
-
-        ) : (
+            ) : (
             <Asset spinner />
-        )
+            )}
+        </>
     )
 }
 
