@@ -12,21 +12,54 @@ import { useHistory } from "react-router-dom";
 function AppointmentsCreateForm({ message, }) {
 
     const [appointmentData, setAppointmentData] = useState({
-        treatment: "Consultation",
+        treatment: "",
         date: "",
-        time: "900",
+        time: "",
         notes: "",
     });
 
     const { treatment, date, time, notes } = appointmentData;
 
     const [errors, setErrors] = useState({});
-    const history = useHistory()
+    const history = useHistory();
 
     const [treatments, setTreatments] = useState({ results: [] });
 
+        // Set the beginning and end of index to create the slot time options
+        const first_available = 900;
+        const last_available = 1700;
+        // determine the range
+        const range = (last_available-first_available)/50
+    
+        const selectOptions = (range) => {
+            // get the range
+            const options = [...Array(range).keys()];
+    
+            // create a new array from the range, to get the valid time values in the range
+            const slots = options.map(option => 900 + (option *50));
+            const labels = [];
+            for (let slot of slots) {
+                let label = slot%100===0 ? (
+                    `${slot/100}:00`
+                    ) : (
+                    `${(slot-(slot%100))/100}:30`
+                    );
+                labels.push(label);
+            }
+    
+            // create the final choices to display, based on the slots
+            const choices = slots.map((slot, i) => (
+                { value: slot, label: labels[i] }
+            ));
+            return choices;
+        }
+
     useEffect(() => {
-        const handleMount = async () => {
+        /**
+         * This functions retrieves the active treatments,
+         * so that they can be displayed in the form.
+         */
+        const fetchTreatments = async () => {
             try {
                 const { data } = await axiosReq.get('/treatments/');
                 setTreatments(data);
@@ -35,9 +68,16 @@ function AppointmentsCreateForm({ message, }) {
             }
         };
 
-        handleMount();
+        fetchTreatments();
     }, []);
 
+    /**
+     * When the user submits the create appointment form,
+     * the backend validates the data entered.
+     * If there are no errors in the form submitted,
+     * a new appointment instance is added to the database.
+     * @param {submit} event 
+     */
     const handleSubmit = async (event) => {
         event.preventDefault();
 
@@ -49,13 +89,17 @@ function AppointmentsCreateForm({ message, }) {
         formData.append("notes", notes);
 
         try {
-            await axiosReq.post("/my-appointments/", formData);
-            history.push("/my-appointments/");
+            await axiosReq.post("/my-appointments/create", formData);
+            history.push("/my-appointments");
         } catch (err) {
             setErrors(err.response?.data);
         }
     };
 
+    /**
+     * Set the handleChange function for controlled form
+     * @param {change} event 
+     */
     const handleChange = (event) => {
         setAppointmentData({
             ...appointmentData,
@@ -66,6 +110,7 @@ function AppointmentsCreateForm({ message, }) {
 
     const textFields = (
         <div className="text-center">
+            {/* Treatments is a select form that takes the active treatments as options */}
             <Form.Group className={styles.Input} controlId="treatment">
                 <Form.Label className={styles.SelectInputLabel}>Treatment</Form.Label>
                 <Form.Control
@@ -75,9 +120,9 @@ function AppointmentsCreateForm({ message, }) {
                     onChange={handleChange}
                 >
                     {treatments.results.map((t, i) => (
-                        <option 
-                        key={i}
-                        value={t.title}>
+                        <option
+                            key={i}
+                            value={t.title}>
                             {t.title}
                         </option>
                     )
@@ -90,6 +135,7 @@ function AppointmentsCreateForm({ message, }) {
                 </Alert>
             ))}
 
+            {/* Date picker to select the appointment date */}
             <Form.Group className={styles.Input} controlId="date">
                 <Form.Label className={styles.SelectInputLabel}>Date</Form.Label>
                 <Form.Control
@@ -105,6 +151,8 @@ function AppointmentsCreateForm({ message, }) {
                 </Alert>
             ))}
 
+            {/* Select form to pick the appointment time.
+             Users can select from slots of 30 minutes */}
             <Form.Group className={styles.Input} controlId="time">
                 <Form.Label className={styles.SelectInputLabel}>Time</Form.Label>
                 <Form.Control
@@ -113,10 +161,12 @@ function AppointmentsCreateForm({ message, }) {
                     value={time}
                     onChange={handleChange}
                 >
-                    <option value="900">9:00</option>
-                    <option value="1000">10:00</option>
-                    <option value="1100">11:00</option>
-                    <option value="1200">12:00</option>
+                    {
+                        // Get the array of option and display an <option> element for each one
+                        selectOptions(range).map(option => (
+                            <option value={option.value}>{option.label}</option>
+                        ))
+                    }
                 </Form.Control>
             </Form.Group>
             {errors.time?.map((message, idx) => (
@@ -153,9 +203,9 @@ function AppointmentsCreateForm({ message, }) {
                 create
             </Button>
             {errors.non_field_errors?.map((message, idx) => (
-              <Alert key={idx} variant="warning" className="mt-3">
-                {message}
-              </Alert>
+                <Alert key={idx} variant="warning" className="mt-3">
+                    {message}
+                </Alert>
             ))}
         </div>
     );
@@ -173,7 +223,6 @@ function AppointmentsCreateForm({ message, }) {
             ) : (
                 <p>{message}</p>
             )}
-
         </section>
     );
 }

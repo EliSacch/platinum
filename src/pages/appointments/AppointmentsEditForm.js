@@ -22,13 +22,44 @@ function AppointmentsEditForm({ message, }) {
 
     const [errors, setErrors] = useState({});
     const history = useHistory();
+    // To get the appointment id from the url
     const { id } = useParams();
 
     const [treatments, setTreatments] = useState({ results: [] });
+    
+    // Set the beginning and end of index to create the slot time options
+    const first_available = 900;
+    const last_available = 1700;
+    // determine the range
+    const range = (last_available-first_available)/50
+
+    const selectOptions = (range) => {
+        // get the range
+        const options = [...Array(range).keys()];
+
+        // create a new array from the range, to get the valid time values in the range
+        const slots = options.map(option => 900 + (option *50));
+        const labels = [];
+        for (let slot of slots) {
+            let label = slot%100===0 ? (
+                `${slot/100}:00`
+                ) : (
+                `${(slot-(slot%100))/100}:30`
+                );
+            labels.push(label);
+        }
+
+        // create the final choices to display, based on the slots
+        const choices = slots.map((slot, i) => (
+            { value: slot, label: labels[i] }
+        ));
+        return choices;
+    }
 
     useEffect(() => {
         /**
-         * This functions retrieves the active treatments
+         * This functions retrieves the active treatments,
+         * so that they can be displayed in the form.
          */
         const fetchTreatments = async () => {
             try {
@@ -41,12 +72,17 @@ function AppointmentsEditForm({ message, }) {
 
         const initializeForm = async () => {
             try {
+                /**
+                 * We try to initialize the form with the appintment data.
+                 * But if the user is not the owner,
+                 * the user is redirected to the homepage.
+                 * 
+                 */
                 const { data } = await axiosReq.get(`/my-appointments/${id}/`);
                 const { treatment, date, time, notes, is_owner } = data;
                 is_owner ? setAppointmentData(
                     { treatment, date, time, notes }
                 ) : history.push('/');
-
             } catch (err) {
                 console.log(err);
                 history.push("/my-appointments/");
@@ -54,8 +90,17 @@ function AppointmentsEditForm({ message, }) {
         };
         fetchTreatments();
         initializeForm();
+
+        // These two functions are triggered by a change in history or id
     }, [history, id]);
 
+    /**
+     * When the user submits the edit appointment form,
+     * the backend validates the data entered.
+     * If there are no errors in the form submitted,
+     * a new appointment instance is added to the database.
+     * @param {submit} event 
+     */
     const handleSubmit = async (event) => {
         event.preventDefault();
 
@@ -71,10 +116,13 @@ function AppointmentsEditForm({ message, }) {
             history.push(`/my-appointments/${id}/`);
         } catch (err) {
             setErrors(err.response?.data);
-            console.log(err)
         }
     };
 
+    /**
+     * Set the handleChange function for controlled form
+     * @param {change} event 
+     */
     const handleChange = (event) => {
         setAppointmentData({
             ...appointmentData,
@@ -85,6 +133,7 @@ function AppointmentsEditForm({ message, }) {
 
     const textFields = (
         <div className="text-center">
+            {/* Treatments is a select form that takes the active treatments as options */}
             <Form.Group className={styles.Input} controlId="treatment">
                 <Form.Label className={styles.SelectInputLabel}>Treatment</Form.Label>
                 <Form.Control
@@ -108,6 +157,8 @@ function AppointmentsEditForm({ message, }) {
                     {message}
                 </Alert>
             ))}
+
+            {/* Date picker to select the appointment date */}
             <Form.Group className={styles.Input} controlId="date">
                 <Form.Label className={styles.SelectInputLabel}>Date</Form.Label>
                 <Form.Control
@@ -123,6 +174,8 @@ function AppointmentsEditForm({ message, }) {
                 </Alert>
             ))}
 
+            {/* Select form to pick the appointment time.
+             Users can select from slots of 30 minutes */}
             <Form.Group className={styles.Input} controlId="time">
                 <Form.Label className={styles.SelectInputLabel}>Time</Form.Label>
                 <Form.Control
@@ -131,10 +184,12 @@ function AppointmentsEditForm({ message, }) {
                     value={time}
                     onChange={handleChange}
                 >
-                    <option value="900">9:00</option>
-                    <option value="1000">10:00</option>
-                    <option value="1100">11:00</option>
-                    <option value="1200">12:00</option>
+                    {
+                        // Get the array of option and display an <option> element for each one
+                        selectOptions(range).map(option => (
+                            <option value={option.value}>{option.label}</option>
+                        ))
+                    }
                 </Form.Control>
             </Form.Group>
             {errors.time?.map((message, idx) => (

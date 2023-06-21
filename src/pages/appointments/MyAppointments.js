@@ -27,6 +27,9 @@ function MyAppointments() {
         setActiveTab(tab);
     }
 
+    /**
+     * The appointments are fetched every time the user changes tab
+     */
     useEffect(() => {
         const fetchAppointments = async () => {
             try {
