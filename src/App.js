@@ -14,6 +14,7 @@ import MyAppointments from './pages/appointments/MyAppointments';
 import AppointmentsEditForm from './pages/appointments/AppointmentsEditForm';
 import ProfilePage from './pages/profiles/ProfilePage';
 import StaffDashboard from './pages/staff/StaffDashboard';
+import ServicesPage from './pages/home/ServicesPage';
 
 
 function App() {
@@ -34,6 +35,11 @@ function App() {
             exact
             path="/"
             render={() => <Home />}
+          />
+          <Route
+            exact
+            path="/services"
+            render={() => <ServicesPage />}
           />
           {/* -------------- Profiles pages -------------- */}
           <Route

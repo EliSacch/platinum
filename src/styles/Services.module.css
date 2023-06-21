@@ -1,98 +1,130 @@
 .Section {
-    background-color: var(--light);
-    margin-inline: 0;
-    padding: 2em;
+  background-color: var(--light);
+  margin-inline: 0;
+  padding: 2em;
 }
 
 .ServicesWrapper {
-    display: flex;
-    flex-direction: column;
-    column-gap: 50px;
+  display: flex;
+  flex-direction: column;
+  column-gap: 50px;
+}
+
+.ServicesPageWrapper {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 20px;
+  margin-top: 50px;
 }
 
 .CardsContainer {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 1em;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1em;
 }
 
 .HorizontalScroll {
-    margin-top: 50px;
-    padding-bottom: 10px;
-    display: grid;
-    grid-auto-flow: column;
-    grid-auto-columns: minmax(250px, 31%);
-    gap: .5em;
-    overflow-x: auto;
-    overscroll-behavior-inline: contain;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
+  margin-top: 50px;
+  padding-bottom: 10px;
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(250px, 31%);
+  gap: .5em;
+  overflow-x: auto;
+  overscroll-behavior-inline: contain;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }
 
-.horizontal-scroll > * {
+.horizontal-scroll>* {
   scroll-snap-align: start;
 }
-    /* width */
-.HorizontalScroll::-webkit-scrollbar {
-    height: 8px;
-  }
-  
-  /* Track */
-  .HorizontalScroll::-webkit-scrollbar-track {
-    border-radius: 1000000000px;
-    width: 5px;
-    background: white;
-  }
-  
-  /* Handle */
-  .HorizontalScroll::-webkit-scrollbar-thumb {
-    border-radius: 1000000000px;
-    height: 5px;
-    background: var(--wine);
-  }
-  
-  /* Handle on hover */
-  .HorizontalScroll::-webkit-scrollbar-thumb:hover {
-    background: var(--wine-lighter);
-  }
 
+/* width */
+.HorizontalScroll::-webkit-scrollbar {
+  height: 8px;
+}
+
+/* Track */
+.HorizontalScroll::-webkit-scrollbar-track {
+  border-radius: 1000000000px;
+  width: 5px;
+  background: white;
+}
+
+/* Handle */
+.HorizontalScroll::-webkit-scrollbar-thumb {
+  border-radius: 1000000000px;
+  height: 5px;
+  background: var(--wine);
+}
+
+/* Handle on hover */
+.HorizontalScroll::-webkit-scrollbar-thumb:hover {
+  background: var(--wine-lighter);
+}
 
 .ServiceCard {
-    min-width: 300px;
-    background-color: var(--wine);
-    color: var(--light);
+  width: 300px;
+  height: 300px;
+  color: var(--light);
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.ServiceImage {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  min-width: 100%;
+}
+
+.ServiceCard::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(rgba(62, 50, 95, 0.364), var(--dark));
+  z-index: -1;
+}
+
+.ServiceBody {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
 }
 
 .ServicesBtn {
-    background-color: var(--purple);
-    border: 2px solid var(--purple);
-    margin: 20px;
-    border-radius: 3px;
-    padding: 5px 20px;
+  color: var(--light);
+  background-color: var(--purple);
+  border: 2px solid var(--purple);
+  border-radius: 3px;
+  margin-top: 50px;
+  padding: .5em 1.3em;
 }
 
 .ServicesBtn:hover,
 .ServicesBtn:focus,
 .ServicesBtn:focus-within,
 .ServicesBtn.btn:active {
-    --bs-btn-active-color: var(--purple);
-    --bs-btn-active-bg: transparent;
-    --bs-btn-active-border-color: var(--purple);
-    --bs-btn-focus-box-shadow: var(--purple);
-    background-color: transparent;
-    color: var(--purple);
-    border-color: var(--purple);
-    box-shadow: 0 0 5px var(--purple);
-    outline-color: var(--purple);
+  --bs-btn-active-color: var(--purple);
+  --bs-btn-active-bg: transparent;
+  --bs-btn-active-border-color: var(--purple);
+  --bs-btn-focus-box-shadow: var(--purple);
+  background-color: transparent;
+  color: var(--purple);
+  border-color: var(--purple);
+  box-shadow: 0 0 5px var(--purple);
+  outline-color: var(--purple);
 }
 
 .NavOffset {
-    position: absolute;
-    top: -105px;
-  }
+  position: absolute;
+  top: -105px;
+}
 
-  @media screen and (min-width:800px) {
-    .ServicesWrapper {
-      flex-direction: row;
-    }
+@media screen and (min-width:800px) {
+  .ServicesWrapper {
+    flex-direction: row;
   }
+}
