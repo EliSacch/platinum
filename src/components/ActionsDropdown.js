@@ -36,7 +36,7 @@ export const ActionsDropdown = (props) => {
         </Dropdown.Item>
         <Dropdown.Item
           className={styles.DropdownItem}
-          onClick={handleDelete}
+          onClick={() => handleDelete(data)}
           aria-label="delete"
         >
           <i className="fas fa-trash-alt" />

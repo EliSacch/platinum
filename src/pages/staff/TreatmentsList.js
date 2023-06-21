@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { axiosReq } from '../../api/axiosDefaults';
+import { axiosReq, axiosRes } from '../../api/axiosDefaults';
 import Asset from '../../components/Asset';
 
 import styles from '../../styles/Treatments.module.css'
@@ -32,6 +32,15 @@ function TreatmentsList() {
         handleShow();
     }
     const [query, setQuery] = useState("");
+
+    const handleDelete = async (value) => {
+        try {
+          await axiosRes.delete(`/treatments/${value}/`);
+          setQuery(" ");
+        } catch (err) {
+          console.log(err);
+        }
+      };
 
     /**
      * Every time we change the search query, we update the results
@@ -103,6 +112,7 @@ function TreatmentsList() {
                                         <td>
                                             <ActionsDropdown
                                                 handleEdit={handleEdit}
+                                                handleDelete={handleDelete}
                                                 data={treatment.id}
                                             />
                                         </td>

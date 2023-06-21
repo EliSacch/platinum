@@ -7,7 +7,7 @@ import Asset from '../../components/Asset';
 
 import styles from "../../styles/Treatments.module.css";
 import { axiosReq } from "../../api/axiosDefaults";
-import { Alert } from "react-bootstrap";
+import { Alert, FormGroup } from "react-bootstrap";
 
 function TreatmentEditForm({ setShow, query, setQuery, editId }) {
 
@@ -17,12 +17,11 @@ function TreatmentEditForm({ setShow, query, setQuery, editId }) {
         price: 0,
         duration: 50,
         image: "",
-        is_active: true,
+        is_active: false,
     });
 
     const { title, description, price, duration, image, is_active } = treatmentData;
     const imageInput = useRef(null);
-    const { id } = editId;
 
     // Set the minimum and max duration
     const min_duration = 50;
@@ -62,7 +61,7 @@ function TreatmentEditForm({ setShow, query, setQuery, editId }) {
                 /**
                  * We try to initialize the form with the treatment data.
                  */
-                const { data } = await axiosReq.get(`/treatments/${id}/`);
+                const { data } = await axiosReq.get(`/treatments/${editId}/`);
                 const { title, description, price, duration, image, is_active } = data;
                 setTreatmentData(
                     { title, description, price, duration, image, is_active }
@@ -76,7 +75,7 @@ function TreatmentEditForm({ setShow, query, setQuery, editId }) {
         initializeForm();
 
         // This function is triggered by a change in id
-    }, [id]);
+    }, [editId]);
 
     /**
      * When the create treatment form is submitted, the data
@@ -98,7 +97,7 @@ function TreatmentEditForm({ setShow, query, setQuery, editId }) {
         formData.append("is_active", is_active);
 
         try {
-            await axiosReq.put(`/treatments/${id}/`, formData);
+            await axiosReq.put(`/treatments/${editId}/`, formData);
             setShow(false);
             /* To refresh the query we make sure that 
             we set it to something different than it's initial value */
@@ -215,7 +214,7 @@ function TreatmentEditForm({ setShow, query, setQuery, editId }) {
             ))}
 
             {/* File upload component */}
-            <Form.Group className={styles.FileInput}>
+            <Form.Group className={styles.FileInput} controlId="image">
                 <Form.Label className={styles.InputLabel}>Image</Form.Label>
                 <Form.File
                     accept="image/*"
@@ -230,6 +229,7 @@ function TreatmentEditForm({ setShow, query, setQuery, editId }) {
             ))}
 
             {/* Checkbox to set the treatment status is_active */}
+            <Form.Group controlId="is_active">
             <Form.Check
                 type="checkbox"
                 label="Active"
@@ -238,6 +238,7 @@ function TreatmentEditForm({ setShow, query, setQuery, editId }) {
                 onChange={handleChange}
                 className={styles.Checkbox}
             />
+            </Form.Group>
             {errors.is_active?.map((message, idx) => (
                 <Alert variant="warning" key={idx}>
                     {message}
