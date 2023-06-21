@@ -79,3 +79,17 @@
     font-weight: 600;
     color: var(--wine);
 }
+
+.Checkbox {
+    width: fit-content;
+    color: var(--wine);
+}
+
+.Checkbox > input {
+    border: 1px solid var(--wine);
+}
+
+.Checkbox > input:checked {
+    background-color: var(--rose);
+    border: 1px solid var(--wine);
+}

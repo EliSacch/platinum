@@ -5,7 +5,7 @@ import styles from '../../styles/Treatments.module.css';
 import TreatmentCreateForm from './TreatmentCreateForm';
 
 
-const ModalAddTreatment = ({show, setShow}) => {
+const ModalAddTreatment = ({show, setShow, query, setQuery}) => {
 
   const handleClose = () => setShow(false);
 
@@ -22,7 +22,7 @@ const ModalAddTreatment = ({show, setShow}) => {
           <Modal.Title>New Treatment</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <TreatmentCreateForm />
+          <TreatmentCreateForm setShow={setShow} query={query} setQuery={setQuery} />
         </Modal.Body>
         <Modal.Footer>
           <Button className={styles.CloseModalBtn} onClick={handleClose}>

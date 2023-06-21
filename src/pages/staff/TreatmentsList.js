@@ -82,7 +82,7 @@ function TreatmentsList() {
                     ) : (
                         <p>There are no treatments yet</p>
                     )}
-                    <ModalAddTreatment show={show} setShow={setShow} />
+                    <ModalAddTreatment show={show} setShow={setShow} query={query} setQuery={setQuery} />
                 </Container>
             ) : (
                 <Asset spinner />

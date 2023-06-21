@@ -1,4 +1,4 @@
-import React, {useState } from "react";
+import React, { useState } from "react";
 
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
@@ -8,15 +8,17 @@ import styles from "../../styles/Treatments.module.css";
 import { axiosReq } from "../../api/axiosDefaults"
 import { Alert } from "react-bootstrap";
 
-function TreatmentCreateForm() {
+function TreatmentCreateForm({ setShow, query, setQuery }) {
 
     const [treatmentData, setTreatmentData] = useState({
         title: "",
         description: "",
         price: 0,
+        duration: 50,
+        is_active: true,
     });
 
-    const { title, description, price } = treatmentData;
+    const { title, description, price, duration, is_active } = treatmentData;
 
     const [errors, setErrors] = useState({});
 
@@ -28,12 +30,17 @@ function TreatmentCreateForm() {
         formData.append("title", title);
         formData.append("description", description);
         formData.append("price", price);
+        formData.append("duration", duration);
+        formData.append("is_active", is_active);
 
         try {
             await axiosReq.post("/treatments/", formData);
-            console.log('added');
+            setShow(false);
+            query==="" ? query=" " : query=""
+            setQuery(query);
         } catch (err) {
             setErrors(err.response?.data);
+            console.log(err);
         }
     };
 
@@ -92,6 +99,37 @@ function TreatmentCreateForm() {
                 />
             </Form.Group>
             {errors.price?.map((message, idx) => (
+                <Alert variant="warning" key={idx}>
+                    {message}
+                </Alert>
+            ))}
+
+            <Form.Group controlId="duration" className={styles.Input}>
+                <Form.Label className={styles.InputLabel}>Duration</Form.Label>
+                <Form.Control
+                    type="number"
+                    placeholder="duration"
+                    name="duration"
+                    value={duration}
+                    onChange={handleChange}
+                    min="0"
+                />
+            </Form.Group>
+            {errors.duration?.map((message, idx) => (
+                <Alert variant="warning" key={idx}>
+                    {message}
+                </Alert>
+            ))}
+
+            <Form.Check
+                type="checkbox"
+                label="Active"
+                name="is_active"
+                value={is_active}
+                onChange={handleChange}
+                className={styles.Checkbox}
+            />
+            {errors.is_active?.map((message, idx) => (
                 <Alert variant="warning" key={idx}>
                     {message}
                 </Alert>

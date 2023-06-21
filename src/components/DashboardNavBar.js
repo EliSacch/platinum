@@ -74,39 +74,7 @@ const Navigation = () => {
                                 className={styles.NavLink}
                                 activeClassName={styles.Active}
                                 to="/">
-                                Home
-                            </NavLink>
-                            <NavLink
-                                exact
-                                className={styles.NavLink}
-                                activeClassName={styles.Active}
-                                to="/appointments"
-                            >
-                                Appointments
-                            </NavLink>
-                            <NavLink
-                                exact
-                                className={styles.NavLink}
-                                activeClassName={styles.Active}
-                                to="/calendar"
-                            >
-                                Calendar
-                            </NavLink>
-                            <NavLink
-                                exact
-                                className={styles.NavLink}
-                                activeClassName={styles.Active}
-                                to="/clients"
-                            >
-                                Clients
-                            </NavLink>
-                            <NavLink
-                                exact
-                                className={styles.NavLink}
-                                activeClassName={styles.Active}
-                                to="/manage-treatments"
-                            >
-                                Treatments
+                                Back to client view
                             </NavLink>
 
                         </Nav>
