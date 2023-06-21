@@ -203,11 +203,45 @@ This was the error logged in the console: <'your.site.com'> has been blocked by 
 
 ![Date input](/media/errors/edit-appoint-date-not-initialized.png)
 
-This was caused by an errr in the received date format:
+This was caused by an erorr in the received date format:
 
 ![Console error](/media/errors/edit-appointment-date-console-error.png)
 
 - Fix: To fix this error I changed the date format in booking_api, so that the format matches the required yyyy-mm-dd format.
+
+</details>
+
+<details>
+<summary>Create appointment form throwing error 404 page not found</summary>
+
+- Issue: When trying and access the page "my-appointments/create", axios was sending a get request to the api/my-appointments/create, instead of just redirecting to "my-appointments/create".
+
+![Error 404](/media/errors/my-appointments-create-redirect-error.png)
+
+This was caused by a fragment I entered in the router to try display the standard navbar and footer just on some pages, and not all of them. 
+
+This was correctly displaying the navbar and footer just for the selected paged, but it had the side effect of breaking this one route and react router was reading the url "my-appointments/create" as "my-appointments/:id", therefore trying to render the AppointmentPage component and firing the axios get request to my-appointments/:id , but with "create" in place of the id.
+
+Hence the error 404.
+
+- Fix: To fix this error I restored the original routes, and I added the following code to the navbar and footer components:
+
+
+      /* Check the location */
+      const location = useLocation();
+      const [hide, setHide] = useState(false)
+  
+      useEffect(() => {
+          /* If the location  is /dashboard, we hide set hide to true*/
+          if (location.pathname === "/dashboard") {
+              setHide(true);
+          } else {
+              setHide(false);
+          }
+      }, [location]);
+
+
+Then I added conditional rendering to render the navbar or the footer just when hide is false.
 
 </details>
 
