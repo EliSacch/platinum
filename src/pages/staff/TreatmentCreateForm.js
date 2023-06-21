@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
@@ -15,10 +15,12 @@ function TreatmentCreateForm({ setShow, query, setQuery }) {
         description: "",
         price: 0,
         duration: 50,
+        image: "",
         is_active: true,
     });
 
-    const { title, description, price, duration, is_active } = treatmentData;
+    const { title, description, price, duration, image, is_active } = treatmentData;
+    const imageInput = useRef(null)
 
     // Set the minimum and max duration
     const min_duration = 50;
@@ -67,6 +69,7 @@ function TreatmentCreateForm({ setShow, query, setQuery }) {
         formData.append("description", description);
         formData.append("price", price);
         formData.append("duration", duration);
+        formData.append("image", imageInput.current.files[0]);
         formData.append("is_active", is_active);
 
         try {
@@ -77,7 +80,9 @@ function TreatmentCreateForm({ setShow, query, setQuery }) {
             query === "" ? query = " " : query = ""
             setQuery(query);
         } catch (err) {
-            setErrors(err.response?.data);
+            if (err.response?.status !== 401) {
+                setErrors(err.response?.data);
+            }
         }
     };
 
@@ -90,6 +95,20 @@ function TreatmentCreateForm({ setShow, query, setQuery }) {
             ...treatmentData,
             [event.target.name]: event.target.value,
         });
+    };
+
+    /**
+     * Set the handleChange function for controlled image upload field
+     * @param {change} event 
+     */
+    const handleChangeImage = (event) => {
+        if (event.target.files.length) {
+            URL.revokeObjectURL(image);
+            setTreatmentData({
+                ...treatmentData,
+                image: URL.createObjectURL(event.target.files[0]),
+            });
+        }
     };
 
 
@@ -166,6 +185,21 @@ function TreatmentCreateForm({ setShow, query, setQuery }) {
                 </Form.Control>
             </Form.Group>
             {errors.duration?.map((message, idx) => (
+                <Alert variant="warning" key={idx}>
+                    {message}
+                </Alert>
+            ))}
+
+            {/* File upload component */}
+            <Form.Group className={styles.FileInput}>
+                <Form.Label className={styles.InputLabel}>Image</Form.Label>
+                <Form.File
+                    accept="image/*"
+                    onChange={handleChangeImage}
+                    ref={imageInput}
+                />
+            </Form.Group>
+            {errors.image?.map((message, idx) => (
                 <Alert variant="warning" key={idx}>
                     {message}
                 </Alert>

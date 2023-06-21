@@ -70,7 +70,10 @@ function TreatmentsList() {
                             <tbody>
 
                                 {treatments.results.map(treatment => (
-                                    <tr key={treatment.id}>
+                                    <tr 
+                                    key={treatment.id}
+                                    className={treatment.is_active ? (styles.Active) : (styles.Inactive)}
+                                    >
                                         <td>{treatment.title}</td>
                                         <td>{treatment.description}</td>
                                         <td>{treatment.price}€</td>

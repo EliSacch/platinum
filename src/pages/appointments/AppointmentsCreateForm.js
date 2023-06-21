@@ -61,7 +61,7 @@ function AppointmentsCreateForm({ message, }) {
          */
         const fetchTreatments = async () => {
             try {
-                const { data } = await axiosReq.get('/treatments/');
+                const { data } = await axiosReq.get('/treatments');
                 setTreatments(data);
             } catch (err) {
                 console.log(err);
@@ -89,8 +89,8 @@ function AppointmentsCreateForm({ message, }) {
         formData.append("notes", notes);
 
         try {
-            await axiosReq.post("/my-appointments/create", formData);
-            history.push("/my-appointments");
+            await axiosReq.post("/my-appointments/", formData);
+            history.push("/my-appointments/");
         } catch (err) {
             setErrors(err.response?.data);
         }
