@@ -19,11 +19,15 @@ function TreatmentsList() {
     // set the form
     const [form, setForm] = useState('add');
 
+    // set the treatment id to edit
+    const [editId, setEditId] = useState(null);
+
     const handleAdd= () => {
         setForm('add');
         handleShow();
     }
-    const handleEdit = () => {
+    const handleEdit = (value) => {
+        setEditId(value);
         setForm('edit');
         handleShow();
     }
@@ -99,6 +103,7 @@ function TreatmentsList() {
                                         <td>
                                             <ActionsDropdown
                                                 handleEdit={handleEdit}
+                                                data={treatment.id}
                                             />
                                         </td>
                                     </tr>
@@ -114,6 +119,7 @@ function TreatmentsList() {
                     query={query} 
                     setQuery={setQuery} 
                     form={form}
+                    editId={editId}
                     />
 
                 </Container>

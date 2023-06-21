@@ -1,14 +1,15 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
+import Asset from '../../components/Asset';
 
 import styles from "../../styles/Treatments.module.css";
-import { axiosReq } from "../../api/axiosDefaults"
+import { axiosReq } from "../../api/axiosDefaults";
 import { Alert } from "react-bootstrap";
 
-function TreatmentEditForm({ setShow, query, setQuery }) {
+function TreatmentEditForm({ setShow, query, setQuery, editId }) {
 
     const [treatmentData, setTreatmentData] = useState({
         title: "",
@@ -20,7 +21,8 @@ function TreatmentEditForm({ setShow, query, setQuery }) {
     });
 
     const { title, description, price, duration, image, is_active } = treatmentData;
-    const imageInput = useRef(null)
+    const imageInput = useRef(null);
+    const { id } = editId;
 
     // Set the minimum and max duration
     const min_duration = 50;
@@ -52,6 +54,29 @@ function TreatmentEditForm({ setShow, query, setQuery }) {
     }
 
     const [errors, setErrors] = useState({});
+    const [hasLoaded, setHasLoaded] = useState(false);
+
+    useEffect(() => {
+        const initializeForm = async () => {
+            try {
+                /**
+                 * We try to initialize the form with the treatment data.
+                 */
+                const { data } = await axiosReq.get(`/treatments/${id}/`);
+                const { title, description, price, duration, image, is_active } = data;
+                setTreatmentData(
+                    { title, description, price, duration, image, is_active }
+                )
+                setHasLoaded(true);
+            } catch (err) {
+                console.log(err);
+            }
+        };
+        setHasLoaded(false);
+        initializeForm();
+
+        // This function is triggered by a change in id
+    }, [id]);
 
     /**
      * When the create treatment form is submitted, the data
@@ -73,7 +98,7 @@ function TreatmentEditForm({ setShow, query, setQuery }) {
         formData.append("is_active", is_active);
 
         try {
-            await axiosReq.post("/treatments/", formData);
+            await axiosReq.put(`/treatments/${id}/`, formData);
             setShow(false);
             /* To refresh the query we make sure that 
             we set it to something different than it's initial value */
@@ -110,7 +135,6 @@ function TreatmentEditForm({ setShow, query, setQuery }) {
             });
         }
     };
-
 
     const textFields = (
         <div className="text-center">
@@ -234,12 +258,16 @@ function TreatmentEditForm({ setShow, query, setQuery }) {
 
     return (
         <section className={styles.OffsetTop}>
-            <Form
+            {hasLoaded ? (
+                <Form
                 onSubmit={handleSubmit}
                 className={styles.Form}
             >
                 <Container>{textFields}</Container>
             </Form>
+            ) : (
+                <Asset spinner />
+            )}
         </section>
     );
 }

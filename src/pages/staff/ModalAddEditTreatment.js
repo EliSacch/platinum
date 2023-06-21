@@ -8,7 +8,7 @@ import TreatmentEditForm from './TreatmentEditForm';
 
 const ModalAddEditTreatment = (props) => {
 
-  const { show, setShow, query, setQuery, form } = props
+  const { show, setShow, query, setQuery, form, editId} = props
 
   const handleClose = () => setShow(false);
 
@@ -30,7 +30,7 @@ const ModalAddEditTreatment = (props) => {
         </Modal.Header>
         <Modal.Body>
           {form === 'add' && <TreatmentCreateForm setShow={setShow} query={query} setQuery={setQuery} />}
-          {form === 'edit' && <TreatmentEditForm setShow={setShow} query={query} setQuery={setQuery}/>}
+          {form === 'edit' && <TreatmentEditForm setShow={setShow} query={query} setQuery={setQuery} editId={editId}/>}
 
         </Modal.Body>
         <Modal.Footer>

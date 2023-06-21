@@ -17,7 +17,7 @@ const ThreeDots = React.forwardRef(({ onClick }, ref) => (
 
 export const ActionsDropdown = (props) => {
 
-  const {handleDelete, handleEdit} = props;
+  const {handleDelete, handleEdit, data} = props;
 
   return (
     <Dropdown className="ml-auto" drop="left">
@@ -29,7 +29,7 @@ export const ActionsDropdown = (props) => {
       >
         <Dropdown.Item
           className={styles.DropdownItem}
-          onClick={handleEdit}
+          onClick={() => handleEdit(data)}
           aria-label="edit"
         >
           <i className="fas fa-edit" />
