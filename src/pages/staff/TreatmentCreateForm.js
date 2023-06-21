@@ -20,8 +20,44 @@ function TreatmentCreateForm({ setShow, query, setQuery }) {
 
     const { title, description, price, duration, is_active } = treatmentData;
 
+    // Set the minimum and max duration
+    const min_duration = 50;
+    const max_duration = 450;
+    // determine the range
+    const range = (max_duration - min_duration) / 50
+
+    const selectOptions = (range) => {
+        // get the range
+        const options = [...Array(range).keys()];
+
+        // create a new array from the range, to get the valid time values in the range
+        const slots = options.map(option => (option + 1) * 50);
+        const labels = [];
+        for (let slot of slots) {
+            let label = slot % 100 === 0 ? (
+                `${slot / 100}:00`
+            ) : (
+                `${(slot - (slot % 100)) / 100}:30`
+            );
+            labels.push(label);
+        }
+
+        // create the final choices to display, based on the slots
+        const choices = slots.map((slot, i) => (
+            { value: slot, label: labels[i] }
+        ));
+        return choices
+    }
+
     const [errors, setErrors] = useState({});
 
+    /**
+     * When the create treatment form is submitted, the data
+     * is validated in the backend. If the data is valid,
+     * the new treatment is added to the database and the
+     * query is refreshed so that it appears in the list already
+     * @param {submit} event 
+     */
     const handleSubmit = async (event) => {
         event.preventDefault();
 
@@ -36,14 +72,19 @@ function TreatmentCreateForm({ setShow, query, setQuery }) {
         try {
             await axiosReq.post("/treatments/", formData);
             setShow(false);
-            query==="" ? query=" " : query=""
+            /* To refresh the query we make sure that 
+            we set it to something different than it's initial value */
+            query === "" ? query = " " : query = ""
             setQuery(query);
         } catch (err) {
             setErrors(err.response?.data);
-            console.log(err);
         }
     };
 
+    /**
+     * Set the handleChange function for controlled form
+     * @param {change} event 
+     */
     const handleChange = (event) => {
         setTreatmentData({
             ...treatmentData,
@@ -54,7 +95,7 @@ function TreatmentCreateForm({ setShow, query, setQuery }) {
 
     const textFields = (
         <div className="text-center">
-
+            {/* Text form to enter the treatment title */}
             <Form.Group controlId="title" className={styles.Input}>
                 <Form.Label className={styles.InputLabel}>Title</Form.Label>
                 <Form.Control
@@ -71,6 +112,7 @@ function TreatmentCreateForm({ setShow, query, setQuery }) {
                 </Alert>
             ))}
 
+            {/* Text area form to enter the dreatment description (not mandatory) */}
             <Form.Group controlId="description" className={styles.Input}>
                 <Form.Label className={styles.InputLabel}>Description</Form.Label>
                 <Form.Control
@@ -87,6 +129,7 @@ function TreatmentCreateForm({ setShow, query, setQuery }) {
                 </Alert>
             ))}
 
+            {/* Number field to enter the treatment price */}
             <Form.Group controlId="price" className={styles.Input}>
                 <Form.Label className={styles.InputLabel}>Price</Form.Label>
                 <Form.Control
@@ -104,16 +147,23 @@ function TreatmentCreateForm({ setShow, query, setQuery }) {
                 </Alert>
             ))}
 
-            <Form.Group controlId="duration" className={styles.Input}>
+            {/* Select form to pick the treatment duration.
+             Users can select from slots of 30 minutes */}
+            <Form.Group className={styles.Input} controlId="duration">
                 <Form.Label className={styles.InputLabel}>Duration</Form.Label>
                 <Form.Control
-                    type="number"
-                    placeholder="duration"
+                    as="select"
                     name="duration"
                     value={duration}
                     onChange={handleChange}
-                    min="0"
-                />
+                >
+                    {
+                        // Get the array of option and display an <option> element for each one
+                        selectOptions(range).map(option => (
+                            <option value={option.value}>{option.label}</option>
+                        ))
+                    }
+                </Form.Control>
             </Form.Group>
             {errors.duration?.map((message, idx) => (
                 <Alert variant="warning" key={idx}>
@@ -121,6 +171,7 @@ function TreatmentCreateForm({ setShow, query, setQuery }) {
                 </Alert>
             ))}
 
+            {/* Checkbox to set the treatment status is_active */}
             <Form.Check
                 type="checkbox"
                 label="Active"
@@ -135,6 +186,7 @@ function TreatmentCreateForm({ setShow, query, setQuery }) {
                 </Alert>
             ))}
 
+            {/* Form action buttons */}
             <Button className={styles.AddNewBtn} type="submit">
                 create
             </Button>
@@ -154,7 +206,6 @@ function TreatmentCreateForm({ setShow, query, setQuery }) {
             >
                 <Container>{textFields}</Container>
             </Form>
-
         </section>
     );
 }
