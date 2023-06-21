@@ -1,9 +1,26 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import styles from '../styles/Footer.module.css'
 import { Container } from 'react-bootstrap'
+import { useLocation } from 'react-router-dom'
 
 function Footer() {
+
+    /* Check the location */
+    const location = useLocation();
+    const [hide, setHide] = useState(false)
+
+    useEffect(() => {
+        /* If the location  is /dashboard, we hide set hide to true*/
+        if (location.pathname === "/dashboard") {
+            setHide(true);
+        } else {
+            setHide(false);
+        }
+    }, [location]);
+    
   return (
+    // The footer is displayed only when hide is false
+    !hide &&
     <footer className={styles.Footer}>
 
         <Container className={styles.FooterContainer}>

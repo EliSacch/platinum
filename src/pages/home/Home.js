@@ -8,9 +8,8 @@ import Book from '../../pages/home/Book'
 
 import styles from '../../styles/Home.module.css'
 
-
-
 function Home() {
+
   return (
     <main>
       

@@ -21,77 +21,86 @@ function App() {
 
   return (
     <div className={styles.App}>
+      
+      <Navigation />
       <Switch>
+
+        {/* -------------- Home page -------------- */}
+        <Route
+          exact
+          path="/"
+          render={() => <Home />}
+        />
+
+        <Route
+          exact
+          path="/services"
+          render={() => <ServicesPage />}
+        />
+
+        {/* -------------- Profiles pages -------------- */}
+        <Route
+          exact
+          path="/profile"
+          render={() => <ProfilePage />}
+        />
+
+        {/* -------------- Auth pages -------------- */}
+        <Route
+          exact
+          path="/signin"
+          render={() => <SignInForm />}
+        />
+
+        <Route
+          exact
+          path="/signup"
+          render={() => <SignUpForm />}
+        />
+
+        {/* -------------- Client facing appointments pages -------------- */}
+        <Route
+          exact
+          path="/my-appointments"
+          render={() => (
+            <MyAppointments />
+          )} />
+
+        <Route
+          path="/my-appointments/create"
+          render={() => (
+            <AppointmentsCreateForm
+              message="Sorry, there are no treatments you can book online. Pleas contact us."
+
+            />
+          )} />
+
+        <Route
+          exact
+          path="/my-appointments/:id"
+          render={() => (
+            <AppointmentPage />
+          )} />
+
+        <Route
+          exact
+          path="/my-appointments/:id/edit"
+          render={() => (
+            <AppointmentsEditForm />
+          )} />
+
         {/* -------------- Staff pages -------------- */}
         <Route
           exact
           path="/dashboard"
-          render={() => <StaffDashboard />}
+          render={() => <StaffDashboard hideNav="true" />}
         />
-        <>
-          <Navigation />
-          {/* -------------- Home page -------------- */}
-          <Route
-            exact
-            path="/"
-            render={() => <Home />}
-          />
-          <Route
-            exact
-            path="/services"
-            render={() => <ServicesPage />}
-          />
-          {/* -------------- Profiles pages -------------- */}
-          <Route
-            exact
-            path="/profile"
-            render={() => <ProfilePage />}
-          />
-          {/* -------------- Auth pages -------------- */}
-          <Route
-            exact
-            path="/signin"
-            render={() => <SignInForm />}
-          />
-          <Route
-            exact
-            path="/signup"
-            render={() => <SignUpForm />}
-          />
-          {/* -------------- Client facing appointments pages -------------- */}
-          <Route
-            exact
-            path="/my-appointments"
-            render={() => (
-              <MyAppointments />
-            )} />
-          <Route
-            exact
-            path="/my-appointments/create"
-            render={() => (
-              <AppointmentsCreateForm
-                message="Sorry, there are no treatments you can book online. Pleas contact us."
-              />
-            )} />
-          <Route
-            exact
-            path="/my-appointments/:id"
-            render={() => (
-              <AppointmentPage />
-            )} />
-          <Route
-            exact
-            path="/my-appointments/:id/edit"
-            render={() => (
-              <AppointmentsEditForm />
-            )} />
-          <Footer />
 
-        </>
         {/* -------------- Other pages -------------- */}
         <Route render={() => <p>Page not found!</p>} />
-      </Switch>
 
+      </Switch>
+      <Footer />
     </div>
   );
 }

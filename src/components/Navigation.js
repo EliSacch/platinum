@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
@@ -6,7 +6,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import logo from '../assets/hair-icon-wine.png'
 import styles from '../styles/Navigation.module.css';
 
-import { NavLink, useHistory } from 'react-router-dom';
+import { NavLink, useHistory, useLocation } from 'react-router-dom';
 import { useCurrentUser, useSetCurrentUser } from '../contexts/CurrentUserContext';
 import axios from 'axios';
 import useToggleExpanded from "../hooks/useToggleExpanded";
@@ -42,6 +42,19 @@ const Navigation = () => {
     }
   };
 
+      /* Check the location */
+      const location = useLocation();
+      const [hide, setHide] = useState(false)
+  
+      useEffect(() => {
+          /* If the location  is /dashboard, we hide set hide to true*/
+          if (location.pathname === "/dashboard") {
+              setHide(true);
+          } else {
+              setHide(false);
+          }
+      }, [location]);
+
   const profileLink = (
     <>
       <NavLink
@@ -53,7 +66,6 @@ const Navigation = () => {
         Profile
       </NavLink>
       <Button
-        exact
         className={styles.NavButton}
         onClick={handleShow}
       >
@@ -112,6 +124,8 @@ const Navigation = () => {
 
 
   return (
+    // This navbar is displayed only when hide is false
+    !hide &&
     <>
       <Navbar
         expand="lg"
@@ -120,7 +134,7 @@ const Navigation = () => {
         expanded={expanded}
       >
         <Container>
-          <NavLink className={styles.NavLink} to="/">
+          <NavLink exact className={styles.NavLink} to="/">
             <Navbar.Brand className={styles.AppLogo}>
               <img src={logo} alt="logo" />
               Platinum

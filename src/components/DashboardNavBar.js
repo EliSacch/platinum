@@ -50,7 +50,7 @@ const Navigation = () => {
                 expanded={expanded}
             >
                 <Container>
-                    <NavLink className={styles.NavLink} to="/">
+                    <NavLink exact className={styles.NavLink} to="/">
                         <Navbar.Brand className={styles.AppLogo}>
                             <img src={logo} alt="logo" />
                             Platinum
