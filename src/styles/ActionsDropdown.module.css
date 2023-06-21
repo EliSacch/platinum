@@ -1,0 +1,17 @@
+.ThreeDots {
+    cursor: pointer;
+    padding-inline: 10px;
+}
+
+.Dropdown {
+    text-align: center;
+}
+
+.DropdownItem {
+   color: grey;
+}
+
+.DropdownItem:hover,
+.DropdownItem:focus {
+    color: var(--wine);
+}

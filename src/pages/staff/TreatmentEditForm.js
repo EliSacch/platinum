@@ -8,7 +8,7 @@ import styles from "../../styles/Treatments.module.css";
 import { axiosReq } from "../../api/axiosDefaults"
 import { Alert } from "react-bootstrap";
 
-function TreatmentCreateForm({ setShow, query, setQuery }) {
+function TreatmentEditForm({ setShow, query, setQuery }) {
 
     const [treatmentData, setTreatmentData] = useState({
         title: "",
@@ -222,7 +222,7 @@ function TreatmentCreateForm({ setShow, query, setQuery }) {
 
             {/* Form action buttons */}
             <Button className={styles.AddNewBtn} type="submit">
-                create
+                Save
             </Button>
             {errors.non_field_errors?.map((message, idx) => (
                 <Alert key={idx} variant="warning" className="mt-3">
@@ -244,4 +244,4 @@ function TreatmentCreateForm({ setShow, query, setQuery }) {
     );
 }
 
-export default TreatmentCreateForm;
+export default TreatmentEditForm;
