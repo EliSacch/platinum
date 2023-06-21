@@ -142,7 +142,9 @@ function AppointmentsEditForm({ message, }) {
                     value={treatment}
                     onChange={handleChange}
                 >
-                    {treatments.results.map((t, i) => (
+                    {treatments.results.filter(
+                        res => res.is_active===true
+                    ).map((t, i) => (
                         <option
                             key={i}
                             value={t.title}>

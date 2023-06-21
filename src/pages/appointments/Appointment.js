@@ -15,7 +15,7 @@ const Appointment = (props) => {
     } = props
 
     // Convert the time from integer to a human friendly format
-    const displayTime = time / 100 + ":" + (time) % 100 / 50 * 3 + '0'
+    const displayTime = (time - time%100) / 100 + ":" + (time) % 100 / 50 * 3 + '0'
 
     const history = useHistory();
 

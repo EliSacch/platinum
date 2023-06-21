@@ -12,9 +12,9 @@ import { useHistory } from "react-router-dom";
 function AppointmentsCreateForm({ message, }) {
 
     const [appointmentData, setAppointmentData] = useState({
-        treatment: "",
+        treatment: "Consultation",
         date: "",
-        time: "",
+        time: 900,
         notes: "",
     });
 
@@ -119,11 +119,13 @@ function AppointmentsCreateForm({ message, }) {
                     value={treatment}
                     onChange={handleChange}
                 >
-                    {treatments.results.map((t, i) => (
+                    {treatments.results.filter(
+                        res => res.is_active===true
+                    ).map((t, i) => (
                         <option
                             key={i}
                             value={t.title}>
-                            {t.title}
+                            {t.title}{t.is_active}
                         </option>
                     )
                     )}
@@ -164,7 +166,7 @@ function AppointmentsCreateForm({ message, }) {
                     {
                         // Get the array of option and display an <option> element for each one
                         selectOptions(range).map(option => (
-                            <option value={option.value}>{option.label}</option>
+                            <option value={option.value} key={option.value}>{option.label}</option>
                         ))
                     }
                 </Form.Control>
