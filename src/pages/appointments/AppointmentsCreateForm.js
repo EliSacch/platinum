@@ -25,34 +25,34 @@ function AppointmentsCreateForm({ message, }) {
 
     const [treatments, setTreatments] = useState({ results: [] });
 
-        // Set the beginning and end of index to create the slot time options
-        const first_available = 900;
-        const last_available = 1700;
-        // determine the range
-        const range = (last_available-first_available)/50
-    
-        const selectOptions = (range) => {
-            // get the range
-            const options = [...Array(range).keys()];
-    
-            // create a new array from the range, to get the valid time values in the range
-            const slots = options.map(option => 900 + (option *50));
-            const labels = [];
-            for (let slot of slots) {
-                let label = slot%100===0 ? (
-                    `${slot/100}:00`
-                    ) : (
-                    `${(slot-(slot%100))/100}:30`
-                    );
-                labels.push(label);
-            }
-    
-            // create the final choices to display, based on the slots
-            const choices = slots.map((slot, i) => (
-                { value: slot, label: labels[i] }
-            ));
-            return choices;
+    // Set the beginning and end of index to create the slot time options
+    const first_available = 900;
+    const last_available = 1700;
+    // determine the range
+    const range = (last_available - first_available) / 50
+
+    const selectOptions = (range) => {
+        // get the range
+        const options = [...Array(range).keys()];
+
+        // create a new array from the range, to get the valid time values in the range
+        const slots = options.map(option => 900 + (option * 50));
+        const labels = [];
+        for (let slot of slots) {
+            let label = slot % 100 === 0 ? (
+                `${slot / 100}:00`
+            ) : (
+                `${(slot - (slot % 100)) / 100}:30`
+            );
+            labels.push(label);
         }
+
+        // create the final choices to display, based on the slots
+        const choices = slots.map((slot, i) => (
+            { value: slot, label: labels[i] }
+        ));
+        return choices;
+    }
 
     useEffect(() => {
         /**
@@ -175,6 +175,7 @@ function AppointmentsCreateForm({ message, }) {
                 </Alert>
             ))}
 
+            {/* Text area input to add notes to the appointment*/}
             <Form.Group controlId="notes" className={styles.Input}>
                 <Form.Label className={styles.SelectInputLabel}>Notes</Form.Label>
                 <Form.Control
@@ -192,7 +193,7 @@ function AppointmentsCreateForm({ message, }) {
                 </Alert>
             ))}
 
-
+            {/* Form action buttons */}
             <Button
                 className={styles.FormBtn}
                 onClick={() => history.goBack()}
@@ -213,6 +214,9 @@ function AppointmentsCreateForm({ message, }) {
     return (
         <section className={styles.OffsetTop}>
             <h1>Make an appointment</h1>
+            {/* If there an active treatment that can be booked online
+            we show the form, otherwise the user is told that 
+            the online booking is not available */}
             {treatments.results.length ? (
                 <Form
                     onSubmit={handleSubmit}

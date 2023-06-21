@@ -26,26 +26,26 @@ function AppointmentsEditForm({ message, }) {
     const { id } = useParams();
 
     const [treatments, setTreatments] = useState({ results: [] });
-    
+
     // Set the beginning and end of index to create the slot time options
     const first_available = 900;
     const last_available = 1700;
     // determine the range
-    const range = (last_available-first_available)/50
+    const range = (last_available - first_available) / 50
 
     const selectOptions = (range) => {
         // get the range
         const options = [...Array(range).keys()];
 
         // create a new array from the range, to get the valid time values in the range
-        const slots = options.map(option => 900 + (option *50));
+        const slots = options.map(option => 900 + (option * 50));
         const labels = [];
         for (let slot of slots) {
-            let label = slot%100===0 ? (
-                `${slot/100}:00`
-                ) : (
-                `${(slot-(slot%100))/100}:30`
-                );
+            let label = slot % 100 === 0 ? (
+                `${slot / 100}:00`
+            ) : (
+                `${(slot - (slot % 100)) / 100}:30`
+            );
             labels.push(label);
         }
 
@@ -198,6 +198,7 @@ function AppointmentsEditForm({ message, }) {
                 </Alert>
             ))}
 
+            {/* Text area input to add notes to the appointment*/}
             <Form.Group controlId="notes" className={styles.Input}>
                 <Form.Label className={styles.SelectInputLabel}>Notes</Form.Label>
                 <Form.Control
@@ -215,7 +216,7 @@ function AppointmentsEditForm({ message, }) {
                 </Alert>
             ))}
 
-
+            {/* Form action buttons */}
             <Button
                 className={styles.FormBtn}
                 onClick={() => history.goBack()}
@@ -236,6 +237,10 @@ function AppointmentsEditForm({ message, }) {
     return (
         <section className={styles.OffsetTop}>
             <h1>Edit your appointment</h1>
+            {/* If there an active treatment that can be booked online
+            we show the form, otherwise the user is told that 
+            the online booking is not available and 
+            they need to contact us to edit the appointment */}
             {treatments.results.length ? (
                 <Form
                     onSubmit={handleSubmit}
@@ -246,7 +251,6 @@ function AppointmentsEditForm({ message, }) {
             ) : (
                 <p>{message}</p>
             )}
-
         </section>
     );
 }
