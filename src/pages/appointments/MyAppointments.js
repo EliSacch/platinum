@@ -67,7 +67,9 @@ function MyAppointments() {
 
                     <>
                         {appointments.results.filter(res => res.status === "Upcoming").length ? (
-                            appointments.results.sort(
+                            appointments.results.filter(
+                                res => res.status === "Upcoming"
+                                ).sort(
                                 (a, b) => a.date > b.date ? 1 : -1
                             ).map(appointment => (
                                 <Link
@@ -92,7 +94,9 @@ function MyAppointments() {
 
                     <>
                         {appointments.results.filter(res => res.status === "Past").length ? (
-                            appointments.results.sort(
+                            appointments.results.filter(
+                                res => res.status === "Past"
+                                ).sort(
                                 (a, b) => a.date < b.date ? 1 : -1
                             ).map(appointment => (
                                 <Link to={`/my-appointments/${appointment.id}`}>

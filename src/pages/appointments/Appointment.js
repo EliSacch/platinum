@@ -99,7 +99,6 @@ const Appointment = (props) => {
                         <div className={styles.CardHeader}>
                             {treatment && <Card.Title className="text-center">My &nbsp;{treatment}</Card.Title>}
                         </div>
-
                         {date && time && <Card.Text>{date} at {displayTime} </Card.Text>}
                         {notes && <Card.Text className="text-center">{notes}</Card.Text>}
                     </Card.Body>
