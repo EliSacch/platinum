@@ -28,7 +28,6 @@ function ClientsList() {
     useEffect(() => {
         const fetchClients = async () => {
             try {
-                // This must return clients and not the appointments
                 const { data } = await axiosReq.get(`/clients/?search=${query}`);
                 setClients(data);
                 setHasLoaded(true);

@@ -1,12 +1,13 @@
 import React from 'react'
 import ClientsList from './ClientsList'
+import TreatmentsList from './TreatmentsList'
 
 const DashboardDisplay = ({display,}) => {
 
   return (
     <div>
       {display==='calendar' && <p>Calendar</p>}
-      {display==='treatments' && <p>Treatments</p>}
+      {display==='treatments' && <TreatmentsList />}
       {display==='clients' && <ClientsList />}
     </div>
   )
