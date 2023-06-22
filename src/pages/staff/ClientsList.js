@@ -38,7 +38,7 @@ function ClientsList() {
 
         setHasLoaded(false);
         fetchClients();
-    }, [clientDetail, query])
+    }, [clientDetail, query, show])
 
     return (
         <>

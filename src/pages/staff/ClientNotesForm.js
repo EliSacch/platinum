@@ -5,18 +5,17 @@ import styles from '../../styles/ModalClientDetail.module.css';
 import Asset from '../../components/Asset';
 
 const ClientNotesForm = (
-  { id, setNotes, showEditNotes, setShowEditNotes, }
-  ) => {
-
-  const [clientData, setClientData] = useState({
-    notes: "",
-  });
-
-  const {notes} = clientData;
+  { id, notes, setNotes, showEditNotes, setShowEditNotes }
+) => {
+  // initialize the notes
+  const [clientData, setClientData] = useState(
+    { notes: notes }
+  );
 
   const [errors, setErrors] = useState({});
   const [hasLoaded, setHasLoaded] = useState(false);
 
+  // listen to changes in the input field
   const handleChange = (event) => {
     setClientData({
       ...clientData,
@@ -24,6 +23,7 @@ const ClientNotesForm = (
     });
   };
 
+  // Initialize the form with the current notes from the backend
   useEffect(() => {
     const initializeForm = async () => {
       try {
@@ -36,51 +36,51 @@ const ClientNotesForm = (
     };
     setHasLoaded(false)
     initializeForm();
-  }, [id]);
+  }, [id, setShowEditNotes]);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
 
     const formData = new FormData();
 
-    formData.append("notes", notes);
+    formData.append("notes", clientData.notes);
 
     try {
       setHasLoaded(false);
-        await axiosReq.put(`/clients/${id}/`, formData);
-        setNotes(notes);
-        setShowEditNotes(!showEditNotes);
-        setHasLoaded(true);
+      await axiosReq.put(`/clients/${id}/`, formData);
+      setNotes(clientData.notes);
+      setShowEditNotes(!showEditNotes);
+      setHasLoaded(true);
     } catch (err) {
-        setErrors(err.response?.data);
+      setErrors(err.response?.data);
     }
-};
+  };
 
   return (
     hasLoaded ? (
       <Form onSubmit={handleSubmit}>
-      <Form.Group controlId="notes" className={styles.Input}>
-        <Form.Label className={styles.SelectInputLabel}>Notes</Form.Label>
-        <Form.Control
-          as="textarea" rows={5}
-          type="text"
-          placeholder="notes"
-          name="notes"
-          value={notes}
-          onChange={handleChange}
-        />
-      </Form.Group>
-      {errors.notes?.map((message, idx) => (
-        <Alert variant="warning" key={idx}>
-          {message}
-        </Alert>
-      ))}
+        <Form.Group controlId="notes" className={styles.Input}>
+          <Form.Label className={styles.SelectInputLabel}>Notes</Form.Label>
+          <Form.Control
+            as="textarea" rows={5}
+            type="text"
+            placeholder="notes"
+            name="notes"
+            value={clientData.notes}
+            onChange={handleChange}
+          />
+        </Form.Group>
+        {errors.notes?.map((message, idx) => (
+          <Alert variant="warning" key={idx}>
+            {message}
+          </Alert>
+        ))}
 
-      <Button className={styles.FormBtn} type="submit">
-        <i className="fas fa-save"/>
-      </Button>
+        <Button className={styles.FormBtn} type="submit">
+          <i className="fas fa-save" />
+        </Button>
 
-    </Form>
+      </Form>
     ) : (
       <Asset spinner />
     )
