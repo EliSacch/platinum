@@ -31,3 +31,29 @@ a {
     position: absolute;
     top: -110px;
   }
+
+  .BookingForm {
+    width: 100%;
+    position: relative;
+  }
+
+  .BookingForm > * {
+    margin: 2em auto;
+    margin-top: 0;
+    padding: 2em 1em;
+    border: 2px solid gainsboro;
+    border-radius: 5px;
+    max-width: 500px;
+    background-color: white;
+}
+
+.BookingForm::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    height: 300px;
+    width: 100%;
+    background-color: var(--purple);
+    transform: translateY(-50%);
+}
