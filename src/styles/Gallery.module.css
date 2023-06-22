@@ -1,11 +1,10 @@
 .Gallery {
     max-width: 600px;
     overflow: hidden;
+    opacity: .9;
 }
 
 .Gallery img {
-    width: 100%;
-    min-height: auto;
     object-fit: cover;
 }
 

@@ -7,7 +7,7 @@ import Asset from '../../components/Asset';
 
 import styles from "../../styles/Treatments.module.css";
 import { axiosReq } from "../../api/axiosDefaults";
-import { Alert, FormGroup } from "react-bootstrap";
+import { Alert } from "react-bootstrap";
 
 function TreatmentEditForm({ setShow, query, setQuery, editId }) {
 

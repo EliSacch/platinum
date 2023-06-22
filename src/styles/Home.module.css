@@ -9,3 +9,26 @@
 .AboutWrapper > * {
     max-width: 500px;
 }
+
+.GalleryPlaceholder {
+    height: 350px;
+    width: 90%;
+    border-radius: 5px;
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+}
+
+.GalleryPlaceholder::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-color: var(--wine-lighter);
+    animation: pulse 2s linear infinite alternate;
+}
+
+
+@keyframes pulse {
+    from {opacity: .2;}
+    to {opacity: .8;}
+  }
