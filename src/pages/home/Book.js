@@ -1,8 +1,10 @@
 import React from 'react';
-import styles from '../../styles/Book.module.css';
-
+// context data
 import { useCurrentUser } from '../../contexts/CurrentUserContext';
+// custom components
 import AppointmentsCreateForm from '../appointments/AppointmentsCreateForm';
+// custom css
+import styles from '../../styles/Book.module.css';
 
 const Book = () => {
   const currentUser = useCurrentUser();

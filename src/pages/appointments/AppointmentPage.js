@@ -1,10 +1,12 @@
-import React, { useEffect, useState } from 'react'
-import styles from '../../styles/AppointmentPage.module.css'
-import { useParams } from 'react-router-dom'
-
-import { axiosReq } from '../../api/axiosDefaults'
+import React, { useEffect, useState } from 'react';
+import { axiosReq } from '../../api/axiosDefaults';
+// router dom
+import { useParams } from 'react-router-dom';
+// custom componenents
 import Appointment from './Appointment';
 import Asset from '../../components/Asset';
+// custom css
+import styles from '../../styles/AppointmentPage.module.css';
 
 
 function AppointmentPage() {

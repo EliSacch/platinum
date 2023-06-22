@@ -1,13 +1,15 @@
 import React, { useRef, useState } from "react";
-
+import { axiosReq } from "../../api/axiosDefaults";
+// bootstrap
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
-
-import styles from "../../styles/Treatments.module.css";
-import { axiosReq } from "../../api/axiosDefaults"
 import { Alert } from "react-bootstrap";
+// custom componenets
 import Asset from "../../components/Asset";
+// custom css
+import styles from "../../styles/Treatments.module.css";
+
 
 function TreatmentCreateForm({ setShow, query, setQuery }) {
 

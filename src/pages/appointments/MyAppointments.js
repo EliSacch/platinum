@@ -1,14 +1,17 @@
 import React, { useEffect, useState } from 'react';
-
+import { axiosReq } from '../../api/axiosDefaults';
+// router
+import { Link, useHistory } from 'react-router-dom';
+// context
+import { useCurrentUser } from "../../contexts/CurrentUserContext";
+// bootstrap
 import { Tab, Tabs } from 'react-bootstrap';
+// custom components
 import Appointment from './Appointment';
 import Asset from '../../components/Asset';
-import { useCurrentUser } from "../../contexts/CurrentUserContext";
-
+// custom css
 import styles from '../../styles/AppointmentPage.module.css';
 
-import { axiosReq } from '../../api/axiosDefaults';
-import { Link, useHistory } from 'react-router-dom';
 
 function MyAppointments() {
 

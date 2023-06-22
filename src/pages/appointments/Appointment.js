@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
 import { axiosRes } from '../../api/axiosDefaults';
-
+// router
+import { useHistory } from 'react-router-dom';
+// bootstrap
 import { Card } from 'react-bootstrap';
-
+// custom components
 import ModalComponent from '../../components/ModalComponent';
-
+// custom css
 import styles from '../../styles/Appointment.module.css';
+
 
 const Appointment = (props) => {
 

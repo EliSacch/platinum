@@ -1,10 +1,10 @@
 import React, { useState } from "react";
+import axios from "axios";
+// router
 import { Link, useHistory } from "react-router-dom";
-
-import styles from "../../styles/SignInUpForm.module.css";
-
+// image
 import image from "../../assets/pink-hair-small.jpg"
-
+// bootstrap
 import {
   Form,
   Button,
@@ -14,7 +14,9 @@ import {
   Container,
   Alert,
 } from "react-bootstrap";
-import axios from "axios";
+// custom css
+import styles from "../../styles/SignInUpForm.module.css";
+
 
 const SignUpForm = () => {
   const [signUpData, setSignUpData] = useState({

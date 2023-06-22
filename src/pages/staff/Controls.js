@@ -1,5 +1,7 @@
 import React from 'react'
+// bootstrap
 import { Button, Container } from 'react-bootstrap';
+// custom css
 import styles from '../../styles/Controls.module.css';
 
 

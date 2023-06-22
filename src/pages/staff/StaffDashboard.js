@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
-import styles from '../../styles/Dashboard.module.css';
-
-import DashboardNavBar from '../../components/DashboardNavBar';
-import { useCurrentUser } from '../../contexts/CurrentUserContext';
+// router
 import { useHistory } from 'react-router-dom';
+// context
+import { useCurrentUser } from '../../contexts/CurrentUserContext';
+// custom componenets
+import DashboardNavBar from '../../components/DashboardNavBar';
 import DashboardDisplay from './DashboardDisplay';
 import Controls from './Controls';
+// custom css
+import styles from '../../styles/Dashboard.module.css';
 
 
 function StaffDashboard() {

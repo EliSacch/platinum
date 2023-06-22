@@ -1,9 +1,11 @@
+// bootstrap
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-
-import styles from '../../styles/Treatments.module.css';
+// custom components
 import TreatmentCreateForm from './TreatmentCreateForm';
 import TreatmentEditForm from './TreatmentEditForm';
+// custom css
+import styles from '../../styles/Treatments.module.css';
 
 
 const ModalAddEditTreatment = (props) => {

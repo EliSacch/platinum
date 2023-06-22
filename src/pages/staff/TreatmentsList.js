@@ -7,6 +7,8 @@ import { ActionsDropdown } from '../../components/ActionsDropdown';
 import Asset from '../../components/Asset';
 
 import styles from '../../styles/Treatments.module.css';
+import InfiniteScroll from 'react-infinite-scroll-component';
+import { fetchMoreData } from '../../utils/utils';
 
 
 function TreatmentsList() {
@@ -73,7 +75,7 @@ function TreatmentsList() {
             {/* Search form */}
             <Container className={styles.SearchWrapper} >
                 <i className={`fas fa-search ${styles.SearchIcon}`} />
-                
+
                 <Form
                     className={styles.SearchBar}
                     onSubmit={(event) => event.preventDefault()}
@@ -87,7 +89,7 @@ function TreatmentsList() {
                     />
                 </Form>
             </Container>
-            
+
             {/* Add new treatment button */}
             <Container>
                 <Button
@@ -101,37 +103,45 @@ function TreatmentsList() {
             {/* Treatments list */}
             {hasLoaded ? (
                 <Container >
+
                     {treatments.results.length ? (
                         <Table className={styles.TreatmentsList}>
                             <thead>
                                 <tr>
-                                <th>Title</th>
-                                <th>Description</th>
-                                <th>Price</th>
-                                <th>Status</th>
-                                <th></th>
+                                    <th>Title</th>
+                                    <th>Description</th>
+                                    <th>Price</th>
+                                    <th>Status</th>
+                                    <th></th>
                                 </tr>
                             </thead>
                             <tbody>
-
-                                {treatments.results.map(treatment => (
-                                    <tr
-                                        key={treatment.id}
-                                        className={treatment.is_active ? (styles.Active) : (styles.Inactive)}
-                                    >
-                                        <td>{treatment.title}</td>
-                                        <td>{treatment.description}</td>
-                                        <td>{treatment.price}€</td>
-                                        {treatment.is_active ? <td>Active</td> : <td>Inactive</td>}
-                                        <td>
-                                            <ActionsDropdown
-                                                handleEdit={handleEdit}
-                                                handleDelete={handleDelete}
-                                                data={treatment.id}
-                                            />
-                                        </td>
-                                    </tr>
-                                ))}
+                                <InfiniteScroll
+                                    children={
+                                        treatments.results.map(treatment => (
+                                            <tr
+                                                key={treatment.id}
+                                                className={treatment.is_active ? (styles.Active) : (styles.Inactive)}
+                                            >
+                                                <td>{treatment.title}</td>
+                                                <td>{treatment.description}</td>
+                                                <td>{treatment.price}€</td>
+                                                {treatment.is_active ? <td>Active</td> : <td>Inactive</td>}
+                                                <td>
+                                                    <ActionsDropdown
+                                                        handleEdit={handleEdit}
+                                                        handleDelete={handleDelete}
+                                                        data={treatment.id}
+                                                    />
+                                                </td>
+                                            </tr>
+                                        ))
+                                    }
+                                    dataLength={treatments.results.length}
+                                    loader={<Asset spinner />}
+                                    hasMore={!!treatments.next}
+                                    next={() => fetchMoreData(treatments, setTreatments)}
+                                />
                             </tbody>
                         </Table>
                     ) : (

@@ -1,14 +1,17 @@
 import React, { useEffect, useState } from "react";
-
+import { axiosReq } from "../../api/axiosDefaults";
+// router
+import { useHistory, useParams } from "react-router-dom";
+// context
+import { useCurrentUser } from "../../contexts/CurrentUserContext";
+// bootstrap
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
-
-import styles from "../../styles/AppointmentsCreateEditForm.module.css";
-import { axiosReq } from "../../api/axiosDefaults"
 import { Alert } from "react-bootstrap";
-import { useHistory, useParams } from "react-router-dom";
-import { useCurrentUser } from "../../contexts/CurrentUserContext";
+// custom css
+import styles from "../../styles/AppointmentsCreateEditForm.module.css";
+
 
 function AppointmentsEditForm({ message, }) {
 

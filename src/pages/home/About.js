@@ -1,4 +1,5 @@
 import React from 'react'
+// custom css
 import styles from '../../styles/About.module.css'
 
 function About() {

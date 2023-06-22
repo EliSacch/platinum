@@ -1,9 +1,12 @@
 import React, { useState } from "react";
 import axios from "axios";
-
+// context
+import { useSetCurrentUser } from "../../contexts/CurrentUserContext";
+// router dom
 import { Link, useHistory } from "react-router-dom";
-import styles from "../../styles/SignInUpForm.module.css";
-import image from "../../assets/yellow.jpg"
+// image
+import image from "../../assets/yellow.jpg";
+// bootsrap
 import {
   Form,
   Button,
@@ -13,8 +16,9 @@ import {
   Container,
   Alert,
 } from "react-bootstrap";
+// custom css 
+import styles from "../../styles/SignInUpForm.module.css";
 
-import { useSetCurrentUser } from "../../contexts/CurrentUserContext";
 
 const SignInForm = () => {
   const setCurrentUser = useSetCurrentUser();
@@ -28,6 +32,7 @@ const SignInForm = () => {
   const [errors, setErrors] = useState({});
 
   const history = useHistory();
+  
   const handleSubmit = async (event) => {
     event.preventDefault();
 

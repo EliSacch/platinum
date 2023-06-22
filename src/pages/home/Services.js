@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { axiosReq } from '../../api/axiosDefaults';
-import styles from '../../styles/Services.module.css';
-import { Card, Container } from 'react-bootstrap';
+// router
 import { Link } from 'react-router-dom';
+// boostrap
+import { Card, Container } from 'react-bootstrap';
+// custom css
+import styles from '../../styles/Services.module.css';
 
 function Services() {
 

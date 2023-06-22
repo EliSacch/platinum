@@ -1,8 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { axiosReq } from '../../api/axiosDefaults';
+// bootsrap
 import { Alert, Button, Form } from 'react-bootstrap';
-import styles from '../../styles/ModalClientDetail.module.css';
+// custom components
 import Asset from '../../components/Asset';
+// custom css
+import styles from '../../styles/ModalClientDetail.module.css';
+
 
 const ClientRoleForm = (
   { id, currentRole, setRole, showEditRole, setShowEditRole, }

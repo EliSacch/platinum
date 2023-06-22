@@ -1,11 +1,13 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
+import { axiosReq } from '../../api/axiosDefaults';
+// context data
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
-import { axiosReq } from '../../api/axiosDefaults'
-
-
-import styles from '../../styles/Profile.module.css'
+// custom components
 import Asset from '../../components/Asset';
 import Profile from './Profile';
+// custom css
+import styles from '../../styles/Profile.module.css'
+
 
 function ProfilePage() {
 

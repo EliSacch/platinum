@@ -1,12 +1,13 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
 import { axiosReq } from '../../api/axiosDefaults';
-
+// bootstrap
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-
-import styles from '../../styles/ModalClientDetail.module.css';
+// custom componenets
 import ClientNotesForm from './ClientNotesForm';
 import ClientRoleForm from './ClientRoleForm';
+// custom css
+import styles from '../../styles/ModalClientDetail.module.css';
 
 
 const ModalClientDetail = (props) => {

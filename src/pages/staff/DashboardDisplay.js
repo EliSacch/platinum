@@ -1,6 +1,7 @@
-import React from 'react'
-import ClientsList from './ClientsList'
-import TreatmentsList from './TreatmentsList'
+import React from 'react';
+// custom componenets
+import ClientsList from './ClientsList';
+import TreatmentsList from './TreatmentsList';
 
 const DashboardDisplay = ({display,}) => {
 

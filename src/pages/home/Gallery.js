@@ -1,11 +1,14 @@
+// images
 import picOne from '../../assets/yellow.jpg';
 import picTwo from '../../assets/cut.jpg';
 import picThree from '../../assets/bride.jpg';
 import picFour from '../../assets/wavy-hair.jpg';
 import picFive from '../../assets/team.jpg';
-
-import styles from '../../styles/Gallery.module.css';
+// bootstrap
 import { Carousel } from 'react-bootstrap';
+// custom css
+import styles from '../../styles/Gallery.module.css';
+
 
 function Gallery() {
 
