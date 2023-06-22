@@ -8,6 +8,7 @@ import styles from "../../styles/AppointmentsCreateEditForm.module.css";
 import { axiosReq } from "../../api/axiosDefaults"
 import { Alert } from "react-bootstrap";
 import { useHistory, useParams } from "react-router-dom";
+import { useCurrentUser } from "../../contexts/CurrentUserContext";
 
 function AppointmentsEditForm({ message, }) {
 
@@ -19,6 +20,9 @@ function AppointmentsEditForm({ message, }) {
     });
 
     const { treatment, date, time, notes } = appointmentData;
+
+    // Get the current user
+    const currentUser = useCurrentUser();
 
     const [errors, setErrors] = useState({});
     const history = useHistory();
@@ -142,16 +146,35 @@ function AppointmentsEditForm({ message, }) {
                     value={treatment}
                     onChange={handleChange}
                 >
-                    {treatments.results.filter(
-                        res => res.is_active===true
-                    ).map((t, i) => (
-                        <option
-                            key={i}
-                            value={t.title}>
-                            {t.title}
-                        </option>
-                    )
-                    )}
+                                        {
+                        /* If the current user is a staff memeber
+                            we filter the results, to show only the active
+                            treatments */
+                        currentUser.is_staff ? (
+                            treatments.results.filter(
+                                res => res.is_active===true
+                            ).map((t, i) => (
+                                <option
+                                    key={i}
+                                    value={t.title}>
+                                    {t.title}
+                                </option>
+                                )
+                            )
+                        ) : (
+                            /* If the current user is not a staff memeber
+                            we don't filter the results, 
+                            since they can only see active treatments anyway */
+                            treatments.results.map((t, i) => (
+                                <option
+                                    key={i}
+                                    value={t.title}>
+                                    {t.title}
+                                </option>
+                                )
+                            )
+                        )
+                    }
                 </Form.Control>
             </Form.Group>
             {errors.treatment?.map((message, idx) => (

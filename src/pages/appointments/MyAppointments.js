@@ -40,82 +40,99 @@ function MyAppointments() {
                 console.log(err)
             }
         }
-
         setHasLoaded(false);
         fetchAppointments();
     }, [activeTab])
 
-
     return (
 
+        // check if the user is logged in
         currentUser ? (
-        <section className={styles.OffsetTop}>
-        <Link
-            to="/my-appointments/create"
-            className={styles.ActionBtn}
-        >Make an appointment
-        </Link>
+            // What we display if the user is logged in
+            <section className={styles.OffsetTop}>
+                <Link
+                    to="/my-appointments/create"
+                    className={styles.ActionBtn}
+                >Make an appointment
+                </Link>
 
-        <Tabs
-            defaultActiveKey="upcoming"
-            transition={false}
-            className={styles.TabLink}
-            onSelect={handleTabChange}
-        >
-            <Tab eventKey="upcoming" title="Upcoming appointments" className={styles.Tab}>
-                {hasLoaded ? (
-
-                    <>
-                        {appointments.results.filter(res => res.status === "Upcoming").length ? (
-                            appointments.results.filter(
-                                res => res.status === "Upcoming"
-                                ).sort(
-                                (a, b) => a.date > b.date ? 1 : -1
-                            ).map(appointment => (
-                                <Link
-                                    to={`/my-appointments/${appointment.id}`}
-                                    key={appointment.id}
-                                >
-                                    <Appointment  {...appointment} />
-                                </Link>
-                            ))
+                <Tabs
+                    defaultActiveKey="upcoming"
+                    transition={false}
+                    className={styles.TabLink}
+                    onSelect={handleTabChange}
+                >
+                    {/* Upcoming apointments tab */}
+                    <Tab eventKey="upcoming" title="Upcoming appointments" className={styles.Tab}>
+                        {hasLoaded ? (
+                            <>
+                                {appointments.results.filter(
+                                    // check if there is any result with a status of upcoming
+                                    res => res.status === "Upcoming"
+                                    ).length ? (
+                                    appointments.results.filter(
+                                        // if so, we filter the result to and we display 
+                                        // only upcoming result in this tab
+                                        res => res.status === "Upcoming"
+                                    ).sort(
+                                        // We sort them to see the closet ones first
+                                        (a, b) => a.date > b.date ? 1 : -1
+                                    ).map(appointment => (
+                                        // For each appointment we display a clickable element
+                                        <Link
+                                            to={`/my-appointments/${appointment.id}`}
+                                            key={appointment.id}
+                                        >
+                                            <Appointment  {...appointment} />
+                                        </Link>
+                                    ))
+                                ) : (
+                                    // message to display if there are no upcoming appointments
+                                    <p>There are no upcoming appointments</p>
+                                )}
+                            </>
                         ) : (
-                            <p>There are no upcoming appointments</p>
+                            <Asset spinner />
                         )}
-                    </>
+                    </Tab>
 
-                ) : (
-                    <Asset spinner />
-                )}
-            </Tab>
-            <Tab eventKey="past" title="Past appointments" className={styles.Tab}>
-
-                {hasLoaded ? (
-
-                    <>
-                        {appointments.results.filter(res => res.status === "Past").length ? (
-                            appointments.results.filter(
-                                res => res.status === "Past"
-                                ).sort(
-                                (a, b) => a.date < b.date ? 1 : -1
-                            ).map(appointment => (
-                                <Link to={`/my-appointments/${appointment.id}`}>
-                                    <Appointment key={appointment.id} {...appointment} />
-                                </Link>
-                            ))
+                    {/* Past apointments tab */}
+                    <Tab eventKey="past" title="Past appointments" className={styles.Tab}>
+                        {hasLoaded ? (
+                            <>
+                                {appointments.results.filter(
+                                    // check if there is any past appointment
+                                    res => res.status === "Past").length ? (
+                                    appointments.results.filter(
+                                        // if so, we show them here
+                                        res => res.status === "Past"
+                                    ).sort(
+                                        // we show the closest ones first
+                                        (a, b) => a.date < b.date ? 1 : -1
+                                    ).map(appointment => (
+                                        // For each appointment we show a clickable div
+                                        <Link
+                                            to={`/my-appointments/${appointment.id}`}
+                                            key={appointment.id}
+                                        >
+                                            <Appointment {...appointment} />
+                                        </Link>
+                                    ))
+                                ) : (
+                                    // Message to display if there are no past appointments
+                                    <p>There are no past appointments</p>
+                                )}
+                            </>
                         ) : (
-                            <p>There are no past appointments</p>
+                            <Asset spinner />
                         )}
-                    </>
-
-                ) : (
-                    <Asset spinner />
-                )}
-            </Tab>
-        </Tabs>
-    </section>) : (
-        history.push("/signin")
-    )
+                    </Tab>
+                </Tabs>
+            </section>
+        ) : (
+            // If the user is not logged in we redirect to login page
+            history.push("/signin")
+        )
     )
 }
 

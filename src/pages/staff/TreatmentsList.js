@@ -1,20 +1,23 @@
 import React, { useEffect, useState } from 'react';
 import { axiosReq, axiosRes } from '../../api/axiosDefaults';
-import Asset from '../../components/Asset';
 
-import styles from '../../styles/Treatments.module.css'
 import { Button, Container, Form, Table } from 'react-bootstrap';
 import ModalAddEditTreatment from './ModalAddEditTreatment';
 import { ActionsDropdown } from '../../components/ActionsDropdown';
+import Asset from '../../components/Asset';
+
+import styles from '../../styles/Treatments.module.css';
+
 
 function TreatmentsList() {
 
     const [treatments, setTreatments] = useState({ results: [] });
     const [hasLoaded, setHasLoaded] = useState(false);
+    const [query, setQuery] = useState("");
 
     // To display the add treatment modal
     const [show, setShow] = useState(false);
-    const handleShow= () => setShow(true);
+    const handleShow = () => setShow(true);
 
     // set the form
     const [form, setForm] = useState('add');
@@ -22,25 +25,31 @@ function TreatmentsList() {
     // set the treatment id to edit
     const [editId, setEditId] = useState(null);
 
-    const handleAdd= () => {
+    /* When we click on the Add new treatment button
+    we set the form to 'add', so the add form will be displayed
+    in the modal */
+    const handleAdd = () => {
         setForm('add');
         handleShow();
     }
+    /* When we click on the edit button
+    we set the form to 'edit', so the edit form will be displayed
+    in the modal */
     const handleEdit = (value) => {
         setEditId(value);
         setForm('edit');
         handleShow();
     }
-    const [query, setQuery] = useState("");
+
 
     const handleDelete = async (value) => {
         try {
-          await axiosRes.delete(`/treatments/${value}/`);
-          setQuery(" ");
+            await axiosRes.delete(`/treatments/${value}/`);
+            setQuery(" ");
         } catch (err) {
-          console.log(err);
+            console.log(err);
         }
-      };
+    };
 
     /**
      * Every time we change the search query, we update the results
@@ -55,16 +64,16 @@ function TreatmentsList() {
                 console.log(err)
             }
         }
-
         setHasLoaded(false);
         fetchTreatments();
-    }, [query])
-
+    }, [query, show])
 
     return (
         <>
+            {/* Search form */}
             <Container className={styles.SearchWrapper} >
                 <i className={`fas fa-search ${styles.SearchIcon}`} />
+                
                 <Form
                     className={styles.SearchBar}
                     onSubmit={(event) => event.preventDefault()}
@@ -78,6 +87,8 @@ function TreatmentsList() {
                     />
                 </Form>
             </Container>
+            
+            {/* Add new treatment button */}
             <Container>
                 <Button
                     className={styles.AddNewBtn}
@@ -86,18 +97,21 @@ function TreatmentsList() {
                     Add new treatment
                 </Button>
             </Container>
-            {hasLoaded ? (
 
+            {/* Treatments list */}
+            {hasLoaded ? (
                 <Container >
                     {treatments.results.length ? (
                         <Table className={styles.TreatmentsList}>
-                            <tr>
+                            <thead>
+                                <tr>
                                 <th>Title</th>
                                 <th>Description</th>
                                 <th>Price</th>
                                 <th>Status</th>
                                 <th></th>
-                            </tr>
+                                </tr>
+                            </thead>
                             <tbody>
 
                                 {treatments.results.map(treatment => (
@@ -123,13 +137,13 @@ function TreatmentsList() {
                     ) : (
                         <p>There are no treatments yet</p>
                     )}
-                    <ModalAddEditTreatment 
-                    show={show} 
-                    setShow={setShow} 
-                    query={query} 
-                    setQuery={setQuery} 
-                    form={form}
-                    editId={editId}
+                    <ModalAddEditTreatment
+                        show={show}
+                        setShow={setShow}
+                        query={query}
+                        setQuery={setQuery}
+                        form={form}
+                        editId={editId}
                     />
 
                 </Container>

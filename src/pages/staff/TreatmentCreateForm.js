@@ -7,6 +7,7 @@ import Container from "react-bootstrap/Container";
 import styles from "../../styles/Treatments.module.css";
 import { axiosReq } from "../../api/axiosDefaults"
 import { Alert } from "react-bootstrap";
+import Asset from "../../components/Asset";
 
 function TreatmentCreateForm({ setShow, query, setQuery }) {
 
@@ -26,7 +27,7 @@ function TreatmentCreateForm({ setShow, query, setQuery }) {
     const min_duration = 50;
     const max_duration = 450;
     // determine the range
-    const range = (max_duration - min_duration) / 50
+    const range = (max_duration - min_duration) / 50;
 
     const selectOptions = (range) => {
         // get the range
@@ -49,9 +50,10 @@ function TreatmentCreateForm({ setShow, query, setQuery }) {
             { value: slot, label: labels[i] }
         ));
         return choices
-    }
+    };
 
     const [errors, setErrors] = useState({});
+    const [hasLoaded, setHasLoaded] = useState(true);
 
     /**
      * When the create treatment form is submitted, the data
@@ -73,12 +75,14 @@ function TreatmentCreateForm({ setShow, query, setQuery }) {
         formData.append("is_active", is_active);
 
         try {
+            setHasLoaded(false)
             await axiosReq.post("/treatments/", formData);
             setShow(false);
             /* To refresh the query we make sure that 
             we set it to something different than it's initial value */
             query === "" ? query = " " : query = "";
             setQuery(query);
+            setHasLoaded(true);
         } catch (err) {
             if (err.response?.status !== 401) {
                 setErrors(err.response?.data);
@@ -93,7 +97,11 @@ function TreatmentCreateForm({ setShow, query, setQuery }) {
     const handleChange = (event) => {
         setTreatmentData({
             ...treatmentData,
-            [event.target.name]: event.target.value,
+            [event.target.name]:
+                // for checkboxes we use the checked status instead of value
+                event.target.type === 'checkbox'
+                    ? event.target.checked
+                    : event.target.value,
         });
     };
 
@@ -110,7 +118,6 @@ function TreatmentCreateForm({ setShow, query, setQuery }) {
             });
         }
     };
-
 
     const textFields = (
         <div className="text-center">
@@ -210,7 +217,7 @@ function TreatmentCreateForm({ setShow, query, setQuery }) {
                 type="checkbox"
                 label="Active"
                 name="is_active"
-                value={is_active}
+                checked={is_active}
                 onChange={handleChange}
                 className={styles.Checkbox}
             />
@@ -234,12 +241,18 @@ function TreatmentCreateForm({ setShow, query, setQuery }) {
 
     return (
         <section className={styles.OffsetTop}>
-            <Form
-                onSubmit={handleSubmit}
-                className={styles.Form}
-            >
-                <Container>{textFields}</Container>
-            </Form>
+            {
+                hasLoaded ? (
+                    <Form
+                        onSubmit={handleSubmit}
+                        className={styles.Form}
+                    >
+                        <Container>{textFields}</Container>
+                    </Form>
+                ) : (
+                    <Asset spinner />
+                )
+            }
         </section>
     );
 }

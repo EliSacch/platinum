@@ -51,7 +51,7 @@ const Appointment = (props) => {
             <>
                 <div className={styles.AppointmentDetail}>
                     <span
-                        onClick={() => history.goBack()}
+                        onClick={() => history.push("/my-appointments")}
                         aria-label="go back"
                     >
                         <i className="fas fa-arrow-left" />

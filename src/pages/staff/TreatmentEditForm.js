@@ -53,7 +53,7 @@ function TreatmentEditForm({ setShow, query, setQuery, editId }) {
     }
 
     const [errors, setErrors] = useState({});
-    const [hasLoaded, setHasLoaded] = useState(false);
+    const [hasLoaded, setHasLoaded] = useState(true);
 
     useEffect(() => {
         const initializeForm = async () => {
@@ -97,12 +97,14 @@ function TreatmentEditForm({ setShow, query, setQuery, editId }) {
         formData.append("is_active", is_active);
 
         try {
+            setHasLoaded(false);
             await axiosReq.put(`/treatments/${editId}/`, formData);
             setShow(false);
             /* To refresh the query we make sure that 
             we set it to something different than it's initial value */
             query === "" ? query = " " : query = "";
             setQuery(query);
+            setHasLoaded(true);
         } catch (err) {
             if (err.response?.status !== 401) {
                 setErrors(err.response?.data);
@@ -117,7 +119,11 @@ function TreatmentEditForm({ setShow, query, setQuery, editId }) {
     const handleChange = (event) => {
         setTreatmentData({
             ...treatmentData,
-            [event.target.name]: event.target.value,
+            [event.target.name]:
+                // for checkboxes we use the checked status instead of value
+                event.target.type === 'checkbox'
+                    ? event.target.checked
+                    : event.target.value,
         });
     };
 
@@ -230,14 +236,14 @@ function TreatmentEditForm({ setShow, query, setQuery, editId }) {
 
             {/* Checkbox to set the treatment status is_active */}
             <Form.Group controlId="is_active">
-            <Form.Check
-                type="checkbox"
-                label="Active"
-                name="is_active"
-                value={is_active}
-                onChange={handleChange}
-                className={styles.Checkbox}
-            />
+                <Form.Check
+                    type="checkbox"
+                    label="Active"
+                    name="is_active"
+                    checked={is_active}
+                    onChange={handleChange}
+                    className={styles.Checkbox}
+                />
             </Form.Group>
             {errors.is_active?.map((message, idx) => (
                 <Alert variant="warning" key={idx}>
@@ -261,11 +267,11 @@ function TreatmentEditForm({ setShow, query, setQuery, editId }) {
         <section className={styles.OffsetTop}>
             {hasLoaded ? (
                 <Form
-                onSubmit={handleSubmit}
-                className={styles.Form}
-            >
-                <Container>{textFields}</Container>
-            </Form>
+                    onSubmit={handleSubmit}
+                    className={styles.Form}
+                >
+                    <Container>{textFields}</Container>
+                </Form>
             ) : (
                 <Asset spinner />
             )}

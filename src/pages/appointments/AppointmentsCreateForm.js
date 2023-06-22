@@ -8,8 +8,9 @@ import styles from "../../styles/AppointmentsCreateEditForm.module.css";
 import { axiosReq } from "../../api/axiosDefaults"
 import { Alert } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
+import { useCurrentUser } from "../../contexts/CurrentUserContext";
 
-function AppointmentsCreateForm({ message, }) {
+function AppointmentsCreateForm({ message, homepage }) {
 
     const [appointmentData, setAppointmentData] = useState({
         treatment: "Consultation",
@@ -20,9 +21,13 @@ function AppointmentsCreateForm({ message, }) {
 
     const { treatment, date, time, notes } = appointmentData;
 
+    // get the current user
+    const currentUser = useCurrentUser();
+
     const [errors, setErrors] = useState({});
     const history = useHistory();
 
+    // set the treatments that will be displayed
     const [treatments, setTreatments] = useState({ results: [] });
 
     // Set the beginning and end of index to create the slot time options
@@ -61,13 +66,12 @@ function AppointmentsCreateForm({ message, }) {
          */
         const fetchTreatments = async () => {
             try {
-                const { data } = await axiosReq.get('/treatments');
+                const { data } = await axiosReq.get('/treatments/');
                 setTreatments(data);
             } catch (err) {
                 console.log(err);
             }
         };
-
         fetchTreatments();
     }, []);
 
@@ -119,16 +123,35 @@ function AppointmentsCreateForm({ message, }) {
                     value={treatment}
                     onChange={handleChange}
                 >
-                    {treatments.results.filter(
-                        res => res.is_active===true
-                    ).map((t, i) => (
-                        <option
-                            key={i}
-                            value={t.title}>
-                            {t.title}{t.is_active}
-                        </option>
-                    )
-                    )}
+                    {
+                        /* If the current user is a staff memeber
+                            we filter the results, to show only the active
+                            treatments */
+                        currentUser.is_staff ? (
+                            treatments.results.filter(
+                                res => res.is_active===true
+                            ).map((t, i) => (
+                                <option
+                                    key={i}
+                                    value={t.title}>
+                                    {t.title}
+                                </option>
+                                )
+                            )
+                        ) : (
+                            /* If the current user is not a staff memeber
+                            we don't filter the results, 
+                            since they can only see active treatments anyway */
+                            treatments.results.map((t, i) => (
+                                <option
+                                    key={i}
+                                    value={t.title}>
+                                    {t.title}
+                                </option>
+                                )
+                            )
+                        )
+                    }
                 </Form.Control>
             </Form.Group>
             {errors.treatment?.map((message, idx) => (
@@ -196,14 +219,18 @@ function AppointmentsCreateForm({ message, }) {
             ))}
 
             {/* Form action buttons */}
-            <Button
-                className={styles.FormBtn}
-                onClick={() => history.goBack()}
-            >
-                cancel
-            </Button>
+            {
+                // In the homepage we do not display the cancel button
+                !homepage &&
+                <Button
+                    className={styles.FormBtn}
+                    onClick={() => history.goBack()}
+                >
+                    cancel
+                </Button>
+            }
             <Button className={styles.FormBtn} type="submit">
-                create
+                Book
             </Button>
             {errors.non_field_errors?.map((message, idx) => (
                 <Alert key={idx} variant="warning" className="mt-3">

@@ -11,7 +11,7 @@ const Book = () => {
 
     currentUser ? (
       <div className={styles.BookingForm}>
-        <AppointmentsCreateForm />
+        <AppointmentsCreateForm homepage />
       </div>
     ) : (
 
