@@ -10,7 +10,6 @@ function Home() {
 
   return (
     <main>
-
       <Hero />
       <div className={styles.AboutWrapper}>
         <div className={styles.GalleryPlaceholder}>
@@ -20,7 +19,6 @@ function Home() {
       </div>
       <Services />
       <Book />
-
     </main>
   )
 }
