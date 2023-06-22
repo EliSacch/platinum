@@ -36,3 +36,7 @@ section {
   position: relative;
   color: var(--purple);
 }
+
+a:hover {
+  color: var(--rose-lighter);
+}

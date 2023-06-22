@@ -18,7 +18,7 @@ const Book = () => {
       <section className={styles.Section} >
         <span id="book" className={`${styles.NavOffset} "d-none"`}></span>
         <h2>Book with us</h2>
-        <p>You can <a href="tel:353-123-4567">call us</a> or send us an <a href="mailto:platinum@booking.com">
+        <p>You can <a href="tel:000-123-4567">call us</a> or send us an <a href="mailto:platinum@booking.com">
           email </a>
           , and we will be happy to book you in.</p>
         <p>Sign up or sign in to your account to book directly.</p>

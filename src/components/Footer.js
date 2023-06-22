@@ -27,8 +27,8 @@ function Footer() {
         <div id="contact">
             <h3>Contact us</h3>
             <ul>
-                <li>Phone: +353 123 4567</li>
-                <li>Email: platinum@info.com</li>
+                <li>Phone: <a href="tel:000-123-4567">+000 123 4567</a></li>
+                <li>Email: <a href="mailto:platinum@info.com">platinum@info.com</a></li>
                 <li>Address: 58, Via marina vecchia, Massa, 54100, Italy</li>
             </ul>
         </div>
