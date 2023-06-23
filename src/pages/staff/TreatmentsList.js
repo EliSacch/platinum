@@ -1,14 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { axiosReq, axiosRes } from '../../api/axiosDefaults';
-
+// bootstrap
 import { Button, Container, Form, Table } from 'react-bootstrap';
+// custom components
 import ModalAddEditTreatment from './ModalAddEditTreatment';
 import { ActionsDropdown } from '../../components/ActionsDropdown';
 import Asset from '../../components/Asset';
-
-import styles from '../../styles/Treatments.module.css';
+// infinite scroll
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { fetchMoreData } from '../../utils/utils';
+// custom style
+import styles from '../../styles/Treatments.module.css';
 
 
 function TreatmentsList() {
@@ -105,20 +107,20 @@ function TreatmentsList() {
                 <Container >
 
                     {treatments.results.length ? (
-                        <Table className={styles.TreatmentsList}>
-                            <thead>
-                                <tr>
-                                    <th>Title</th>
-                                    <th>Description</th>
-                                    <th>Price</th>
-                                    <th>Status</th>
-                                    <th></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <InfiniteScroll
-                                    children={
-                                        treatments.results.map(treatment => (
+                        <InfiniteScroll
+                            children={
+                                <Table className={styles.TreatmentsList}>
+                                    <thead>
+                                        <tr>
+                                            <th>Title</th>
+                                            <th>Description</th>
+                                            <th>Price</th>
+                                            <th>Status</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {treatments.results.map(treatment => (
                                             <tr
                                                 key={treatment.id}
                                                 className={treatment.is_active ? (styles.Active) : (styles.Inactive)}
@@ -135,15 +137,17 @@ function TreatmentsList() {
                                                     />
                                                 </td>
                                             </tr>
-                                        ))
-                                    }
-                                    dataLength={treatments.results.length}
-                                    loader={<Asset spinner />}
-                                    hasMore={!!treatments.next}
-                                    next={() => fetchMoreData(treatments, setTreatments)}
-                                />
-                            </tbody>
-                        </Table>
+
+                                        ))}
+                                    </tbody>
+                                </Table>
+                            }
+                            dataLength={treatments.results.length}
+                            loader={<Asset spinner />}
+                            hasMore={!!treatments.next}
+                            next={() => fetchMoreData(treatments, setTreatments)}
+                        />
+
                     ) : (
                         <p>There are no treatments yet</p>
                     )}
