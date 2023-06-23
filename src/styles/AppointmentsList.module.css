@@ -1,0 +1,99 @@
+.AppointmentsList {
+    text-align: left;
+    margin-top: 30px;
+}
+
+.Active {
+    color: var(--purple);
+}
+
+.SearchWrapper {
+    position: relative;
+    width: 90%;
+    max-width: 500px;
+}
+
+.SearchBar input {
+    border-radius: 20px;
+    color: #242a3d;
+    padding-left: 40px;
+    margin: 1em auto;
+}
+
+.SearchIcon {
+    position: absolute;
+    font-size: 1.2rem;
+    right: 25px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--wine);
+}
+
+.SearchIcon:hover {
+    cursor: default;
+    color: #cfced3;
+}
+
+.AddNewBtn,
+.ModalBtn,
+.CloseModalBtn {
+    background-color: var(--purple);
+    border: 2px solid var(--purple);
+    margin: 20px;
+    border-radius: 3px;
+    padding: 5px 50px;
+}
+
+.CloseModalBtn {
+    background-color: white;
+    color: var(--purple);
+}
+
+
+.AddNewBtn:hover,
+.AddNewBtn:focus,
+.AddNewBtn:focus-within,
+.AddNewBtn.btn:active,
+.ModalBtn:hover,
+.ModalBtn:focus,
+.ModalBtn:focus-within,
+.ModalBtn.btn:active,
+.CloseModalBtn:hover,
+.CloseModalBtn:focus,
+.CloseModalBtn:focus-within,
+.CloseModalBtn.btn:active {
+    --bs-btn-active-color: var(--light);
+    --bs-btn-active-bg: var(--wine-lighter);
+    --bs-btn-active-border-color: var(--light);
+    --bs-btn-focus-box-shadow: var(--light);
+    background-color: var(--wine-lighter);
+    color: var(--light);
+    border-color: var(--light);
+    box-shadow: 0 0 5px var(--light);
+    outline-color: var(--light);
+}
+
+.Input {
+    margin-block: .5em;
+}
+
+.InputLabel {
+    width: 100%;
+    text-align: left;
+    font-weight: 600;
+    color: var(--wine);
+}
+
+.Checkbox {
+    width: fit-content;
+    color: var(--wine);
+}
+
+.Checkbox > input {
+    border: 1px solid var(--wine);
+}
+
+.Checkbox > input:checked {
+    background-color: var(--rose);
+    border: 1px solid var(--wine);
+}
