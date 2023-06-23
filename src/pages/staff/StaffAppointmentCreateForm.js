@@ -65,6 +65,8 @@ function StaffAppointmentCreateForm({ setShow, query, setQuery }) {
         } catch (err) {
             if (err.response?.status !== 401) {
                 setErrors(err.response?.data);
+                console.log(err.response);
+                setHasLoaded(true);
             }
         }
     };
@@ -78,6 +80,7 @@ function StaffAppointmentCreateForm({ setShow, query, setQuery }) {
             ...appointmentData,
             [event.target.name]: event.target.value,
         });
+        console.log(event.target.value);
     };
 
     useEffect(() => {
@@ -121,12 +124,12 @@ function StaffAppointmentCreateForm({ setShow, query, setQuery }) {
                     value={owner}
                     onChange={handleChange}
                 >
-                    <option key={-1} value={null}> ----- </option>
+                    <option key={-1} value={""}> ----- </option>
                     {
                         clients.results.map((c, i) => (
                             <option
                                 key={i}
-                                value={c.owner}>
+                                value={c.id}>
                                 {c.owner}
                             </option>
                         )

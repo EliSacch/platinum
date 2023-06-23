@@ -211,6 +211,7 @@ This was caused by an erorr in the received date format:
 
 </details>
 
+
 <details>
 <summary>Create appointment form throwing error 404 page not found</summary>
 
@@ -242,6 +243,22 @@ Hence the error 404.
 
 
 Then I added conditional rendering to render the navbar or the footer just when hide is false.
+
+</details>
+
+
+<details>
+<summary>Staff Appointment Create form giving error</summary>
+
+- Issue: When trying to book using the staff appointment create form, we received the following error:
+
+![Owner error](/media/errors/staff-appointment-create-error.png)
+
+This was caused by the fact that I was passing the client.owner value, while the pk was expected.
+
+- Fix: To fix this error I changed the code to pass the client.id as value:
+
+![Owner fix](/media/errors/staff-appointment-create-fix.png)
 
 </details>
 
