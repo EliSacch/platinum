@@ -4,6 +4,8 @@ import { axiosReq } from "../../api/axiosDefaults";
 import { useHistory } from "react-router-dom";
 // context
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
+// custom function to calculate time slots
+import calculateTimeSlots from "../../utils/calculateTimeSlots";
 // bootstrap
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
@@ -32,35 +34,6 @@ function AppointmentsCreateForm({ message, homepage }) {
 
     // set the treatments that will be displayed
     const [treatments, setTreatments] = useState({ results: [] });
-
-    // Set the beginning and end of index to create the slot time options
-    const first_available = 900;
-    const last_available = 1700;
-    // determine the range
-    const range = (last_available - first_available) / 50
-
-    const selectOptions = (range) => {
-        // get the range
-        const options = [...Array(range).keys()];
-
-        // create a new array from the range, to get the valid time values in the range
-        const slots = options.map(option => 900 + (option * 50));
-        const labels = [];
-        for (let slot of slots) {
-            let label = slot % 100 === 0 ? (
-                `${slot / 100}:00`
-            ) : (
-                `${(slot - (slot % 100)) / 100}:30`
-            );
-            labels.push(label);
-        }
-
-        // create the final choices to display, based on the slots
-        const choices = slots.map((slot, i) => (
-            { value: slot, label: labels[i] }
-        ));
-        return choices;
-    }
 
     useEffect(() => {
         /**
@@ -191,7 +164,7 @@ function AppointmentsCreateForm({ message, homepage }) {
                 >
                     {
                         // Get the array of option and display an <option> element for each one
-                        selectOptions(range).map(option => (
+                        calculateTimeSlots(900, 1700, 850).map(option => (
                             <option value={option.value} key={option.value}>{option.label}</option>
                         ))
                     }

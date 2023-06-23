@@ -1,5 +1,7 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { axiosReq } from "../../api/axiosDefaults";
+// custom function to calculate time slots
+import calculateTimeSlots from "../../utils/calculateTimeSlots";
 // bootstrap
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
@@ -28,36 +30,6 @@ function StaffAppointmentCreateForm({ setShow, query, setQuery }) {
     const [clients, setClients] = useState({ results: [] });
     // set the treatments that will be displayed as options to select
     const [treatments, setTreatments] = useState({ results: [] });
-
-    // Set the minimum and max time
-    const min_time = 900;
-    const max_time = 1700;
-    const offset = 850;
-    // determine the range
-    const range = (max_time - min_time) / 50;
-
-    const selectOptions = (range) => {
-        // get the range
-        const options = [...Array(range).keys()];
-
-        // create a new array from the range, to get the valid time values in the range
-        const slots = options.map(option => offset + ((option + 1) * 50));
-        const labels = [];
-        for (let slot of slots) {
-            let label = slot % 100 === 0 ? (
-                `${slot / 100}:00`
-            ) : (
-                `${(slot - (slot % 100)) / 100}:30`
-            );
-            labels.push(label);
-        }
-
-        // create the final choices to display, based on the slots
-        const choices = slots.map((slot, i) => (
-            { value: slot, label: labels[i] }
-        ));
-        return choices
-    };
 
     const [errors, setErrors] = useState({});
     const [hasLoaded, setHasLoaded] = useState(true);
@@ -214,7 +186,7 @@ function StaffAppointmentCreateForm({ setShow, query, setQuery }) {
                 >
                     {
                         // Get the array of option and display an <option> element for each one
-                        selectOptions(range).map(option => (
+                        calculateTimeSlots(900, 1700, 850).map(option => (
                             <option value={option.value} key={option.value}>{option.label}</option>
                         ))
                     }

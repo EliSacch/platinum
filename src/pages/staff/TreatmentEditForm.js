@@ -1,5 +1,7 @@
 import React, { useRef, useState, useEffect } from "react";
 import { axiosReq } from "../../api/axiosDefaults";
+// custom function to calculate the time slots
+import calculateTimeSlots from "../../utils/calculateTimeSlots";
 // bootstrap
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
@@ -24,35 +26,6 @@ function TreatmentEditForm({ setShow, query, setQuery, editId }) {
 
     const { title, description, price, duration, image, is_active } = treatmentData;
     const imageInput = useRef(null);
-
-    // Set the minimum and max duration
-    const min_duration = 50;
-    const max_duration = 450;
-    // determine the range
-    const range = (max_duration - min_duration) / 50
-
-    const selectOptions = (range) => {
-        // get the range
-        const options = [...Array(range).keys()];
-
-        // create a new array from the range, to get the valid time values in the range
-        const slots = options.map(option => (option + 1) * 50);
-        const labels = [];
-        for (let slot of slots) {
-            let label = slot % 100 === 0 ? (
-                `${slot / 100}:00`
-            ) : (
-                `${(slot - (slot % 100)) / 100}:30`
-            );
-            labels.push(label);
-        }
-
-        // create the final choices to display, based on the slots
-        const choices = slots.map((slot, i) => (
-            { value: slot, label: labels[i] }
-        ));
-        return choices
-    }
 
     const [errors, setErrors] = useState({});
     const [hasLoaded, setHasLoaded] = useState(true);
@@ -209,7 +182,7 @@ function TreatmentEditForm({ setShow, query, setQuery, editId }) {
                 >
                     {
                         // Get the array of option and display an <option> element for each one
-                        selectOptions(range).map(option => (
+                        calculateTimeSlots(50, 450, 0).map(option => (
                             <option value={option.value}>{option.label}</option>
                         ))
                     }
