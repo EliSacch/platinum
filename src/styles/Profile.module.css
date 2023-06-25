@@ -7,7 +7,9 @@
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
-    gap: 2em;
+    column-gap: 2em;
+    row-gap: 30px;
+    margin-bottom: 3em;
 }
 
 .ProfileImage {
@@ -23,4 +25,64 @@
 .ProfileImage > img {
     object-fit: cover;
     width: 110%;
+}
+
+.ProfileDetail {
+    text-align: left;
+    font-size: 1.5em;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.NamePlaceholder {
+    font-size: .8em;
+    color: rgb(197, 183, 214);
+}
+
+.Form {
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.Input {
+    margin-top: 2em;
+}
+
+.Label {
+    display: block;
+    color: var(--wine);
+    text-align: left;
+    font-weight: bold;
+}
+
+.FormBtn {
+    color: var(--light);
+    background-color: var(--purple);
+    border: 2px solid var(--purple);
+    margin: 20px;
+    border-radius: 3px;
+    padding: 5px 20px;
+}
+
+.FormBtn:hover,
+.FormBtn:focus,
+.FormBtn:focus-within,
+.FormBtn.btn:active {
+    --bs-btn-active-color: var(--purple);
+    --bs-btn-active-bg: transparent;
+    --bs-btn-active-border-color: var(--purple);
+    --bs-btn-focus-box-shadow: var(--purple);
+    background-color: transparent;
+    color: var(--purple);
+    border-color: var(--purple);
+    box-shadow: 0 0 5px var(--purple);
+    outline-color: var(--purple);
+}
+
+.Preview {
+    width: 90%;
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+    object-fit: cover;
+    overflow: hidden;
 }

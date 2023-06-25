@@ -1,13 +1,13 @@
-import styles from './App.module.css';
-import Navigation from './components/Navigation';
-import Footer from './components/Footer';
-import Home from './pages/home/Home'
-import { Route, Switch } from "react-router-dom";
 
 import './api/axiosDefaults';
-
+// router
+import { Route, Switch } from "react-router-dom";
+// custom components
+import Navigation from './components/Navigation';
+import Footer from './components/Footer';
 import SignUpForm from './pages/auth/SignUpFrom';
 import SignInForm from './pages/auth/SignInFrom';
+import Home from './pages/home/Home';
 import AppointmentsCreateForm from './pages/appointments/AppointmentsCreateForm';
 import AppointmentPage from './pages/appointments/AppointmentPage';
 import MyAppointments from './pages/appointments/MyAppointments';
@@ -15,13 +15,18 @@ import AppointmentsEditForm from './pages/appointments/AppointmentsEditForm';
 import ProfilePage from './pages/profiles/ProfilePage';
 import StaffDashboard from './pages/staff/StaffDashboard';
 import ServicesPage from './pages/home/ServicesPage';
+import UsernameForm from "./pages/profiles/UsernameForm";
+import UserPasswordForm from "./pages/profiles/UserPasswordForm";
+import ProfileEditForm from "./pages/profiles/ProfileEditForm";
+// custom css
+import styles from './App.module.css';
 
 
 function App() {
 
   return (
     <div className={styles.App}>
-      
+
       <Navigation />
       <Switch>
 
@@ -43,6 +48,21 @@ function App() {
           exact
           path="/profile"
           render={() => <ProfilePage />}
+        />
+        <Route
+          exact
+          path="/profiles/:id/edit/username"
+          render={() => <UsernameForm />}
+        />
+        <Route
+          exact
+          path="/profiles/:id/edit/password"
+          render={() => <UserPasswordForm />}
+        />
+        <Route
+          exact
+          path="/profiles/:id/edit"
+          render={() => <ProfileEditForm />}
         />
 
         {/* -------------- Auth pages -------------- */}
