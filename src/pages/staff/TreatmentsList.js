@@ -39,17 +39,20 @@ function TreatmentsList() {
     /* When we click on the edit button
     we set the form to 'edit', so the edit form will be displayed
     in the modal */
-    const handleEdit = (value) => {
-        setEditId(value);
+    const handleEdit = (id) => {
+        setEditId(id);
         setForm('edit');
         handleShow();
     }
 
 
-    const handleDelete = async (value) => {
+    const handleDelete = async (id) => {
         try {
-            await axiosRes.delete(`/treatments/${value}/`);
-            setQuery(" ");
+            await axiosRes.delete(`/treatments/${id}/`);
+            setTreatments((prevAppsetTreatments) => ({
+                ...prevAppsetTreatments,
+                results: prevAppsetTreatments.results.filter((treatment) => treatment.id !== id),
+              }));
         } catch (err) {
             console.log(err);
         }
@@ -65,7 +68,8 @@ function TreatmentsList() {
                 setTreatments(data);
                 setHasLoaded(true);
             } catch (err) {
-                console.log(err)
+                console.log(err);
+                setHasLoaded(true);
             }
         }
         setHasLoaded(false);

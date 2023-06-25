@@ -45,18 +45,21 @@ function AppointmentsList() {
     /* When we click on the edit button
     we set the form to 'edit', so the edit form will be displayed
     in the modal */
-    const handleEdit = (value) => {
-        setEditId(value);
+    const handleEdit = (id) => {
+        setEditId(id);
         setForm('edit');
         handleShow();
     }
 
     /* When use click on the delete button, we read the id and
     delete the appointment with that id */
-    const handleDelete = async (value) => {
+    const handleDelete = async (id) => {
         try {
-            await axiosRes.delete(`/appointments/${value}/`);
-            setQuery(" ");
+            await axiosRes.delete(`/appointments/${id}/`);
+            setAppointments((prevAppsetAppointments) => ({
+                ...prevAppsetAppointments,
+                results: prevAppsetAppointments.results.filter((appointment) => appointment.id !== id),
+              }));
         } catch (err) {
             console.log(err);
         }

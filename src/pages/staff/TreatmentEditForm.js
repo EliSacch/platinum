@@ -44,6 +44,7 @@ function TreatmentEditForm({ setShow, query, setQuery, editId }) {
                 setHasLoaded(true);
             } catch (err) {
                 console.log(err);
+                setHasLoaded(true);
             }
         };
         setHasLoaded(false);
@@ -83,6 +84,7 @@ function TreatmentEditForm({ setShow, query, setQuery, editId }) {
         } catch (err) {
             if (err.response?.status !== 401) {
                 setErrors(err.response?.data);
+                setHasLoaded(true);
             }
         }
     };
