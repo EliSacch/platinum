@@ -2,8 +2,6 @@ import React, { useEffect, useState } from "react";
 import { axiosReq } from "../../api/axiosDefaults";
 // router
 import { useHistory, useParams } from "react-router-dom";
-// context
-import { useCurrentUser } from "../../contexts/CurrentUserContext";
 // custom function to calculate time slots
 import calculateTimeSlots from "../../utils/calculateTimeSlots";
 // bootstrap
@@ -13,9 +11,13 @@ import Container from "react-bootstrap/Container";
 import { Alert } from "react-bootstrap";
 // custom css
 import styles from "../../styles/AppointmentsCreateEditForm.module.css";
+// custom hook to redirect users based on auth status
+import { useRedirect } from "../../hooks/useRedirect";
 
 
 function AppointmentsEditForm({ message, }) {
+    // to redirect user if they try to access this page when logged out
+    useRedirect("LoggedOut");
 
     const [appointmentData, setAppointmentData] = useState({
         treatment: "",
@@ -25,9 +27,6 @@ function AppointmentsEditForm({ message, }) {
     });
 
     const { treatment, date, time, notes } = appointmentData;
-
-    // Get the current user
-    const currentUser = useCurrentUser();
 
     const [errors, setErrors] = useState({});
     const history = useHistory();
@@ -124,10 +123,8 @@ function AppointmentsEditForm({ message, }) {
                     onChange={handleChange}
                 >
                                         {
-                        /* If the current user is a staff memeber
-                            we filter the results, to show only the active
+                        /* We filter the results, to show only the active
                             treatments */
-                        currentUser.is_staff ? (
                             treatments.results.filter(
                                 res => res.is_active===true
                             ).map((t, i) => (
@@ -138,19 +135,6 @@ function AppointmentsEditForm({ message, }) {
                                 </option>
                                 )
                             )
-                        ) : (
-                            /* If the current user is not a staff memeber
-                            we don't filter the results, 
-                            since they can only see active treatments anyway */
-                            treatments.results.map((t, i) => (
-                                <option
-                                    key={i}
-                                    value={t.title}>
-                                    {t.title}
-                                </option>
-                                )
-                            )
-                        )
                     }
                 </Form.Control>
             </Form.Group>

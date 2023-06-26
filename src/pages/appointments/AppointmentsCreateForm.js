@@ -20,7 +20,7 @@ import { useRedirect } from "../../hooks/useRedirect";
 function AppointmentsCreateForm({ message, homepage }) {
     // to redirect the user if already logged in
     useRedirect("loggedOut");
-    
+
     const [appointmentData, setAppointmentData] = useState({
         treatment: "Consultation",
         date: "",
@@ -104,32 +104,17 @@ function AppointmentsCreateForm({ message, homepage }) {
                     onChange={handleChange}
                 >
                     {
-                        /* If the current user is a staff memeber
-                            we filter the results, to show only the active
+                        /* We filter the results, to show only the active
                             treatments */
-                        currentUser?.is_staff ? (
-                            treatments.results.filter(
-                                res => res.is_active===true
-                            ).map((t, i) => (
-                                <option
-                                    key={i}
-                                    value={t.title}>
-                                    {t.title}
-                                </option>
-                                )
-                            )
-                        ) : (
-                            /* If the current user is not a staff memeber
-                            we don't filter the results, 
-                            since they can only see active treatments anyway */
-                            treatments.results.map((t, i) => (
-                                <option
-                                    key={i}
-                                    value={t.title}>
-                                    {t.title}
-                                </option>
-                                )
-                            )
+                        treatments.results.filter(
+                            res => res.is_active === true
+                        ).map((t, i) => (
+                            <option
+                                key={i}
+                                value={t.title}>
+                                {t.title}
+                            </option>
+                        )
                         )
                     }
                 </Form.Control>

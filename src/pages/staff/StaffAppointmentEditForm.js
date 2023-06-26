@@ -49,6 +49,7 @@ function StaffAppointmentEditForm({ setShow, query, setQuery, editId }) {
                 setHasLoaded(true);
             } catch (err) {
                 console.log(err);
+                setHasLoaded(true);
             }
         };
         setHasLoaded(false);
@@ -78,7 +79,7 @@ function StaffAppointmentEditForm({ setShow, query, setQuery, editId }) {
 
         try {
             setHasLoaded(false)
-            await axiosReq.post(`/appointments/${editId}`, formData);
+            await axiosReq.put(`/appointments/${editId}`, formData);
             setShow(false);
             /* To refresh the query we make sure that 
             we set it to something different than it's initial value */
@@ -88,6 +89,7 @@ function StaffAppointmentEditForm({ setShow, query, setQuery, editId }) {
         } catch (err) {
             if (err.response?.status !== 401) {
                 setErrors(err.response?.data);
+                setHasLoaded(true);
             }
         }
     };
@@ -126,7 +128,7 @@ function StaffAppointmentEditForm({ setShow, query, setQuery, editId }) {
                 const { data } = await axiosReq.get('/treatments/');
                 setTreatments(data);
             } catch (err) {
-                console.log(err, 'from fetchTreatment');
+                console.log(err);
             }
         };
         fetchClients();
@@ -144,12 +146,12 @@ function StaffAppointmentEditForm({ setShow, query, setQuery, editId }) {
                     value={owner}
                     onChange={handleChange}
                 >
-                    <option key={-1} value={null}> ----- </option>
+                    <option key={-1} value={""}> ----- </option>
                     {
                         clients.results.map((c, i) => (
                             <option
                                 key={i}
-                                value={c.owner}>
+                                value={c.id}>
                                 {c.owner}
                             </option>
                         )
@@ -271,7 +273,7 @@ function StaffAppointmentEditForm({ setShow, query, setQuery, editId }) {
 
             {/* Form action buttons */}
             <Button className={styles.AddNewBtn} type="submit">
-                create
+                Save changes
             </Button>
             {errors.non_field_errors?.map((message, idx) => (
                 <Alert key={idx} variant="warning" className="mt-3">

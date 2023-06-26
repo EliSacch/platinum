@@ -75,7 +75,8 @@ function AppointmentsList() {
                 setAppointments(data);
                 setHasLoaded(true);
             } catch (err) {
-                console.log(err)
+                console.log(err);
+                setHasLoaded(true);
             }
         }
         setHasLoaded(false);
@@ -136,7 +137,7 @@ function AppointmentsList() {
                                             <tr
                                                 key={appointment.id}
                                             >
-                                                <td>{appointment.owner ? appointment.owner : ""}</td>
+                                                <td>{appointment.owner ? appointment.owner_username : ""}</td>
                                                 <td>{appointment.client_name ? appointment.client_name : ""}</td>
                                                 <td>{appointment.date ? appointment.date : ""}</td>
                                                 <td>

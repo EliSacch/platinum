@@ -25,7 +25,7 @@ function TreatmentEditForm({ setShow, query, setQuery, editId }) {
     });
 
     const { title, description, price, duration, image, is_active } = treatmentData;
-    const imageInput = useRef(null);
+    const imageFile = useRef(null);
 
     const [errors, setErrors] = useState({});
     const [hasLoaded, setHasLoaded] = useState(true);
@@ -69,8 +69,12 @@ function TreatmentEditForm({ setShow, query, setQuery, editId }) {
         formData.append("description", description);
         formData.append("price", price);
         formData.append("duration", duration);
-        formData.append("image", imageInput.current.files[0]);
         formData.append("is_active", is_active);
+
+        // resubmit image only if it was changed
+        if (imageFile?.current?.files[0]) {
+            formData.append("image", imageFile?.current?.files[0]);
+        }
 
         try {
             setHasLoaded(false);
@@ -202,7 +206,7 @@ function TreatmentEditForm({ setShow, query, setQuery, editId }) {
                 <Form.File
                     accept="image/*"
                     onChange={handleChangeImage}
-                    ref={imageInput}
+                    ref={imageFile}
                 />
             </Form.Group>
             {errors.image?.map((message, idx) => (

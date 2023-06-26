@@ -61,6 +61,7 @@ function TreatmentCreateForm({ setShow, query, setQuery }) {
         } catch (err) {
             if (err.response?.status !== 401) {
                 setErrors(err.response?.data);
+                setHasLoaded(true);
             }
         }
     };
