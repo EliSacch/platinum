@@ -2,8 +2,6 @@ import React, { useEffect, useState } from "react";
 import { axiosReq } from "../../api/axiosDefaults";
 // router
 import { useHistory } from "react-router-dom";
-// context
-import { useCurrentUser } from "../../contexts/CurrentUserContext";
 // custom function to calculate time slots
 import calculateTimeSlots from "../../utils/calculateTimeSlots";
 // bootstrap
@@ -29,9 +27,6 @@ function AppointmentsCreateForm({ message, homepage }) {
     });
 
     const { treatment, date, time, notes } = appointmentData;
-
-    // get the current user
-    const currentUser = useCurrentUser();
 
     const [errors, setErrors] = useState({});
     const history = useHistory();

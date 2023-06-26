@@ -1,17 +1,22 @@
 import React, { useEffect, useState } from "react";
+import axios from 'axios';
+// router
+import { NavLink, useHistory, useLocation } from 'react-router-dom';
+// context
+import { useCurrentUser, useSetCurrentUser } from '../contexts/CurrentUserContext';
+// custom hooks
+import useToggleExpanded from "../hooks/useToggleExpanded";
+// bootstrap
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-
-import logo from '../assets/hair-icon-wine.png'
-import styles from '../styles/Navigation.module.css';
-
-import { NavLink, useHistory, useLocation } from 'react-router-dom';
-import { useCurrentUser, useSetCurrentUser } from '../contexts/CurrentUserContext';
-import axios from 'axios';
-import useToggleExpanded from "../hooks/useToggleExpanded";
-import ModalComponent from "./ModalComponent";
 import { Button } from "react-bootstrap";
+// logo
+import logo from '../assets/hair-icon-wine.png';
+// custom componenets
+import ModalComponent from "./ModalComponent";
+// custom css
+import styles from '../styles/Navigation.module.css';
 
 
 const Navigation = () => {
