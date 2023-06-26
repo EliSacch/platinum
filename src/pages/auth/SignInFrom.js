@@ -20,6 +20,7 @@ import {
 import styles from "../../styles/SignInUpForm.module.css";
 // to redirect the user based on the auth status
 import { useRedirect } from "../../hooks/useRedirect";
+import { setTokenTimestamp } from "../../utils/utils";
 
 
 const SignInForm = () => {
@@ -48,6 +49,7 @@ const SignInForm = () => {
       // if the axios request is successful, we se the current user
       const { data } = await axios.post("/dj-rest-auth/login/", signInData);
       setCurrentUser(data.user);
+      setTokenTimestamp(data);
       history.goBack();
     } catch (err) {
       // otherwise we set the errors

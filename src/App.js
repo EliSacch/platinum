@@ -1,4 +1,4 @@
-
+import React from "react";
 import './api/axiosDefaults';
 // router
 import { Route, Switch } from "react-router-dom";
@@ -20,6 +20,7 @@ import UserPasswordForm from "./pages/profiles/UserPasswordForm";
 import ProfileEditForm from "./pages/profiles/ProfileEditForm";
 // custom css
 import styles from './App.module.css';
+import NotFound from './components/NotFound';
 
 
 function App() {
@@ -117,7 +118,7 @@ function App() {
         />
 
         {/* -------------- Other pages -------------- */}
-        <Route render={() => <p>Page not found!</p>} />
+        <Route render={() => <NotFound />} />
 
       </Switch>
       <Footer />
