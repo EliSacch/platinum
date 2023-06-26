@@ -16,9 +16,15 @@ import {
 } from "react-bootstrap";
 // custom css
 import styles from "../../styles/SignInUpForm.module.css";
+// to redirect the user based on the auth status
+import { useRedirect } from "../../hooks/useRedirect";
 
 
 const SignUpForm = () => {
+
+  // to redirect the user if already logged in
+  useRedirect("loggedIn");
+
   const [signUpData, setSignUpData] = useState({
     username: "",
     password1: "",

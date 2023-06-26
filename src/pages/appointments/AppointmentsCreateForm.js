@@ -13,10 +13,14 @@ import Container from "react-bootstrap/Container";
 import { Alert } from "react-bootstrap";
 // custom css
 import styles from "../../styles/AppointmentsCreateEditForm.module.css";
+// to redirect the user based on the auth status
+import { useRedirect } from "../../hooks/useRedirect";
 
 
 function AppointmentsCreateForm({ message, homepage }) {
-
+    // to redirect the user if already logged in
+    useRedirect("loggedOut");
+    
     const [appointmentData, setAppointmentData] = useState({
         treatment: "Consultation",
         date: "",
@@ -103,7 +107,7 @@ function AppointmentsCreateForm({ message, homepage }) {
                         /* If the current user is a staff memeber
                             we filter the results, to show only the active
                             treatments */
-                        currentUser.is_staff ? (
+                        currentUser?.is_staff ? (
                             treatments.results.filter(
                                 res => res.is_active===true
                             ).map((t, i) => (
@@ -222,16 +226,18 @@ function AppointmentsCreateForm({ message, homepage }) {
             {/* If there an active treatment that can be booked online
             we show the form, otherwise the user is told that 
             the online booking is not available */}
-            {treatments.results.length ? (
-                <Form
-                    onSubmit={handleSubmit}
-                    className={styles.Form}
-                >
-                    <Container>{textFields}</Container>
-                </Form>
-            ) : (
-                <p>{message}</p>
-            )}
+            {
+                treatments.results.length ? (
+                    <Form
+                        onSubmit={handleSubmit}
+                        className={styles.Form}
+                    >
+                        <Container>{textFields}</Container>
+                    </Form>
+                ) : (
+                    <p>{message}</p>
+                )
+            }
         </section>
     );
 }

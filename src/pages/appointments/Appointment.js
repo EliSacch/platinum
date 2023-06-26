@@ -8,9 +8,12 @@ import { Card } from 'react-bootstrap';
 import ModalComponent from '../../components/ModalComponent';
 // custom css
 import styles from '../../styles/Appointment.module.css';
+import { useRedirect } from '../../hooks/useRedirect';
 
 
 const Appointment = (props) => {
+    // to redirect the user if already logged in
+    useRedirect("loggedOut");
 
     const {
         id, treatment, date, time, status, notes, appointmentPage

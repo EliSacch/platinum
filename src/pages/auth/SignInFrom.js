@@ -18,10 +18,14 @@ import {
 } from "react-bootstrap";
 // custom css 
 import styles from "../../styles/SignInUpForm.module.css";
+// to redirect the user based on the auth status
+import { useRedirect } from "../../hooks/useRedirect";
 
 
 const SignInForm = () => {
   const setCurrentUser = useSetCurrentUser();
+  // to redirect the user if already logged in
+  useRedirect("loggedIn");
 
   const [signInData, setSignInData] = useState({
     username: "",
@@ -30,21 +34,31 @@ const SignInForm = () => {
   const { username, password } = signInData;
 
   const [errors, setErrors] = useState({});
-
   const history = useHistory();
-  
+
+  /**
+   * This runs when the user submits the login form
+   * @param {submit} event 
+   */
   const handleSubmit = async (event) => {
+    // prevent the default behaviour, so that we can make the request first
     event.preventDefault();
 
     try {
+      // if the axios request is successful, we se the current user
       const { data } = await axios.post("/dj-rest-auth/login/", signInData);
       setCurrentUser(data.user);
-      history.push("/");
+      history.goBack();
     } catch (err) {
+      // otherwise we set the errors
       setErrors(err.response?.data);
     }
   };
 
+  /**
+   * On change function for controlled forms
+   * @param {change} event 
+   */
   const handleChange = (event) => {
     setSignInData({
       ...signInData,
@@ -52,12 +66,14 @@ const SignInForm = () => {
     });
   };
 
+
   return (
     <Row className={styles.OffsetTop}>
       <Col className="my-auto py-2 p-md-2" md={6}>
         <Container className="p-4">
           <h1>Sign in</h1>
 
+          {/* Text field for the username */}
           <Form onSubmit={handleSubmit}>
             <Form.Group controlId="username">
               <Form.Label className="d-none">username</Form.Label>
@@ -77,6 +93,7 @@ const SignInForm = () => {
               </Alert>
             ))}
 
+            {/* Password field for the password, so that it is not dusplayed */}
             <Form.Group controlId="password">
               <Form.Label className="d-none">Password</Form.Label>
               <Form.Control
@@ -95,6 +112,7 @@ const SignInForm = () => {
               </Alert>
             ))}
 
+            {/* Form action buttons */}
             <Button
               className={styles.SignInUpBtn}
               type="submit"
@@ -109,6 +127,7 @@ const SignInForm = () => {
           </Form>
         </Container>
 
+        {/* Link to signup page if user doe not have an account */}
         <Container className="mt-3">
           <Link to="/signup">
             Don't have an account? <span>Sign up</span>

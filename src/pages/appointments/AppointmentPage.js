@@ -7,28 +7,31 @@ import Appointment from './Appointment';
 import Asset from '../../components/Asset';
 // custom css
 import styles from '../../styles/AppointmentPage.module.css';
+import { useRedirect } from '../../hooks/useRedirect';
 
 
 function AppointmentPage() {
-    // To access the URL 'id' parameter
-    const {id} = useParams();
+  // to redirect the user if already logged in
+  useRedirect("loggedOut");
+  // To access the URL 'id' parameter
+  const { id } = useParams();
 
-    const [appointment, setAppointment] = useState({results: []});
-    const [hasLoaded, setHasLoaded] = useState(false);
+  const [appointment, setAppointment] = useState({ results: [] });
+  const [hasLoaded, setHasLoaded] = useState(false);
 
-    useEffect(() => {
-        const fetchAppointment = async () => {
-            try {
-                const { data } = await axiosReq.get(`/my-appointments/${id}`);
-                setAppointment({results: [data]});
-                setHasLoaded(true);
-            } catch(err) {
-                console.log(err);
-            }
-        };
-        setHasLoaded(false);
-        fetchAppointment();
-    }, [id]);
+  useEffect(() => {
+    const fetchAppointment = async () => {
+      try {
+        const { data } = await axiosReq.get(`/my-appointments/${id}`);
+        setAppointment({ results: [data] });
+        setHasLoaded(true);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    setHasLoaded(false);
+    fetchAppointment();
+  }, [id]);
 
 
   return (
