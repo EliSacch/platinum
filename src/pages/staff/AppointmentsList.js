@@ -123,12 +123,11 @@ function AppointmentsList() {
                                 <Table className={styles.AppointmnetsList}>
                                     <thead>
                                         <tr>
-                                            <th>Client username</th>
-                                            <th>Client Name</th>
+                                            <th>Client</th>
                                             <th>Date</th>
                                             <th>Time</th>
                                             <th>Treatment</th>
-                                            <th>Notes</th>
+                                            <th className="my-auto d-none d-md-block p-2">Notes</th>
                                             <th></th>
                                         </tr>
                                     </thead>
@@ -137,14 +136,13 @@ function AppointmentsList() {
                                             <tr
                                                 key={appointment.id}
                                             >
-                                                <td>{appointment.owner ? appointment.owner_username : ""}</td>
-                                                <td>{appointment.client_name ? appointment.client_name : ""}</td>
+                                                <td>{appointment.client_name ? appointment.client_name : appointment.owner}</td>
                                                 <td>{appointment.date ? appointment.date : ""}</td>
                                                 <td>
                                                     {appointment.time ? displayTime(appointment.time) : ""}
                                                 </td>
                                                 <td>{appointment.treatment ? appointment.treatment : ""}</td>
-                                                <td>{appointment.notes ? appointment.notes : ""}</td>
+                                                <td className="my-auto d-none d-md-block p-2">{appointment.notes ? appointment.notes : ""}</td>
                                                 <td>
                                                     <ActionsDropdown
                                                         handleEdit={handleEdit}

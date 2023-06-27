@@ -1,4 +1,7 @@
-.NotFound {
-    height: 100vh;
-    background-color: red;
+.Section {
+    margin-top: 120px;
+    min-height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }

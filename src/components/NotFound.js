@@ -3,9 +3,9 @@ import styles from '../styles/NotFound.module.css';
 
 const NotFound = () => {
   return (
-    <div className={styles.NotFound}>
+    <section className={`${styles.Section}`}>
       <h1>Sorry, the page you're looking for doesn't exist</h1>
-    </div>
+    </section>
   )
 }
 

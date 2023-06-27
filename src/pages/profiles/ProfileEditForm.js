@@ -116,7 +116,7 @@ const ProfileEditForm = () => {
     );
 
     return (
-        <section className={styles.OffsetTop}>
+        <section className={`${styles.OffsetTop} ${styles.ProfileEditForm}`}>
             {hasLoaded ? (
                 <Form onSubmit={handleSubmit} className={styles.Form}>
                     <Container>
@@ -131,6 +131,8 @@ const ProfileEditForm = () => {
                                     {message}
                                 </Alert>
                             ))}
+                            <Form.Label className={styles.Label}>Change Image</Form.Label>
+               
                             <Form.File
                                 id="image-upload"
                                 ref={imageFile}

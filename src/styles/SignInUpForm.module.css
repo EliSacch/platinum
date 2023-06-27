@@ -2,6 +2,10 @@
     margin-top: 110px;
 }
 
+.AuthForm {
+    max-width: 100%;
+}
+
 .Input {
     margin: 1em;
 }

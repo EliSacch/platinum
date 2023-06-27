@@ -33,9 +33,10 @@ function ServicesPage() {
     return (
         <section className={styles.Section} >
             {hasLoaded ? (
-                <Container className={styles.ServicesPageWrapper}>
+                <Container>
                     {
                         <InfiniteScroll
+                            className={styles.ServicesPageWrapper}
                             children={
                                 // Firther the results to display only the active treatments
                                 treatments.results.filter(

@@ -24,7 +24,6 @@
 
 .ProfileImage > img {
     object-fit: cover;
-    width: 110%;
 }
 
 .ProfileDetail {
@@ -40,6 +39,12 @@
 }
 
 .Form {
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.ProfileEditForm {
+    width: 96%;
     max-width: 500px;
     margin: 0 auto;
 }

@@ -70,7 +70,7 @@ const SignInForm = () => {
 
 
   return (
-    <Row className={styles.OffsetTop}>
+    <Row className={`${styles.OffsetTop} ${styles.AuthForm}`}>
       <Col className="my-auto py-2 p-md-2" md={6}>
         <Container className="p-4">
           <h1>Sign in</h1>
