@@ -19,18 +19,18 @@ export const fetchMoreData = async (resource, setResource) => {
   } catch (err) {}
 };
 
-// Save the refresh token timestamp
+// to save the token timestamp in local storage
 export const setTokenTimestamp = (data) => {
   const refreshTokenTimestamp = jwtDecode(data?.refresh_token).exp;
   localStorage.setItem("refreshTokenTimestamp", refreshTokenTimestamp);
 };
 
-// make sure to refresh token only for logged in users
+// check if we should refresh token or not
 export const shouldRefreshToken = () => {
   return !!localStorage.getItem("refreshTokenTimestamp");
 };
 
-// To remove the timestamp when refresh token expires or user logs out
+// To remove the timestamp from local storage if token expired or on log out
 export const removeTokenTimestamp = () => {
   localStorage.removeItem("refreshTokenTimestamp");
 };
