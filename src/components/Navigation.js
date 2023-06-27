@@ -17,6 +17,7 @@ import logo from '../assets/hair-icon-wine.png';
 import ModalComponent from "./ModalComponent";
 // custom css
 import styles from '../styles/Navigation.module.css';
+import { removeTokenTimestamp } from "../utils/utils";
 
 
 const Navigation = () => {
@@ -39,6 +40,7 @@ const Navigation = () => {
     try {
       await axios.post("dj-rest-auth/logout/");
       setCurrentUser(null);
+      removeTokenTimestamp();
       handleClose();
       history.push('/');
 
