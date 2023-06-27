@@ -11,6 +11,7 @@
     "bootstrap": "^4.6.0",
     "date-fns": "^2.30.0",
     "dateformat": "^5.0.3",
+    "i": "^0.3.7",
     "jwt-decode": "^3.1.2",
     "react": "^18.2.0",
     "react-big-calendar": "^1.8.1",
