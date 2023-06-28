@@ -757,7 +757,17 @@ All the pages were checked using lighthouse
 
 | Page | Performance | Accessibility | Best Practices | SEO |
 | ---- | ----------- | ------------- | -------------- | --- |
-|
+| Landing page | 83 | 89 | 92 | 91 |
+| My appointments page | 93 | 89 | 92 | 91 |
+| Profile Page | 67 | 86 | 92 | 100 |
+| Calendar | 91 | 89 | 92 | 91 |
+| Appointments | 91 | 89 | 92 | 91 | 
+| Treatments | 87 | 91 | 83 | 100 |
+| Clients | 85 | 91 | 83 | 100 |
+| Sign in | 93 | 93 | 92 | 100 |
+| Sign up | 92 | 93 | 92 | 100 |
+| New appointment | 73 | 96 | 100 | 100 |
+| Edit appointment | 72 | 96 | 92 | 100 |
 
 
 ## Deployment

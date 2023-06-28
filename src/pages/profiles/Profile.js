@@ -14,13 +14,15 @@ const Profile = (props) => {
 
   const history = useHistory();
 
+
   return (
     <>
       <div className={styles.ProfileHeader}>
 
         <div className={styles.ProfileImage}>
-          <img src={image} alt="profile" />
+          < img src={image} alt="profile" loading="lazy"/>
         </div>
+
         <div>
           <h1>Hi, {name ? name : owner}</h1>
           <Button
