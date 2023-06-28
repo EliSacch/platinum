@@ -764,20 +764,46 @@ All the pages were checked using lighthouse
 
 ### Deployment on Heroku
 
+To deploy this project on Heroku I followed these steps:
+
+1. Before deplying this project is necessary to connect it to the API by setting the baseURL in the axiosDefaults.js file
+2. then Access your Heroku account (or create one)
+3. Click on Add App
+4. Go to deploy tab
+5. Select GitHub as deploy method
+6. Select the relevant GitHub repository
+7. Click on deploy branch
+8. Make sure that the are no build errors
+
+
 ### Local Deployment
-  - For a local deployment follow these steps:
-    - Create a new directory on your machine, where you want do deploy the files
-    - Open the existing repository in GitHub
-    - Go to the "Code" tab
-    - Click on the "Code" button
-    - Copy the HTTPS link
-    - Open your terminal and run the command __git clone 'link'__
-    - use the link just copied, without quotes, instead of 'link'
+
+For a local deployment follow these steps:
+1. Create a new directory on your machine, where you want do deploy the files
+2. Open the existing repository in GitHub
+3. Go to the "Code" tab
+4. Click on the "Code" button
+5. Copy the HTTPS link
+6. Open your terminal and run the command __git clone 'link'__
+7. use the link just copied, without quotes, instead of 'link'
+8. When the repository is cloned, run npm install to install all the required node packages
 
 
 ## Credits 
 
 ### Code
+
+To build this project I applied the concepts learnt in the Code Institute course, although the code has been rewritten to build an original project.
+
+There are although some similarities in the following files:
+
+[SignInForm](src/pages/auth/SignInFrom.js)
+[SignUpForm](src/pages/auth/SignUpFrom.js)
+[CurrentUserContext.js](src/contexts/CurrentUserContext.js)
+[useClickOutsideToggle.js](src/hooks/useToggleExpanded.js)
+[useRedirect.js](src/hooks/useRedirect.js)
+[Utils.js](src/utils/utils.js)
+
 
 ### Content
 
@@ -785,12 +811,10 @@ All the pages were checked using lighthouse
 
 - The hair icon is from [Icons 8](https://icons8.com/icon/BuTG7ooQjwHl/hairstyle)
 
-
 - Hero image by [George Bohunicky](https://unsplash.com/@stuchy?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) on [Unsplash](https://unsplash.com/photos/qJKT2rMU0VU?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)
 
 
 - Photo gallery 1 by [kyle smith](https://unsplash.com/@roller1?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) on [Unsplash](https://unsplash.com/photos/4qYHqQqlwM4?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)
-  
 
 - Photo gallery 2 by [Jonathan Cooper](https://unsplash.com/@theshuttervision?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) on [Unsplash](https://unsplash.com/photos/sS3qRFsKZlg?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)
   
@@ -803,16 +827,25 @@ All the pages were checked using lighthouse
   
 ## Technologies used
 
+- Languages:
+
   - HTML
   - CSS
   - JavaScript
+  - JSX
+
+  Frameworks and Libraries:
   - React
-
-  Libraries:
+  - React-bootstrap - React library for responsive componenets
   - React router dom - To handle navigation between pages
-
+  - React-infinite-scroll - To load more content on scroll
+  - React-big-calendar - To implement the calendar view
+  - Axios - to handle requests to the API
 
 
 ## Acknowledgements
 
 A special thank to my mentor __Dick Vlaanderen__ for his precious feedback on this project.
+
+I would also like to share my gratitude for my peers from Code Institute class Jun-2022 for their support during this year together.
+
