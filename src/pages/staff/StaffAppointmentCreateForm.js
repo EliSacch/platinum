@@ -65,7 +65,6 @@ function StaffAppointmentCreateForm({ setShow, query, setQuery }) {
         } catch (err) {
             if (err.response?.status !== 401) {
                 setErrors(err.response?.data);
-                console.log(err.response);
                 setHasLoaded(true);
             }
         }
@@ -80,7 +79,6 @@ function StaffAppointmentCreateForm({ setShow, query, setQuery }) {
             ...appointmentData,
             [event.target.name]: event.target.value,
         });
-        console.log(event.target.value);
     };
 
     useEffect(() => {
@@ -94,7 +92,7 @@ function StaffAppointmentCreateForm({ setShow, query, setQuery }) {
                 setClients(data);
 
             } catch (err) {
-                console.log(err, 'from fetchClients');
+                console.log(err);
             }
         };
         /**
@@ -106,7 +104,7 @@ function StaffAppointmentCreateForm({ setShow, query, setQuery }) {
                 const { data } = await axiosReq.get('/treatments/');
                 setTreatments(data);
             } catch (err) {
-                console.log(err, 'from fetchTreatment');
+                console.log(err);
             }
         };
         fetchClients();

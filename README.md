@@ -1,17 +1,24 @@
 # Platinum
-Hairdresser salon
+
+Platinum is an hairdresser website.
+It includes both a landing page and a private area for clients, and a staff dashboard to view and manage the appointments.
+
+The website is built in React and relies on a Django REST API.
+
+[Link deployed website](https://platinum.herokuapp.com/)
+
+[Link to API repository](https://github.com/EliSacch/booking-api)
 
 
-![Responsive Mockup]()
+![Responsive Mockup](media/testing/am-i-responsive.png)
 
-[See deployed website]()
 
 ## Table of content
 
 - [Design and User Experience](#design-and-user-experience)
-  - [Design](#design)
   - [User Stories](#user-stories)
   - [Wireframes](#wireframes)
+  - [Design](#design)
 
 - [Features](#features)
   - [Landing Page](#landing-page)
@@ -38,22 +45,55 @@ Hairdresser salon
 
 ## Design and User Experience
 
-### Design
+This web application was designed following the Agile methodology and by defining the users stories and implementing the features needed to meet them.
 
-- Color palette:
-  - Neutral colours:
+The development has been tracked using GitHub Projects feature.
 
-  ![light](media/design/color-palette-light.png)
-  ![dark](media/design/color-palette-dark.png)
-  - Vibrant colours: 
-  
-  ![vibrant](media/design/color-palette-colours.png)
+[Check this project](https://github.com/users/EliSacch/projects/7)
+
 
 ### User Stories
 
-- As website owner I want:
+#### Landing page
 
-- As a user I want:
+- As a first time user I can see see an about section, so that I can learn more about the company.
+
+- As client I can see all offered services in one section, so that I decide if I want to make an appointment.
+
+- As a client I can find the booking section, with relevant information on how to make an appointment.
+
+- As a client I can easily find how to contact the business, if I have some questions or if I want to make an appointment.
+
+- As a user I can have a simple and clear navigation, so that I can easily find the information I need.
+
+- As a client I can see the gallery section, to be more engaged and see some results of previous clients.
+
+#### Personal area
+
+- As a client I can register and create a personal account, so that I can access a personal area.
+
+- As a client I can login and out from my personal area by entering my credential, so that other clients do not have access to my information.
+
+- As a client I can change my password if I want to, so that I can maintain a secure access.
+
+- As a registered client, I can access some extra features from my personal area.
+
+- As a registered user I can review and edit my profile and account information.
+
+- As a registered user I can access my-appointments, so that I can review my past appointments, and I can view and manage upcoming appointments.
+
+#### Staff dashboard
+
+- As a staff member I can access a staff dashboard, so that I can utilize some extra features.
+
+- As a staff member I can see the list of registered clients, and I can add some notes to the client profile, so that I can save important information for future appointments.
+
+- As a staff member I can access all the appointments, so that I can review and manage them on behalf of the clients, and I an make appointments for unregistered users.
+
+- As a staff member I can access all the services/treatments, so that I can review them and keep them up to date.
+
+- As a staff member I have access to the calendar, so that I can review the appointments for specific day, week or month.
+
 
 ### Wireframes
 
@@ -100,6 +140,18 @@ Hairdresser salon
    ![Desktop Wireframe](media/wireframes/admin-page/desktop/3.png)
 
 </details>
+
+
+### Design
+
+- Color palette:
+  - Neutral colours:
+
+  ![light](media/design/color-palette-light.png)
+  ![dark](media/design/color-palette-dark.png)
+  - Vibrant colours: 
+  
+  ![vibrant](media/design/color-palette-colours.png)
 
 
 ## Features 
