@@ -98,46 +98,39 @@ The development has been tracked using GitHub Projects feature.
 ### Wireframes
 
 <details>
-  <summary>Landing page mobile</summary>
+  <summary>Mobile landing page</summary>
 
-   ![Mobile Wireframe](media/wireframes/landingpage/mobile/1.png)
-   ![Mobile Wireframe](media/wireframes/landingpage/mobile/2.png) 
-   ![Mobile Wireframe](media/wireframes/landingpage/mobile/3.png) 
-   ![Mobile Wireframe](media/wireframes/landingpage/mobile/4.png) 
-   ![Mobile Wireframe](media/wireframes/landingpage/mobile/5.png) 
+   ![Mobile header](media/wireframes/Mobile%20-%20header.png)
+   ![Mobile gallery](media/wireframes/Mobile%20-%20Gallery.png) 
+   ![Mobile booking](media/wireframes/Mobile%20-%20Booking.png) 
+   ![Mobile header](media/wireframes/Mobile%20-%20Menu.png)
+
+</details>
+
+<details>
+  <summary>Mobile dashboards</summary>
+
+   ![Mobile header](media/wireframes/Mobile%20-%20client%20dashboard.png)
+   ![Mobile gallery](media/wireframes/Mobile%20-%20client%20dashboard-1.png) 
 
 </details>
 
 
 <details>
-  <summary>Landing page desktop</summary>
+  <summary>Desktop landing page</summary>
 
-   ![Desktop Wireframe](media/wireframes/landingpage/desktop/1.png)
-   ![Desktop Wireframe](media/wireframes/landingpage/desktop/2.png)
-   ![Desktop Wireframe](media/wireframes/landingpage/desktop/3.png)
-
-</details>
-
-
-<details>
-  <summary>Staff page mobile</summary>
-
-   ![Mobile Wireframe](media/wireframes/admin-page/mobile/1.png)
-   ![Mobile Wireframe](media/wireframes/admin-page/mobile/2.png)
-   ![Mobile Wireframe](media/wireframes/admin-page/mobile/3.png)
-   ![Mobile Wireframe](media/wireframes/admin-page/mobile/4.png)
-   ![Mobile Wireframe](media/wireframes/admin-page/mobile/5.png)
-   ![Mobile Wireframe](media/wireframes/admin-page/mobile/6.png)
+   ![Desktop Wireframe](media/wireframes/Desktop%20-%20header.png)
+   ![Desktop Wireframe](media/wireframes/Desktop%20-%20About%20Gallery%20Services.png)
+   ![Desktop Wireframe](media/wireframes/Desktop%20-%20Booking%20Form.png)
 
 </details>
 
 
 <details>
-  <summary>Staff page desktop</summary>
+  <summary>Desktop dashboard</summary>
 
-   ![Desktop Wireframe](media/wireframes/admin-page/desktop/1.png)
-   ![Desktop Wireframe](media/wireframes/admin-page/desktop/2.png)
-   ![Desktop Wireframe](media/wireframes/admin-page/desktop/3.png)
+   ![Mobile Wireframe](media/wireframes/Desktop%20-%20client%20dashboard.png)
+   ![Mobile Wireframe](media/wireframes/Desktop%20-%20staff%20dashboard.png)
 
 </details>
 
