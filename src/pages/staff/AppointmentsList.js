@@ -127,8 +127,8 @@ function AppointmentsList() {
                                             <th>Date</th>
                                             <th>Time</th>
                                             <th>Treatment</th>
-                                            <th className="my-auto d-none d-md-block p-2">Notes</th>
-                                            <th></th>
+                                            <th className="d-none d-md-block">Notes</th>
+                                            <th> </th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -138,11 +138,9 @@ function AppointmentsList() {
                                             >
                                                 <td>{appointment.client_name ? appointment.client_name : appointment.owner}</td>
                                                 <td>{appointment.date ? appointment.date : ""}</td>
-                                                <td>
-                                                    {appointment.time ? displayTime(appointment.time) : ""}
-                                                </td>
+                                                <td>{appointment.time ? displayTime(appointment.time) : ""}</td>
                                                 <td>{appointment.treatment ? appointment.treatment : ""}</td>
-                                                <td className="my-auto d-none d-md-block p-2">{appointment.notes ? appointment.notes : ""}</td>
+                                                <td className="d-none d-md-block">{appointment.notes ? appointment.notes : <span className={styles.Hidden}>none</span>}</td>
                                                 <td>
                                                     <ActionsDropdown
                                                         handleEdit={handleEdit}

@@ -7,6 +7,10 @@
     color: var(--purple);
 }
 
+.Hidden {
+    color: transparent;
+}
+
 .SearchWrapper {
     position: relative;
     width: 90%;
