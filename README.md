@@ -27,8 +27,8 @@ The website is built in React and relies on a Django REST API.
   - [Uninplemented Features](#uninplemented-features)
 
 - [Testing](#testing)
-  - [Tests](#tests)
   - [Validator Testing](#validator-testing)
+  - [Manual testing](#manual-testing)
   - [Fixed bugs](#fixed-bugs)
   - [Unfixed bugs](#unfixed-bugs)
   - [Performance](#performance)
@@ -329,9 +329,6 @@ Here are some featured that I would have liked to implement:
 ## Testing 
 
 
-### Tests
-
-
 ### Validator Testing
 
 #### HTML
@@ -422,16 +419,246 @@ Jigsaw gave the following warnings, which although do not highligh any issue wit
 
 #### JavaScript
 
-Check if Errors are returned when passing the final version through the official [JsHint validator](https://jshint.com/), but only 4 warnings.
 
 
- <details>
-  <summary>JsHint - JS validation screenshot</summary>
 
-  ![Image]()
+### Manual Testing
 
-  </details>
+  <details>
+  <summary>Landing page</summary>
 
+  | Action | Expected Result | Pass/Fail | 
+  | ------------ | ---------| ---------- |
+  | Open the url | The Home page is displayed | Pass |
+  | Scroll down  | The Navbar sticks to the top | Pass |
+  | Click the arrow down from the "Hero" section  | The page scrolls to the about section | Pass |
+  | Check the gallery | The photo slide automatically | Pass |
+  | Click on the left arrow from the gallery | The previous image is displayed | Psss |
+  | Click on the right arrow from the gallery | The next image is displayed | Pass |
+  | Shrink and expand the page | The layout changes to be responsive | Pass |
+  | Click on the "See all services button" | User is redirected to the all services page | Pass |
+  | Click the "Home" link from the navbar | The user is redirected to the home page | Pass |
+  | Click on the "Book" button | The page scrolls down to the book section | Pass |
+  | Check the book section | Because we are logged out we see the message for logged out users | Pass |
+  | Click on call us from mobile | The mobile phone pad opens with the number already provided | Pass |
+  | Click on email link | The email app on our device opens up with the email address already filled in | Pass |
+  | Repeat for the phone number and email address in the footer | We are prompted to call or email respectively | Pass |
+  | Click on the "facebook" icon in the footer | We are redirected to facebook* | Pass |
+  | Click on the "instagram" icon in the footer | We are redirected to instagram* | Pass |
+
+  ** because this is not a real company there is no actual facebbok or instagram page.
+
+</details>
+
+
+<details>
+  <summary>Authentication</summary>
+
+  - Sign up
+
+  | Action | Expected Result | Pass/Fail | 
+  | ------------ | ---------| ---------- |
+  | Click on the Sign up button | We are redirected to the sign up page | Pass |
+  | Submit the form with no data | All fields show error message stating that the field cannot be blank | Pass |
+  | Enter just a username | The other two fields display a message stating that they cannot be blank | Pass |
+  | Enter just the username and a password, without the confirmation | An error message informs us that the confirmation password field cannot be blank | Pass |
+  | Enter all the data, but two different passwords | An error message tells us that our passwords don't match | Pass |
+  | Enter matching passwords but a username that already exists | An error message informs us that a user with that username already exists | Pass |
+  | Enter a valid username an two matching passwords | The sign up is successfull and we are redirected to the sign in page | Pass |
+  | Click on the "Don't have an account? Sign up" link | We are redirected to the sign up page | Pass |
+
+  - Sign in
+
+
+  | Action | Expected Result | Pass/Fail | 
+  | ------------ | ---------| ---------- |
+  | Click on the "Already have an account? Sign in" | We are redirected to the sign in page again | Pass |
+  | Go to another page, and then click on the "Sign in" link | We are redirected to the sign in page | Pass |
+  | Submit the form with no information | We are informed the the fields cannot be blank | Pass |
+  | Submit the form with just a username | We are informed the the password field cannot be blank | Pass |
+  | Submit the form with a valid username but an invalid password | We are informed that the provided credentials are not valid | Pass |
+  | Submit the form with a valid password but a valid username | We are informed that the provided credentials are not valid | Pass |
+  | Enter all valid information | The sign in is successful and the user is redirected to the home page | Pass |
+
+</details>
+
+
+<details>
+  <summary>Authenticated client</summary>
+
+  - Landing page and navigation
+
+  | Action | Expected Result | Pass/Fail | 
+  | ------------ | ---------| ---------- |
+  | Check the navbar | There is no sign in or sign up link, but we can see the following links for authenticated users: my appointments, profile, log out | Pass |
+  | Scroll down to the book section | The booking form is displayed | Pass |
+  | Click on the "My appointments" link | The user is redirected to the "My appointments" page | Pass |
+  | Click on the "Profile" link | The user is redirected to the "Profile" page | Pass |
+  | Click on the sign out button | The sign out modal is displayed | Pass |
+  | Click on the X button inside the modal | The modal closes with no other efefct | Pass |
+  | Reopen the modal and click on the "Cancel" button | The modal closes with no other efefct | Pass |
+  | Reopen the modal and click on "Confirm" | The user il logged out | Pass |
+
+  - Profile page
+  
+  | Action | Expected Result | Pass/Fail | 
+  | ------------ | ---------| ---------- |
+  | Log in again and go to the Profile page | Each client can see his/her own information | Pass |
+  | Click on "Edit profile information" button | The user is redirected to the edit profile page | Pass |
+  | Click in the file input and choose an image | The new image is displayed in the preview | Pass |
+  | Change the display name and click on Save | The user is redirected to the profile page and they can see the updated information | Pass |
+  | Click on the edit button next to the username | The user is redirected to the page to update the username | Pass |
+  | Delete the username and sibmit | An error informs us that the field cannot be blank | Pass |
+  | Enter a username already taken by another user | An error informs us that a user with that username already exists | Pass |
+  | Enter a valid username | The form is submitted correctly and the user is redirected to the profile page, where they can see the updated username | Pass |
+  | Click on the Edit button next to the password field | The user is redirected to the page where they can change password | Pass |
+  | Save with both fields empty | We are informed that the fields cannot be empty | Pass |
+  | Submit with just one password at a time | We are informed that neither field can be blank | Pass |
+  | Submit with different passwords | We are informed that the passwords don't match | Pass |
+  | Submit with matching passwords | The form is submitted and the user is redirected to the profile page | Pass |
+
+
+  - My appointments page
+
+  | Action | Expected Result | Pass/Fail | 
+  | ------------ | ---------| ---------- |
+  | Click on the Upcoming appointments tab | The upcoming appointments (if any) are displayed | Pass |
+  | Click on the Past appointments tab | The past appointments (if any) are displayed | Pass |
+  | Click on one of the past appointment | A modal with the appointment details opens up, but there is no action button | Pass |
+  | Click on the back arrow | The user is redirected to the my appointments page | Pass |
+  | Click on one of the Upcoming appointments | A modal with the appointment details opens up, and there are two action button (edit and delete) | Pass |
+  | Click on the edit button | The edit form opens up | Pass |
+  |  | The edit functionality is tested below | |
+  | Click on cancel | The user is redirected to the appointment detail page | Pass |
+  | Click on delete | The delete confirmation modal opens up | Pass |
+  | Click on cancel | The modal closes with no effect on the appointment | Pass |
+  | Reopen the modal and click on confirm | The appointment is cancelled, the user is redirected to "My appointments" page and the cancelled appointment is not vailable anymore | Pass |
+
+
+- Make an appointment
+
+  | Action | Expected Result | Pass/Fail | 
+  | ------------ | ---------| ---------- |
+  | Click on the "Make an appointment" button | The user is redirected to the booking form | Pass |
+  | Submit with no data | An error shows that the date field is invalid | Pass |
+  | Select a date in the past | An error tells us that the date is not available | Pass |
+  | Select a Sunday or monday | An error tells us that the date is not available | Pass |
+  | Select a valid date (when there are no other appointments) | The form is submitted and the appointment is displaying in our "Upcoming appointments" tab | Pass |
+  | Try and book for the same date and time (or when there is already another appointment)| An error tells us that the date is not available | Pass |
+  | Try making a new appointment with some notes | The notes will reflect in the appointment card and detail page | Pass |
+
+- Edit appointment
+
+  | Action | Expected Result | Pass/Fail | 
+  | ------------ | ---------| ---------- |
+  | Click on one of the upcoming appointments, and then on the edit button | The user is redirected to the edit form | Pass |
+  | Change appointment type, date, or time | The new information is validated in the back end, and the availability is changed based on the new information. If the new information do not conflict with existing appointments, the appointment is modified successfully and the new information are displayed in the appointment card and detail page, otherwise we receive an error message | Pass |
+
+
+</details>
+
+
+<details>
+  <summary>Staff member</summary>
+
+  - Calendar
+
+  | Action | Expected Result | Pass/Fail | 
+  | ------------ | ---------| ---------- |
+  | Log in as a staff member | The navbar displays the link to the staff dashboard | Pass |
+  | Click on the link for the staff dashboard | The user is redirected to the dashboard and the current day calendar is displayed | Pass |
+  | Click on the Next button | The appointments for the next day are showing | Pass |
+  | Click on the Back button | The appointments for the previous day are showing | Pass |
+  | Click on the Week button | The calendar view changes to weekly | Pass |
+  | Click on the Next button | The appointments for the next week are showing | Pass |
+  | Click on the Back button | The appointments for the previous week are showing | Pass |
+  | Click on the Month button | The calendar view changes to monthly | Pass |
+  | Click on the Next button | The appointments for the next month are showing | Pass |
+  | Click on the Back button | The appointments for the previous month are showing | Pass |
+  | Click on agenda | The appointments for the next week are showing as a list | Pass |
+  | Click on one of the appointments | A modal opens up showing the appointment details | Pass | 
+
+
+  - appointments
+
+  | Action | Expected Result | Pass/Fail | 
+  | ------------ | ---------| ---------- |
+  | Click on the appointments button | The content displayed changes to the appointments list | Pass |
+  | Scroll down | More appointments are laoded | Pass |
+  | Click on the search bar and start typing a client name | The appointments will be filtered to display only the one belonging to a client for which it finds a partial match | Pass |
+  | Click on the action button next to one appointment | A dropdown menu shows up with the edit and delete button | Pass |
+  | Click on the edit icon | The edit form opens up | Pass |
+  |  | The edit functionality is tested below | |
+  | Click on the delete icon | The appointment is deleted and it doesn't appear in the results anymore | Pass |
+
+  - New appointment
+
+  | Action | Expected Result | Pass/Fail | 
+  | ------------ | ---------| ---------- |
+  | Click on the "Add new appointment" button | The new appointment modal opens up | Pass |
+  | Submit with no data | An error shows that the date field is invalid | Pass |
+  | Select a date in the past | An error tells us that the date is not available | Pass |
+  | Select a valid date, but leave the client and client name fields empty | A message tells us that we need to enter a name for unregistered users | Pass |
+  | Select a Sunday or monday | An error tells us that the date is not available | Pass |
+  | Select a valid date (when there are no other appointments) and entering a client name | The form is submitted and the appointment is displaying appointments list and calendar | Pass |
+  | Try and book for the same date and time (or when there is already another appointment)| An error tells us that the date is not available | Pass |
+  | Try making a new appointment with some notes | The notes will reflect in the appointment card and detail page | Pass |
+  | Try and make a new appointment, selecting a user from the clients list | If the date and time are also valid the appointment is created and it displays also for the client in "My appointments" section | Pass |
+
+- Edit appointment
+
+  | Action | Expected Result | Pass/Fail | 
+  | ------------ | ---------| ---------- |
+  | Click on the edit button | The edit appointment modal opens up | Pass |
+  | Change appointment type, date, or time | The new information is validated in the back end, and the availability is changed based on the new information. If the new information do not conflict with existing appointments, the appointment is modified successfully and the new information are displayed in the appointment card and detail page, otherwise we receive an error message | Pass |
+
+
+    - Treatments
+
+  | Action | Expected Result | Pass/Fail | 
+  | ------------ | ---------| ---------- |
+  | Click on the treatments button | The content displayed changes to the treatments list | Pass |
+  | Scroll down | More treatments are laoded | Pass |
+  | Click on the search bar and start typing a treatment title | The treatments will be filtered to display only the one for which it finds a partial title match | Pass |
+  | Click on the action button next to one treatment | A dropdown menu shows up with the edit and delete button | Pass |
+  | Click on the edit icon | The edit form opens up | Pass |
+  |  | The edit functionality is tested below | |
+  | Click on the delete icon for a treatment that has not been booked yet | The treatment is deleted and it doesn't appear in the results anymore | Pass |
+  | Click on the delete icon for a treatment that has been booked already | The  treatment is not deleted | Pass |
+
+  - New treatment
+
+  | Action | Expected Result | Pass/Fail | 
+  | ------------ | ---------| ---------- |
+  | Click on the "Add new treatment" button | The new treatment modal opens up | Pass |
+  | Submit with no data | An error shows that the mandatory fields cannot be blank | Pass |
+  | Enter a title which is already in use | An error tells us that a treatment with this title already exists | Pass |
+  | Enter a valid title but no image | An error tells us that we need to upload an image | Pass |
+  | Enter a valid title and image | The treatment is submitted and it appears in the list | Pass |
+
+  - Edit treatment
+
+  | Action | Expected Result | Pass/Fail | 
+  | ------------ | ---------| ---------- |
+  | Click on the edit button | The edit treatment modal opens up | Pass |
+  | Change treatment information | The new title and image are validated, and if vaid the new information will display | Pass |
+
+  - clients 
+  
+  | Action | Expected Result | Pass/Fail | 
+  | ------------ | ---------| ---------- |
+  | Click on the client button | The content changes to display the clients list | Pass |
+  | Start typing in the seeach bar to find a client | The list is updated to show only clients with a matching username | Pass |
+  | Click on the clcient row | A modal opens up to show the client details| Pass |
+  | Click on the edit icon next to the Role | A checkbox appears to select if we want to set the user as a staff member or not | Pass |
+  | Select and click on the Save icon | The Role is updated to Staff, and the user has access to the staff dashboard | Pass |
+  | Repeat and deselect the checkbox | The Role is updated to Client and the user cannot access the dashboard anymore | Pass |
+  | Click on the edit button next to the notes | A text area opens up to enter some notes | Pass |
+  | Enter some notes and click on save | The text area closes and the newly added notes will display | Pass |
+  | Click on close | The modal closes| Pass
+
+
+</details>
 
 ### Fixed Bugs
 
