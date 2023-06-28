@@ -34,7 +34,7 @@ The website is built in React and relies on a Django REST API.
   - [Performance](#performance)
 
 - [Deployment](#deployment)
-  - [Live Website](#live-website)
+  - [Heroku](#heroku)
   - [Local Deployment](#local-deployment)
 
 - [Credits](#credits)
@@ -772,7 +772,7 @@ All the pages were checked using lighthouse
 
 ## Deployment
 
-### Deployment on Heroku
+### Heroku
 
 To deploy this project on Heroku I followed these steps:
 

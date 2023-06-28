@@ -90,9 +90,8 @@ function StaffAppointmentCreateForm({ setShow, query, setQuery }) {
             try {
                 const { data } = await axiosReq.get('/clients/');
                 setClients(data);
-
             } catch (err) {
-                console.log(err);
+            
             }
         };
         /**
@@ -104,7 +103,7 @@ function StaffAppointmentCreateForm({ setShow, query, setQuery }) {
                 const { data } = await axiosReq.get('/treatments/');
                 setTreatments(data);
             } catch (err) {
-                console.log(err);
+                
             }
         };
         fetchClients();

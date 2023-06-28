@@ -44,7 +44,7 @@ function AppointmentsCreateForm({ message, homepage }) {
                 const { data } = await axiosReq.get('/treatments/');
                 setTreatments(data);
             } catch (err) {
-                console.log(err);
+                
             }
         };
         fetchTreatments();

@@ -61,7 +61,7 @@ function AppointmentsList() {
                 results: prevAppsetAppointments.results.filter((appointment) => appointment.id !== id),
               }));
         } catch (err) {
-            console.log(err);
+          
         }
     };
 
@@ -75,7 +75,6 @@ function AppointmentsList() {
                 setAppointments(data);
                 setHasLoaded(true);
             } catch (err) {
-                console.log(err);
                 setHasLoaded(true);
             }
         }

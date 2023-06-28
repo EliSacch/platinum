@@ -46,7 +46,7 @@ function AppointmentsEditForm({ message, }) {
                 const { data } = await axiosReq.get('/treatments/');
                 setTreatments(data);
             } catch (err) {
-                console.log(err);
+                
             }
         };
 
@@ -64,7 +64,6 @@ function AppointmentsEditForm({ message, }) {
                     { treatment, date, time, notes }
                 ) : history.push('/');
             } catch (err) {
-                console.log(err);
                 history.push("/my-appointments/");
             }
         };

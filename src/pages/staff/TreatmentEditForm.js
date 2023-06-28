@@ -43,7 +43,7 @@ function TreatmentEditForm({ setShow, query, setQuery, editId }) {
                 )
                 setHasLoaded(true);
             } catch (err) {
-                console.log(err);
+            
                 setHasLoaded(true);
             }
         };

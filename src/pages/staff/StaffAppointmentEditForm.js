@@ -48,7 +48,7 @@ function StaffAppointmentEditForm({ setShow, query, setQuery, editId }) {
                 )
                 setHasLoaded(true);
             } catch (err) {
-                console.log(err);
+        
                 setHasLoaded(true);
             }
         };
@@ -116,7 +116,7 @@ function StaffAppointmentEditForm({ setShow, query, setQuery, editId }) {
                 setClients(data);
 
             } catch (err) {
-                console.log(err, 'from fetchClients');
+           
             }
         };
         /**
@@ -128,7 +128,7 @@ function StaffAppointmentEditForm({ setShow, query, setQuery, editId }) {
                 const { data } = await axiosReq.get('/treatments/');
                 setTreatments(data);
             } catch (err) {
-                console.log(err);
+               
             }
         };
         fetchClients();

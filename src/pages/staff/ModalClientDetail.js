@@ -54,7 +54,7 @@ const ModalClientDetail = (props) => {
         setRole(data.is_staff);
         setLoadedRole(true);
       } catch (err) {
-        console.log(err)
+     
       }
     }
     setLoadedRole(false);

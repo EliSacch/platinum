@@ -45,7 +45,7 @@ const Appointment = (props) => {
             await axiosRes.delete(`/my-appointments/${id}/`);
             history.goBack();
         } catch (err) {
-            console.log(err);
+            
         }
     }
 

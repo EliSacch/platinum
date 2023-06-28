@@ -54,7 +54,7 @@ function TreatmentsList() {
                 results: prevAppsetTreatments.results.filter((treatment) => treatment.id !== id),
               }));
         } catch (err) {
-            console.log(err);
+          
         }
     };
 
@@ -68,7 +68,7 @@ function TreatmentsList() {
                 setTreatments(data);
                 setHasLoaded(true);
             } catch (err) {
-                console.log(err);
+             
                 setHasLoaded(true);
             }
         }

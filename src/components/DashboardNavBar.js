@@ -37,7 +37,7 @@ const Navigation = () => {
             history.push('/');
 
         } catch (err) {
-            console.log(err);
+           
         }
     };
 
