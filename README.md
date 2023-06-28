@@ -24,6 +24,7 @@ The website is built in React and relies on a Django REST API.
   - [Home](#home)
   - [Client Pages](#client-pages)
   - [Staff Pages](#staff-pages)
+  - [Uninplemented Features](#uninplemented-features)
 
 - [Testing](#testing)
   - [Tests](#tests)
@@ -313,6 +314,18 @@ This might be useful to save information, such as the previous dye mix used, the
 ![clients](media/features/clients.png)
 
 
+### Uninplemented Features
+
+This application can be extended even more.
+Here are some featured that I would have liked to implement:
+
+- Multiple calendars: Because it is possible that there are more people working at the same time, it would be nice to be able to set multiple calendars, and be able to have more than one appointment at th same time, based on the availbility on the calendar of each staff member working on that day.
+
+- Hide unavailable dates or time slots: At the moment the validation is handled by the back end, so if the user tries to book an unavailable date the appointment doesn't go through, and a message is displayed to the user.
+
+- Email verification / password recovery : At the moment users can register and access with username and password. It would be a nice implementation if they could register using a verified email address. This way we could also implement the password reset feature, so that users can recover access to their account even if they forgot their password.
+
+
 ## Testing 
 
 
@@ -323,27 +336,89 @@ This might be useful to save information, such as the previous dye mix used, the
 
 #### HTML
 
- Check if errors are returned when passing the final version through the official [W3C validator](https://validator.w3.org/nu/#textarea)
+ The only HTML file present in this project is index.html and its source code was validated usisng [W3C validator](https://validator.w3.org/nu/#textarea)
+
+ All other components are written using JSX, that cannot be validated directly, due to its specific syntax.
+
+ It was not possible to obtain the source code of each page by copying the compiled source code within the browser, because it provides always the HTML for index.html only. Although during development all console errors related to possible HTML issues have been addressed.
+
+In particular I had only received two kind of error:
+
+- < p > tag inserted as child of another p tag - This message was encountered when I used a < p > tag inside a React Bootstrap Card.Text component.
+
+- < tr > tag used outside a < tbody > element.
+
+Both issues have been addressed and resolved.
+
 
   <details>
 
   <summary>W3 - HTML validation screenshot</summary>
 
-  ![Image]()
+  ![Image](media/testing/validation/html/home.png)
   </details>
 
 
 #### CSS
 
- Check if Errors are returned when passing the final version through the official [Jigsaw validator](https://jigsaw.w3.org/css-validator/validator)
+The final version of the css files have been validated through the official [Jigsaw validator](https://jigsaw.w3.org/css-validator/validator)
+
+When there are no errors the validator always returns the same message, therofore I believe it is not beneficial to include a screenshot for each css file.
+
+Every warning or error will be highlighted when necessary.
+
+Please check the following 
 
   <details>
 
   <summary>W3 - CSS validation screenshot</summary>
   
-  ![Image]()
+  | File with link | Errors | 
+  | ------------ | ---------| 
+  | About | No errors |
+  | ActionsDropdown | No errors |
+  | Appointment | No errors |
+  | appointmentPage | No errors |
+  | appointmentsCreateEditForm | No errors |
+  | appointmentsList | No errors |
+  | Asset | No errors |
+  | Book | No errors |
+  | CalendarComponent | No errors |
+  | Clients | No errors |
+  | Controls | No errors |
+  | Dashboard | No errors |
+  | DashboardNavBar | No errors |
+  | Footer | No errors |
+  | Gallery | No errors |
+  | Hero | No errors |
+  | Home | No errors |
+  | ModalclientDetail | No errors |
+  | ModalComponent | No errors |
+  | Navigation | No errors |
+  | NotFound | No errors |
+  | Profile | No errors |
+  | Services | No errors |
+  | SignInUpForm | No errors |
+  | Treatments | No errors |
+
   </details>
 
+
+No errors have been ancountered when validating the css files.
+
+![success](media/testing/validation/css/success.png)
+
+
+Jigsaw gave the following warnings, which although do not highligh any issue with the css analized, but it informs that some lines of code could not be checked, due to their nature.
+
+- Css variables
+![Css variables](media/testing/validation/css/warning.png)
+
+- Google fonts import
+![google fonts import](media/testing/validation/css/warning-import.png)
+
+- Scrollbar webkits
+![Scrollbar webkits](media/testing/validation/css/warning-nav.png)
 
 #### JavaScript
 
