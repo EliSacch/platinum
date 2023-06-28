@@ -11,7 +11,7 @@ function Hero() {
         <h1>Your hair experience!</h1>
         <Nav.Link href="#book" className={styles.HeroBtn}>Book</Nav.Link>
       </div>
-      <Nav.Link href="#about" className={styles.GoDown}><i className="fas fa-chevron-down"></i></Nav.Link>
+      <Nav.Link href="#about" className={styles.GoDown} aria-label="scroll down"><i className="fas fa-chevron-down"></i></Nav.Link>
     </Jumbotron>
   )
 }

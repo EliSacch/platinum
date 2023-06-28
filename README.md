@@ -745,8 +745,16 @@ This was caused by the fact that I was passing the client.owner value, while the
 
 ### Unfixed Bugs
 
+There are not known unfixed bugs at the moment.
+
 
 ### Performance
+
+All the pages were checked using lighthouse
+
+| Page | Performance | Accessibility | Best Practices | SEO |
+| ---- | ----------- | ------------- | -------------- | --- |
+|
 
 
 ## Deployment
