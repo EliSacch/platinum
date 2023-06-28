@@ -21,8 +21,9 @@ The website is built in React and relies on a Django REST API.
   - [Design](#design)
 
 - [Features](#features)
-  - [Landing Page](#landing-page)
-  - [Staff Page](#staff-page)
+  - [Home](#home)
+  - [Client Pages](#client-pages)
+  - [Staff Pages](#staff-pages)
 
 - [Testing](#testing)
   - [Tests](#tests)
@@ -147,37 +148,169 @@ The development has been tracked using GitHub Projects feature.
   ![vibrant](media/design/color-palette-colours.png)
 
 
+- Different color for staff dashboard:
+
+The staff dashboard mantains the same style of the landing page, although it is intentionally darker, so that it is clear straight away to the staff members that they are in this page and they are logged in as staff members.
+
+<details>
+  <summary>Check preview</summary>
+
+   ![Mobile Wireframe](media/features/different-color.png)
+
+</details>
+
+
+- The following fonts, used for the project, are from [Google Fonts](https://fonts.google.com/):
+
+  - Anton
+  - Raleway
+  - Caramel
+
+
 ## Features 
 
 
-### Landing page
+### Home
 
-- __About section__
+- __General Information__
 
-- __Gallery__
+The landing page contains an about section, a gallery and a services section that allows new clients to know more about the company and what it offers.
 
-- __Services__
-
-- __Booking form__
-
-- __Footer__
+![Information](media/features/info.png)
 
 
-### Staff Page
+- __Booking section__
 
-- __Dashboard__
+The booking section changes based on the user authentication status.
 
-- __View appointments__
+- Un-authenticated users see a message informing them about their booking options, and the clicable links to call or email directly.
 
-- __New appointment__
+- Authenticated users can see the booking form and book directly.
 
-- __Appointment details__
+<details>
+  <summary>Check preview</summary>
 
-- __Edit appointment__ 
+   ![Unauthenticate](media/features/book-unauth.png)
+   ![Authenticate](media/features/book-auth.png)
 
-- __Delete appointment__ 
+</details>
 
-- __Add staff member__
+- __Nav bar__
+
+The navigation bar allows users to easily navigate through the website and access what they need.
+
+The navigation bar is different based on the authentication status, and the user role.
+
+- Unauthenticated users can see the sign in and sign up links:
+
+  ![Navbar](media/features/nav.png)
+
+- Authenticated clients can see the sign out button, and a link to their appointments or their profile page:
+
+  ![Client Navbar](media/features/nav-client.png)
+
+- Authenticated staff members can also see a link to the staff dashboard:
+
+  ![Staff Navbar](media/features/nav-staff.png)
+
+
+### Client pages
+
+
+- __My appoinments__
+
+Authenticated clients can access the "my appointments" page.
+
+From here they can see a button to make an appointment and the "past" and "upcoming" appointments, in different tabs, so that they can review them. 
+
+![appointments](media/features/my-appointments.png)
+
+Clients can click on the appointment card to see more details.
+
+For upcoming appointments they can also see the options to cancel or edit them.
+
+![appointment detail](media/features/my-appointment-details.png)
+
+- __Profile page__
+
+The profile page offers users the option to review and manage their account and profile information.
+
+
+<details>
+  <summary>Check preview</summary>
+
+   ![profile](media/features/profile.png)
+
+</details>
+
+
+
+### Staff pages
+
+- __Calendar__
+
+When Staff members access the calendar and see all appointments for a specific day, week or month. They can also click on the appointment box to see more details.
+
+<details>
+  <summary>Check preview</summary>
+
+   ![profile](media/features/calendar.png)
+
+</details>
+
+
+- __Appointments__
+
+From the "Appointments" section it is possible to add new appointments, so that staff members can make appointments on behalf of the clients.
+
+Staff members can select a client from the registered users, or they can make an appointment for unregistered users. In this case they need to enter the name.
+
+They can also view all the appointments, and search by client.
+
+It is possible to click on the options to delete or edit an existing appointment.
+
+
+<details>
+  <summary>Check preview</summary>
+
+   ![profile](media/features/appointments.png)
+
+</details>
+
+
+- __Treatments__
+
+From this section staff members can manage the treatments.
+
+They can add a new treatment, and edit or delete an existing one.
+
+Staff members can also see the inactive treatments.
+
+If a treatment had been booked already, staff members cannot delete it, but they need to set is as "Inactive", this was designed for the following reasons:
+
+- Each appointment is related to a treatment by foreign key.
+- When deleting the treatment we dont want to cascade and delete all the related appiointment, beacause staff members and clients don't wont to have upcoming appointments deleted, and they might still want to review even past appointments.
+
+Setting a treatment to inactive will hide it from the booking form, but it can be managed in this section and restored if needed.
+
+
+<details>
+  <summary>Check preview</summary>
+
+   ![Treatments](media/features/treatments.png)
+
+</details>
+
+
+- __Clients__
+
+Finally, staff members can see the list of registered users, and they can search clients by username/display name.
+
+When clicking on the client row, staff members can see a list of details, such as name, total caount of appointments, if there is any appointment for the current day. they can also change the user role from clcient to staff (or the opposite), and they can review and add some notes. 
+
+This might be useful to save information, such as the previous dye mix used, the preferred hair conditioning, or the hair type and best products used.
+
+![clients](media/features/clients.png)
 
 
 ## Testing 
@@ -339,10 +472,6 @@ This was caused by the fact that I was passing the client.owner value, while the
 
 - The hair icon is from [Icons 8](https://icons8.com/icon/BuTG7ooQjwHl/hairstyle)
 
-- The following fonts, used for the project, are from [Google Fonts](https://fonts.google.com/):
-  - Anton
-  - Raleway
-  - Caramel
 
 - Hero image by [George Bohunicky](https://unsplash.com/@stuchy?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) on [Unsplash](https://unsplash.com/photos/qJKT2rMU0VU?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)
 
