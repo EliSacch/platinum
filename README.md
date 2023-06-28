@@ -419,7 +419,10 @@ Jigsaw gave the following warnings, which although do not highligh any issue wit
 
 #### JavaScript
 
+Javascript code has been tested using eslint.
+The final version did not return any error
 
+![eslint](media/testing/validation/js/eslint.png)
 
 
 ### Manual Testing
