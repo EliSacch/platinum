@@ -1,9 +1,18 @@
 # Platinum
 
 Platinum is an hairdresser website.
-It includes both a landing page and a private area for clients, and a staff dashboard to view and manage the appointments.
+
+__Project Goal__
+
+The main purpose of this project is to give the business owner the opportunity to increase visibility and to easily manage the bookings. 
+
+It includes a landing page, so that the business owner can promote the business, and it is easier for clients to find it when looking for an hairdresser online. Possible clients are more inclined to make an appointment if they have an engaging website, and if they can manage their appointments on their own, without having to call or email.
+
+For the business owner also is easy to manage the appointments, and being able to see them in a calendar view.
+
 
 The website is built in React and relies on a Django REST API.
+
 
 [Link deployed website](https://platinum.herokuapp.com/)
 
