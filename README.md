@@ -26,6 +26,8 @@ The website is built in React and relies on a Django REST API.
   - [Staff Pages](#staff-pages)
   - [Uninplemented Features](#uninplemented-features)
 
+- [Components](#components)
+
 - [Testing](#testing)
   - [Validator Testing](#validator-testing)
   - [Manual testing](#manual-testing)
@@ -325,6 +327,30 @@ Here are some featured that I would have liked to implement:
 
 - Email verification / password recovery : At the moment users can register and access with username and password. It would be a nice implementation if they could register using a verified email address. This way we could also implement the password reset feature, so that users can recover access to their account even if they forgot their password.
 
+
+## Components
+
+Several component have been structured so that they can be re-used through the whole application.
+
+- ActionsDropdown: The action dropdown takes three parameters:
+
+  - handleDelete > The function to run when the delete button is clicked
+  - handleEdit > The edit function to run then the edit button is clicked
+  - data > The identifiers (i.e. appointment id, treatment id)
+
+  This component had been used in the treatments and the appointments section of the staff dashboard.
+
+
+- ModalComponent: This component is a modal that takes some parameters, so that it can be re-used in different sections. It takes the following parameters:
+
+  - heading > The "title" of the modal
+  - message > The additional text to display
+  - show > The current "show" status to know if the the modal is visible or not
+  - setShow > To change the show status
+  - action > Because the modal is not just informative, but it is used as extra security to confirm an action, we also pass the action that needs to run when the user click on the "Confirm" button.
+
+  This component is used for the "Log out" functionality in Navigation.js and in Appointment.js to confirm the deletion of the appointment.
+  
 
 ## Testing 
 
