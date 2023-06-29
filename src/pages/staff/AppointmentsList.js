@@ -39,7 +39,7 @@ function AppointmentsList() {
 
     // Convert the time from integer to a human friendly format
     const displayTime = time => {
-        return (time - time%100) / 100 + ":" + (time) % 100 / 50 * 3 + '0'
+        return (time - time % 100) / 100 + ":" + (time) % 100 / 50 * 3 + '0'
     }
 
     /* When we click on the edit button
@@ -59,9 +59,9 @@ function AppointmentsList() {
             setAppointments((prevAppsetAppointments) => ({
                 ...prevAppsetAppointments,
                 results: prevAppsetAppointments.results.filter((appointment) => appointment.id !== id),
-              }));
+            }));
         } catch (err) {
-          
+
         }
     };
 
@@ -141,11 +141,18 @@ function AppointmentsList() {
                                                 <td>{appointment.treatment ? appointment.treatment : ""}</td>
                                                 <td className="d-none d-md-block">{appointment.notes ? appointment.notes : <span className={styles.Hidden}>none</span>}</td>
                                                 <td>
-                                                    <ActionsDropdown
-                                                        handleEdit={handleEdit}
-                                                        handleDelete={handleDelete}
-                                                        data={appointment.id}
-                                                    />
+                                                    {
+                                                        appointment.status === "Past" ? (
+                                                            <span className={styles.Hidden}>none</span>
+                                                        ) : (
+                                                            <ActionsDropdown
+                                                                handleEdit={handleEdit}
+                                                                handleDelete={handleDelete}
+                                                                data={appointment.id}
+                                                            />
+
+                                                        )
+                                                    }
                                                 </td>
                                             </tr>
 

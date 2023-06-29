@@ -2,11 +2,18 @@
     margin-top: 160px;
 }
 
+.Todays {
+    margin: 1em;
+    display: grid;
+    grid-auto-columns: repeat(auto, 300px);
+}
+
 .Tab {
     max-width: 800px;
     margin: 0 auto;
     padding: 2em;
 }
+
 .TabLink {
     margin-top: 50px;
 }
