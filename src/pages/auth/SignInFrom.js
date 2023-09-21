@@ -131,7 +131,7 @@ const SignInForm = () => {
 
         {/* Link to signup page if user doe not have an account */}
         <Container className="mt-3">
-          <Link to="/signup">
+          <Link to="/signup/">
             Don't have an account? <span>Sign up</span>
           </Link>
         </Container>

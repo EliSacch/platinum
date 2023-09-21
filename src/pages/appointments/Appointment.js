@@ -33,7 +33,7 @@ const Appointment = (props) => {
      * they are redirected to edit page for the current appointment
      */
     const handleEdit = () => {
-        history.push(`/my-appointments/${id}/edit`);
+        history.push(`/my-appointments/${id}/edit/`);
     }
 
     /**
@@ -56,7 +56,7 @@ const Appointment = (props) => {
             <>
                 <div className={styles.AppointmentDetail}>
                     <span
-                        onClick={() => history.push("/my-appointments")}
+                        onClick={() => history.push("/my-appointments/")}
                         aria-label="go back"
                     >
                         <i className="fas fa-arrow-left" />

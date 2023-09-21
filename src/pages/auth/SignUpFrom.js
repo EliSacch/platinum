@@ -126,7 +126,7 @@ const SignUpForm = () => {
         </Container>
 
         <Container className="mt-3">
-          <Link to="/signin">
+          <Link to="/signin/">
             Already have an account? <span>Sign in</span>
           </Link>
         </Container>

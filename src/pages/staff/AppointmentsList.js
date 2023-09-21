@@ -71,7 +71,7 @@ function AppointmentsList() {
     useEffect(() => {
         const fetchAppointments = async () => {
             try {
-                const { data } = await axiosReq.get(`/appointments/?search=${query}`);
+                const { data } = await axiosReq.get(`/appointments/?search=${query}/`);
                 setAppointments(data);
                 setHasLoaded(true);
             } catch (err) {

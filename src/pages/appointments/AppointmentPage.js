@@ -22,7 +22,7 @@ function AppointmentPage() {
   useEffect(() => {
     const fetchAppointment = async () => {
       try {
-        const { data } = await axiosReq.get(`/my-appointments/${id}`);
+        const { data } = await axiosReq.get(`/my-appointments/${id}/`);
         setAppointment({ results: [data] });
         setHasLoaded(true);
       } catch (err) {

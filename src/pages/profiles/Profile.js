@@ -27,7 +27,7 @@ const Profile = (props) => {
           <h1>Hi, {name ? name : owner}</h1>
           <Button
             className={styles.FormBtn}
-            onClick={() => history.push(`/profiles/${id}/edit`)}
+            onClick={() => history.push(`/profiles/${id}/edit/`)}
           >
             Edit profile information
           </Button>
@@ -39,7 +39,7 @@ const Profile = (props) => {
           <li>
           <Button
               className={styles.FormBtn}
-              onClick={() => history.push(`/profiles/${id}/edit/username`)}
+              onClick={() => history.push(`/profiles/${id}/edit/username/`)}
             >
               <i className='fas fa-edit' />
             </Button>
@@ -49,7 +49,7 @@ const Profile = (props) => {
           <li>
           <Button
               className={styles.FormBtn}
-              onClick={() => history.push(`/profiles/${id}/edit/password`)}
+              onClick={() => history.push(`/profiles/${id}/edit/password/`)}
             >
               <i className='fas fa-edit' />
             </Button>

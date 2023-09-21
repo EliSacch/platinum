@@ -38,7 +38,7 @@ export const CurrentUserProvider = ({ children }) => {
           } catch (err) {
             setCurrentUser((prevCurrentUser) => {
               if (prevCurrentUser) {
-                history.push("/signin");
+                history.push("/signin/");
               }
               return null;
             });
@@ -62,7 +62,7 @@ export const CurrentUserProvider = ({ children }) => {
           } catch (err) {
             setCurrentUser((prevCurrentUser) => {
               if (prevCurrentUser) {
-                history.push("/signin");
+                history.push("/signin/");
               }
               return null;
             });

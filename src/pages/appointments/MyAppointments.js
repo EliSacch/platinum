@@ -36,7 +36,7 @@ function MyAppointments() {
     useEffect(() => {
         const fetchAppointments = async () => {
             try {
-                const { data } = await axiosReq.get("/my-appointments");
+                const { data } = await axiosReq.get("/my-appointments/");
                 setAppointments(data);
                 setHasLoaded(true)
             } catch (err) {
@@ -54,7 +54,7 @@ function MyAppointments() {
             // What we display if the user is logged in
             <section className={styles.OffsetTop}>
                 <Link
-                    to="/my-appointments/create"
+                    to="/my-appointments/create/"
                     className={styles.ActionBtn}
                 >Make an appointment
                 </Link>
@@ -79,7 +79,7 @@ function MyAppointments() {
                             <>
                             <p>Today's appointments</p>
                             <Link
-                                to={`/my-appointments/${appointment.id}`}
+                                to={`/my-appointments/${appointment.id}/`}
                                 key={appointment.id}
                             >
                                 <Appointment  {...appointment} />
@@ -117,7 +117,7 @@ function MyAppointments() {
                                             ).map(appointment => (
                                                 // For each appointment we display a clickable element
                                                 <Link
-                                                    to={`/my-appointments/${appointment.id}`}
+                                                    to={`/my-appointments/${appointment.id}/`}
                                                     key={appointment.id}
                                                 >
                                                     <Appointment  {...appointment} />
@@ -152,7 +152,7 @@ function MyAppointments() {
                                             ).map(appointment => (
                                                 // For each appointment we show a clickable div
                                                 <Link
-                                                    to={`/my-appointments/${appointment.id}`}
+                                                    to={`/my-appointments/${appointment.id}/`}
                                                     key={appointment.id}
                                                 >
                                                     <Appointment {...appointment} />
@@ -172,7 +172,7 @@ function MyAppointments() {
             </section >
         ) : (
             // If the user is not logged in we redirect to login page
-            history.push("/signin")
+            history.push("/signin/")
         )
     )
 }

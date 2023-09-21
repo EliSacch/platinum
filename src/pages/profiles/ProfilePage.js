@@ -18,7 +18,7 @@ function ProfilePage() {
     useEffect(() => {
         const fetchProfileData = async () => {
             try {
-                const { data } = await axiosReq.get(`/profiles/${currentUser.pk}`);
+                const { data } = await axiosReq.get(`/profiles/${currentUser.pk}/`);
                 setProfileData({results: [data]});
                 setHasLoaded(true);
 

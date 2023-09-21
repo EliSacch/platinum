@@ -19,7 +19,7 @@ function ServicesPage() {
         // When the page loads we retrieve the treatments
         const handleMount = async () => {
             try {
-                const { data } = await axiosReq.get('/treatments');
+                const { data } = await axiosReq.get('/treatments/');
                 setTreatments(data);
                 setHasLoaded(true);
             } catch (err) {
